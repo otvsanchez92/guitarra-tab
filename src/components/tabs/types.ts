@@ -1,7 +1,4 @@
-export type TActive = {
-  x: number;
-  y: number;
-};
+import { TActive } from '@/store/types';
 
 export type TTabsProps = {
   notes: TActive[];

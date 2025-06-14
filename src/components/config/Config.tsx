@@ -5,7 +5,9 @@ import { Undo, Clear, Edit, Save, Download } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { TConfigProps } from './types';
 
-interface ConfigProps extends TConfigProps {}
+interface ConfigProps extends TConfigProps {
+  addInstrument: () => void;
+}
 
 const Config: React.FC<ConfigProps> = ({
   onChangeNumberStrings,
@@ -18,7 +20,8 @@ const Config: React.FC<ConfigProps> = ({
   copyScale,
   changeFrets,
   frets,
-  children
+  children,
+  addInstrument
 }: ConfigProps) => {
   const [strings, setStrings] = useState('6');
   const [colors, setColor] = useState('red');
@@ -62,9 +65,9 @@ const Config: React.FC<ConfigProps> = ({
               <Grid item>
                 <Grid container spacing={1} alignItems="center">
                   <Grid item>
-                    <Button 
-                      onClick={clearNotes} 
-                      title={t('config.clear')} 
+                    <Button
+                      onClick={clearNotes}
+                      title={t('config.clear')}
                       variant="contained"
                       startIcon={<Clear />}
                       size="small"
@@ -82,10 +85,10 @@ const Config: React.FC<ConfigProps> = ({
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Button 
-                      disabled={actives.length < 0} 
-                      onClick={clearNote} 
-                      title={t('config.undo')} 
+                    <Button
+                      disabled={actives.length < 0}
+                      onClick={clearNote}
+                      title={t('config.undo')}
                       variant="contained"
                       startIcon={<Undo />}
                       size="small"
@@ -122,14 +125,16 @@ const Config: React.FC<ConfigProps> = ({
                         sx={{
                           borderRadius: 2,
                           '& .MuiOutlinedInput-root': {
-                            borderRadius: 2,
+                            borderRadius: 2
                           }
                         }}
                       >
-                        {colorsArray.map((color) => (
+                        {colorsArray.map(color => (
                           <MenuItem key={color.value} value={color.value}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                              <Color style={{ backgroundColor: color.color, borderRadius: '50%', width: 16, height: 16 }} />
+                              <Color
+                                style={{ backgroundColor: color.color, borderRadius: '50%', width: 16, height: 16 }}
+                              />
                               <span>{color.label}</span>
                             </Box>
                           </MenuItem>
@@ -138,9 +143,9 @@ const Config: React.FC<ConfigProps> = ({
                     </FormControl>
                   </Grid>
                   <Grid item xs={6}>
-                    <Button 
-                      onClick={copyScale} 
-                      title={t('config.copyScale')} 
+                    <Button
+                      onClick={copyScale}
+                      title={t('config.copyScale')}
                       variant="contained"
                       startIcon={<Download />}
                       size="small"
@@ -182,7 +187,7 @@ const Config: React.FC<ConfigProps> = ({
                 sx={{
                   borderRadius: 2,
                   '& .MuiOutlinedInput-root': {
-                    borderRadius: 2,
+                    borderRadius: 2
                   }
                 }}
               >
@@ -213,7 +218,7 @@ const Config: React.FC<ConfigProps> = ({
                 sx={{
                   borderRadius: 2,
                   '& .MuiOutlinedInput-root': {
-                    borderRadius: 2,
+                    borderRadius: 2
                   }
                 }}
               >
@@ -241,8 +246,23 @@ const Config: React.FC<ConfigProps> = ({
             </FormControl>
           </Grid>
           <Grid item xs={4}>
-            <Button 
-              onClick={changeTuning} 
+            <Button
+              onClick={addInstrument}
+              title={t('config.addInstrument')}
+              variant="contained"
+              size="small"
+              sx={{
+                textTransform: 'none',
+                borderRadius: 2,
+                minWidth: 120
+              }}
+            >
+              {t('config.addInstrument')}
+            </Button>
+          </Grid>
+          <Grid item xs={4}>
+            <Button
+              onClick={changeTuning}
               title={t('config.editTuning')}
               variant="contained"
               size="small"

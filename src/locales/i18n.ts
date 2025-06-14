@@ -13,7 +13,7 @@ i18n
       caches: ['cookie']
     },
     interpolation: {
-      escapeValue: false,
+      escapeValue: false
     },
     resources: {
       en: {

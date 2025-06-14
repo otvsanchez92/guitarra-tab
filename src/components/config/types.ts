@@ -12,4 +12,5 @@ export type TConfigProps = {
   changeFrets: (frets: number) => void;
   frets: number;
   children: JSX.Element;
+  addInstrument: () => void;
 };

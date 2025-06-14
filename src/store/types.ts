@@ -1,7 +1,7 @@
 export type TActive = {
   x: number;
   y: number;
-  color: string;
+  color?: string;
 };
 
 export interface TInstrument {
@@ -30,4 +30,5 @@ export interface TStore {
   addScale: (note: string) => void;
   selectScale: (scale: string | string[]) => void;
   addInstrument: (times?: number) => void;
+  color: string;
 }

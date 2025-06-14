@@ -1,34 +1,21 @@
 import { Typography } from '@mui/material';
 import { GuitarTable, Line, GuitarContent, Tuning, GuitarColumnText, GuitarRow, GuitarColumn, Button } from './style';
-import {  TGuitarProps } from './types';
+import { TGuitarProps } from './types';
 import { TActive } from '@/store/types';
 import { selectNote } from '@/utils/scales';
 import { Marks } from './Marks';
 import { TStore, useStore } from '@/store';
 import { SelectTuning } from '@/components/select-tuning';
+import { translations } from '@/locales/pt-BR';
 
-const Guitar = ({ tuning, onSelectNote, strings, color, editTuning, frets, notes }: TGuitarProps) => {
-
+const Guitar = ({ tuning, onSelectNote, strings, editTuning, frets, notes }: TGuitarProps) => {
   const freatboard = frets + 1;
 
-  const {  setActiveButton, changeTuning, addScale }: TStore = useStore((state: any) => state);
+  const { setActiveButton, changeTuning, addScale }: TStore = useStore((state: any) => state);
 
+  const isActive = ({ x, y }: TActive) => notes.some((note: TActive) => note.x === y && note.y === x);
 
-
-  const isActive = ({ x, y }: TActive) => {
-    return notes.some((note: TActive) => note.x === y && note.y === x);  // Swap coordinates
-  };
-
-
-  const selectColor = ({ x, y }: TActive) => {
-    const activeNote = notes.find((note: TActive) => note.x === y && note.y === x);  // Swap coordinates
-    
-    if (activeNote) {
-      return color;
-    }
-
-    return 'transparent';
-  };
+  const getColor = ({ x, y }: TActive) => notes.find((note: TActive) => note.x === y && note.y === x)?.color || 'red';
 
   const renderNumbers = () =>
     Array.from(Array(freatboard), (_, x) => (
@@ -45,21 +32,22 @@ const Guitar = ({ tuning, onSelectNote, strings, color, editTuning, frets, notes
           {Array.from(Array(freatboard), (_, y) => (
             <GuitarColumn key={`${x}-${y}`}>
               <Button
+                title={translations.guitar.selectNote}
                 onClick={() => {
-                  setActiveButton({ x: y, y: x, color: color });
-                  onSelectNote({ x: y, y: x });           
+                  setActiveButton({ x: y, y: x, color: getColor({ x, y }) });
+                  onSelectNote({ x: y, y: x });
                   addScale(selectNote(tuning[x], y));
                 }}
-                style={{ 
-                  backgroundColor: selectColor({ x, y, color }), 
-                  opacity: isActive({ x, y, color }) ? 1 : 0.2
+                style={{
+                  backgroundColor: isActive({ x, y }) ? getColor({ x, y }) : 'transparent',
+                  opacity: isActive({ x, y }) ? 1 : 0.2
                 }}
-                className={isActive({ x, y, color }) ? 'active' : ''}
+                className={isActive({ x, y }) ? 'active' : ''}
               >
                 {selectNote(tuning[x], y)}
               </Button>
               <Line style={{ height: 2 + x * 0.3 }} />
-              <Marks x={x} y={y} strings={strings} color={color} />
+              <Marks x={x} y={y} strings={strings} color={getColor({ x, y })} />
             </GuitarColumn>
           ))}
         </GuitarRow>
@@ -86,10 +74,13 @@ const Guitar = ({ tuning, onSelectNote, strings, color, editTuning, frets, notes
   );
 
   return (
-    <GuitarContent id="guitar" style={{
-    maxWidth: frets === 24 ? 940 : 500,
-    margin: 'auto',
-    }}>
+    <GuitarContent
+      id="guitar"
+      style={{
+        maxWidth: frets === 24 ? 940 : 500,
+        margin: 'auto'
+      }}
+    >
       {renderTuning()}
       <GuitarTable cellSpacing="0">{renderNotes()}</GuitarTable>
     </GuitarContent>

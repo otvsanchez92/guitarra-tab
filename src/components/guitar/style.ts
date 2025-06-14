@@ -24,12 +24,12 @@ export const Button = styled.button`
   opacity: 0;
 
   &:hover {
-    opacity: 1 !important; 
+    opacity: 1 !important;
     background-color: #aaa !important;
   }
 
   &.active {
-    opacity: 1 !important; 
+    opacity: 1 !important;
   }
 `;
 
@@ -109,4 +109,3 @@ export const Line = styled.div`
   position: absolute;
   left: -1px;
 `;
-

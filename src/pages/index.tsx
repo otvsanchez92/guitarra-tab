@@ -6,9 +6,10 @@ import { Config } from '@/components/config';
 import { Tabs } from '@/components/tabs';
 import { Scale } from '@/components/scale';
 import { useStore } from '@/store';
-import type { TStore, TInstrument } from '@/store/types';
+import type { TStore, TActive } from '@/store/types';
 import html2canvas from 'html2canvas';
 import { useRouter } from 'next/router';
+import { translations } from '@/locales/pt-BR';
 
 export default function Home() {
   const router = useRouter();
@@ -22,12 +23,8 @@ export default function Home() {
     selectScale,
     instruments,
     addInstrument,
+    color
   }: TStore = useStore((state: any) => state);
-
- 
-  
-
-
 
   useEffect(() => {
     const scaleParam = router.query.scale;
@@ -36,10 +33,6 @@ export default function Home() {
       selectScale(scaleArray);
     }
   }, [router.query.scale, selectScale]);
-
-
- 
-
 
   useEffect(() => {
     const diagramsParam = router.query.diagrams;
@@ -68,12 +61,12 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Scale Tab Creator - Musical Scale Diagrams Generator</title>
-        <meta name="description" content="Create custom scale diagrams for guitar, bass, and other string instruments. Online tab generator with customizable tuning and number of strings." />
-        <meta name="keywords" content="scale diagrams, tabs, guitar, bass, string instruments, music theory, musical scales, tablatures, tab generator, customizable tuning" />
-        <meta name="author" content="Scale Tab Creator" />
-        <meta property="og:title" content="Scale Tab Creator - Musical Scale Diagrams Generator" />
-        <meta property="og:description" content="Create custom scale diagrams for guitar, bass, and other string instruments. Online tab generator with customizable tuning and number of strings." />
+        <title>{translations.title}</title>
+        <meta name="description" content={translations.description} />
+        <meta name="keywords" content={translations.keywords} />
+        <meta name="author" content={translations.author} />
+        <meta property="og:title" content={translations.ogTitle} />
+        <meta property="og:description" content={translations.ogDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/og-image.png" />
         <link rel="icon" href="/favicon.ico" />
@@ -82,44 +75,41 @@ export default function Home() {
       </Head>
       <main>
         <Container>
- 
-        <Scale />
+          <Scale />
           <Config
             onChangeNumberStrings={changeNumberStrings}
             onChangeColor={changeColor}
             clearNotes={clearNotes}
             clearNote={clearNote}
-            actives={instruments[0].actives}
+            actives={instruments[0]?.actives || []}
             changeTuning={changeTuning}
             editTuning={editTuning}
             copyScale={copyScale}
             changeFrets={changeFrets}
-            frets={instruments[0].frets}
+            frets={instruments[0]?.frets || 24}
+            addInstrument={() => addInstrument()}
           >
-            
             <>
-  
-            { instruments.map(({ tuning, strings, color, frets, notes, instrument }: TInstrument) => (
-                <div style={{ margin: 'auto' }} id="guitar" key={instrument}>
+              {instruments.map(instrumentData => (
+                <div key={instrumentData.instrument} style={{ margin: 'auto' }}>
                   <Guitar
-                    editTuning={instrument === 0 ? editTuning : false}
-                    frets={frets}
-                    tuning={tuning}
-                    onSelectNote={({ x, y }) => addNote({ x, y, color }, instrument)}
-                    strings={strings}
-                    color={color}
-                    notes={notes}
+                    editTuning={instrumentData.instrument === 0 ? editTuning : false}
+                    frets={instrumentData.frets}
+                    tuning={instrumentData.tuning}
+                    onSelectNote={({ x, y }) => addNote({ x, y, color }, instrumentData.instrument)}
+                    strings={instrumentData.strings}
+                    notes={instrumentData.notes}
                   />
-
-                  {instrument}
-
-                  {JSON.stringify({ tuning, strings, color, frets, notes })}
-                </div>  
+                </div>
               ))}
-          </>
+            </>
           </Config>
-   
-          {instruments.length === 1 ? <Tabs tuning={instruments[0].tuning} notes={instruments[0].notes} strings={instruments[0].strings} /> : null}
+
+          <Tabs
+            tuning={instruments[0].tuning}
+            strings={instruments[0].strings}
+            notes={instruments.map(instrument => instrument.notes).flat() as TActive[]}
+          />
         </Container>
       </main>
     </>

@@ -13,7 +13,8 @@
     "saveTuning": "Save Tuning",
     "copyScale": "Copy Scale",
     "frets": "Number of Frets",
-    "download": "Download"
+    "download": "Download",
+    "addInstrument": "Add Diagram" 
   },
   "colors": {
     "red": "Red",
@@ -24,5 +25,8 @@
   },
   "scale": {
     "title": "Scale:"
+  },
+  "tabs": {
+    "title": "Tabs:"
   }
 }

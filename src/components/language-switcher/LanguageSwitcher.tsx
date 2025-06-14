@@ -33,9 +33,9 @@ export const LanguageSwitcher = () => {
       disableUnderline
       input={<InputBase />}
     >
-      <MenuItem 
-        value="en" 
-        sx={{ 
+      <MenuItem
+        value="en"
+        sx={{
           color: 'primary.main',
           '&:hover': {
             backgroundColor: 'rgba(255, 255, 255, 0.05)'
@@ -44,9 +44,9 @@ export const LanguageSwitcher = () => {
       >
         English
       </MenuItem>
-      <MenuItem 
-        value="pt-BR" 
-        sx={{ 
+      <MenuItem
+        value="pt-BR"
+        sx={{
           color: 'primary.main',
           '&:hover': {
             backgroundColor: 'rgba(255, 255, 255, 0.05)'

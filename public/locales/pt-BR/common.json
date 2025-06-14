@@ -13,9 +13,13 @@
     "saveTuning": "Salvar Afinação",
     "copyScale": "Copiar Escala",
     "frets": "Número de Trastes",
-    "download": "Download"
+    "download": "Download",
+    "addInstrument": "Adicionar Diagrama"
   },
   "scale": {
     "title": "Escala:"
+  },
+  "tabs": {
+    "title": "Tabs:"
   }
 }

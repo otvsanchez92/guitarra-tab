@@ -1,8 +1,6 @@
 import { create } from 'zustand';
-import { TInstrument, TStore } from './types'; 
+import { TInstrument, TStore } from './types';
 import { getPositionFromNote, getNotesSequence, getNoteFromPosition } from '../utils/scales';
-
-
 
 const initialState: TInstrument = {
   notes: [],
@@ -13,26 +11,61 @@ const initialState: TInstrument = {
   scale: [],
   lastNote: null,
   frets: 24,
-  instrument: 0,
+  instrument: 0
 };
 
 const useStore = create<TStore>((set, get) => ({
   instruments: [initialState],
   lastInstrument: 0,
+  color: 'red',
 
-  addInstrument: (times = 1)  => {
-    for (let i = 0; i < times; i++) {
-      set((state: TStore) => {
+  addInstrument: times => {
+    console.log(' chamou ', times);
+    set((state: TStore) => {
+      if (!times) {
         const newState = [...state.instruments];
-        newState.push({ ...initialState, lastNote: null, instrument: i });
-        return { instruments: newState, lastInstrument: newState.length - 1 };
-      });
-    }
+
+        newState.push({
+          ...initialState,
+          lastNote: null,
+          instrument: newState.length
+        });
+
+        return {
+          instruments: newState,
+          lastInstrument: newState.length - 1
+        };
+      } else {
+        console.log(' oiii ');
+        const newState = [];
+
+        for (let i = 0; i < times; i++) {
+          newState.push({
+            ...initialState,
+            lastNote: null,
+            instrument: i
+          });
+        }
+
+        return {
+          instruments: newState,
+          lastInstrument: newState.length - 1
+        };
+      }
+    });
   },
   addNote: ({ x, y, color }, instrument = 0) => {
     set((state: TStore) => {
-      const newState = [...state.instruments];
-      newState[instrument].notes.push({ x, y, color: color || state.instruments[instrument].color });
+      const newState = state.instruments.map(inst => {
+        if (inst.instrument === instrument) {
+          return {
+            ...inst,
+            notes: [...inst.notes, { x, y, color }]
+          };
+        }
+        return inst;
+      });
+
       return { instruments: newState, lastInstrument: instrument };
     });
   },
@@ -42,7 +75,7 @@ const useStore = create<TStore>((set, get) => ({
       4: ['G', 'D', 'A', 'E'],
       5: ['G', 'D', 'A', 'E', 'B'],
       6: ['E', 'B', 'G', 'D', 'A', 'E'],
-      7: ['E', 'B', 'G', 'D', 'A', 'E', 'B'],
+      7: ['E', 'B', 'G', 'D', 'A', 'E', 'B']
     };
 
     set((state: TStore) => {
@@ -53,11 +86,9 @@ const useStore = create<TStore>((set, get) => ({
     });
   },
 
-  changeColor: (color, instrument = 0) => {
+  changeColor: color => {
     set((state: TStore) => {
-      const newState = [...state.instruments];
-      newState[instrument].color = color;
-      return { instruments: newState };
+      return { ...state, color };
     });
   },
 
@@ -65,7 +96,7 @@ const useStore = create<TStore>((set, get) => ({
     set((state: TStore) => {
       const newState = [...state.instruments];
       newState[instrument].frets = frets;
-      return { instruments: newState };
+      return { ...state, instruments: newState };
     });
   },
 
@@ -81,7 +112,7 @@ const useStore = create<TStore>((set, get) => ({
 
   clearNotes: () => {
     set((state: TStore) => {
-      return { instruments: state.instruments.map((instrument) => ({ ...instrument, notes: [] })) };
+      return { instruments: state.instruments.map(instrument => ({ ...instrument, notes: [] })) };
     });
   },
 
@@ -97,18 +128,19 @@ const useStore = create<TStore>((set, get) => ({
     });
   },
 
-  setActiveButton: ({ x, y, color }) => {
-    const exists = get().instruments[0].actives.some((a) => a.x === x && a.y === y);
+  setActiveButton: ({ x, y }) => {
+    const exists = get().instruments[0].actives.some(a => a.x === x && a.y === y);
     if (!exists) {
       set((state: TStore) => {
         const newState = [...state.instruments];
-        newState[0].actives.push({ x, y, color });
+        const currentColor = get().instruments[0].color;
+        newState[0].actives.push({ x, y, color: currentColor });
         return { instruments: newState };
       });
     }
   },
 
-  addScale: (note) => {
+  addScale: note => {
     set((state: TStore) => {
       const newState = [...state.instruments];
       newState[0].scale.push(note);
@@ -130,8 +162,8 @@ const useStore = create<TStore>((set, get) => ({
       }
     }
 
-    console.log(newNotes)
-    
+    console.log(newNotes);
+
     set((state: TStore) => {
       const newState = [...state.instruments];
       newState[0].actives = newNotes.map(({ x, y }) => ({ x, y, color }));
@@ -143,7 +175,7 @@ const useStore = create<TStore>((set, get) => ({
       newState[0].notes = newNotes.map(({ x, y }) => ({ x, y, color }));
       return { instruments: newState };
     });
-  },
+  }
 }));
 
 export { useStore };
