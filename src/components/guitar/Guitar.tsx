@@ -1,28 +1,33 @@
 import { useState } from 'react';
 import { Typography } from '@mui/material';
-import { GuitarColumn, GuitarRow, GuitarTable, Line, GuitarContent, Tuning, GuitarColumnText, Button } from './style';
+import styled from 'styled-components';
+import { GuitarTable, Line, GuitarContent, Tuning, GuitarColumnText, GuitarRow, GuitarColumn, Button } from './style';
 import { TActive, TGuitarProps } from './types';
 import { selectNote } from '@/utils/scales';
 import { Marks } from './Marks';
 import { TStore, useStore } from '@/store';
 import { SelectTuning } from '@/components/select-tuning';
 
-const Guitar = ({ tuning, onSelectNote, strings, color, editTuning, frets }: TGuitarProps) => {
+const Guitar = ({ tuning, onSelectNote, strings, color, editTuning, frets, diagramIndex = 0 }: TGuitarProps) => {
   const freatboard = frets + 1;
 
-  const { actives, setActiveButton, changeTuning, addScale }: TStore = useStore((state: any) => state);
+  const { actives, setActiveButton, changeTuning, addScale, notes }: TStore = useStore((state: any) => state);
 
-  const active = ({ x, y }: TActive) =>
-    actives && actives.filter((item: { x: number; y: number }) => item.x === x && item.y === y).length > 0;
+
+
+  const isActive = ({ x, y }: TActive) => {
+    return notes.some(note => note.x === y && note.y === x);  // Swap coordinates
+  };
+
 
   const selectColor = ({ x, y }: TActive) => {
-    const selectActive = actives && actives.find((item: { x: number; y: number }) => item.x === x && item.y === y);
-
-    if (selectActive) {
-      return selectActive.color;
+    const activeNote = notes.find(note => note.x === y && note.y === x);  // Swap coordinates
+    
+    if (activeNote) {
+      return color;
     }
 
-    return color;
+    return 'transparent';
   };
 
   const renderNumbers = () =>
@@ -41,11 +46,15 @@ const Guitar = ({ tuning, onSelectNote, strings, color, editTuning, frets }: TGu
             <GuitarColumn key={`${x}-${y}`}>
               <Button
                 onClick={() => {
-                  setActiveButton({ x, y, color });
-                  onSelectNote({ x, y });
+                  setActiveButton({ x: y, y: x, color });  // Swap coordinates
+                  onSelectNote({ x: y, y: x });            // Swap coordinates
                   addScale(selectNote(tuning[x], y));
                 }}
-                style={{ backgroundColor: selectColor({ x, y }), opacity: active({ x, y }) ? 1 : 0 }}
+                style={{ 
+                  backgroundColor: selectColor({ x, y }), 
+                  opacity: isActive({ x, y }) ? 1 : 0.2
+                }}
+                className={isActive({ x, y }) ? 'active' : ''}
               >
                 {selectNote(tuning[x], y)}
               </Button>
@@ -78,8 +87,10 @@ const Guitar = ({ tuning, onSelectNote, strings, color, editTuning, frets }: TGu
 
   return (
     <GuitarContent id="guitar" style={{
-    maxWidth:  frets === 24 ? 940 : 500,
-    margin: 'auto'
+    maxWidth: frets === 24 ? 940 : 500,
+    margin: 'auto',
+    borderLeft: diagramIndex > 0 ? '2px solid #ccc' : 'none',
+    paddingLeft: diagramIndex > 0 ? '1rem' : '0'
     }}>
       {renderTuning()}
       <GuitarTable cellSpacing="0">{renderNotes()}</GuitarTable>

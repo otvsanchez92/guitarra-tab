@@ -10,6 +10,7 @@ export type TGuitarProps = {
   color: string;
   editTuning: boolean;
   frets: number;
+  diagramIndex?: number;
 };
 
 export interface IMarksProps extends TActive {

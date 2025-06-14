@@ -1,7 +1,7 @@
 export type TActive = {
   x: number;
   y: number;
-  color?: string;
+  color: string;
 };
 
 export type TStore = {
@@ -10,14 +10,15 @@ export type TStore = {
   tuning: string[];
   color: string;
   actives: TActive[];
-  addNote: ({ x, y }: TActive) => void;
+  addNote: (active: TActive) => void;
   changeNumberStrings: (strings: number) => void;
   changeColor: (color: string) => void;
   clearNotes: () => void;
   clearNote: () => void;
-  setActiveButton: ({ x, y, color }: TActive) => void;
+  setActiveButton: (active: TActive) => void;
   changeTuning: (value: string, position: number) => void;
   addScale: (note: string) => void;
+  selectScale: (scale: string[]) => void;
   scale: string[];
   frets: number;
   changeFrets: (frets: number) => void;

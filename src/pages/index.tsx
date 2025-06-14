@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import { Container } from '@mui/material';
@@ -6,12 +6,13 @@ import { Guitar } from '@/components/guitar';
 import { Config } from '@/components/config';
 import { Tabs } from '@/components/tabs';
 import { Scale } from '@/components/scale';
-import { useStore, TStore } from '@/store';
+import { useStore } from '@/store';
+import type { TStore } from '@/store/types';
 import html2canvas from 'html2canvas';
-
-const inter = Inter({ subsets: ['latin'] });
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
   const {
     tuning,
     addNote,
@@ -24,8 +25,33 @@ export default function Home() {
     clearNote,
     actives,
     changeFrets,
-    frets
+    frets,
+    selectScale
   }: TStore = useStore((state: any) => state);
+
+  const [diagrams, setDiagrams] = useState(1);
+  
+
+
+
+  useEffect(() => {
+    const scaleParam = router.query.scale;
+    if (scaleParam) {
+      const scaleArray = Array.isArray(scaleParam) ? scaleParam : scaleParam.split(',');
+      selectScale(scaleArray);
+    }
+  }, [router.query.scale, selectScale]);
+
+
+ 
+
+
+  useEffect(() => {
+    const diagramsParam = router.query.diagrams;
+    if (diagramsParam) {
+      setDiagrams(Number(diagramsParam));
+    }
+  }, [router.query.diagrams]);
 
   const [editTuning, setEditTuning] = useState(false);
 
@@ -61,6 +87,7 @@ export default function Home() {
       </Head>
       <main>
         <Container>
+ 
           <Config
             onChangeNumberStrings={changeNumberStrings}
             onChangeColor={changeColor}
@@ -73,19 +100,25 @@ export default function Home() {
             changeFrets={changeFrets}
             frets={frets}
           >
-            <div style={{ margin: 'auto' }} id="guitar">
-              <Guitar
-                editTuning={editTuning}
-                frets={frets}
-                tuning={tuning}
-                onSelectNote={({ x, y }) => addNote({ x, y })}
-                strings={strings}
-                color={color}
-              />
-            </div>
+           
+
+              {Array.from({ length: diagrams }, (_, index) => (
+                <div style={{ margin: 'auto' }} id="guitar" key={index}>
+                  <Guitar
+                    editTuning={editTuning}
+                    frets={frets}
+                    tuning={tuning}
+                    onSelectNote={({ x, y }) => addNote({ x, y, color })}
+                    strings={strings}
+                    color={color}
+                    diagramIndex={index}
+                  />
+              </div>  
+              ))}
+          
           </Config>
           <Scale />
-          <Tabs tuning={tuning} notes={notes} strings={strings} />
+          {diagrams === 1 ? <Tabs tuning={tuning} notes={notes} strings={strings} /> : null}
         </Container>
       </main>
     </>

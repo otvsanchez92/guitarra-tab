@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { TActive } from './types';
+import { TActive } from './types'; 
+import { getPositionFromNote, getNotesSequence, getNoteFromPosition } from '../utils/scales';
 
 interface TStore {
   notes: { x: number; y: number }[];
@@ -8,17 +9,18 @@ interface TStore {
   color: string;
   actives: { x: number; y: number; color: string }[];
   scale: string[];
-  lastNote: null;
+  lastNote: { x: number; y: number } | null;
   frets: number;
   addNote: (active: TActive) => void;
   changeNumberStrings: (strings: number) => void;
   changeColor: (color: string) => void;
-  changeFrets: (frets: string) => void;
+  changeFrets: (frets: number) => void;
   changeTuning: (value: string, position: number) => void;
   clearNotes: () => void;
   clearNote: () => void;
   setActiveButton: (active: TActive) => void;
   addScale: (note: string) => void;
+  selectScale: (scale: string | string[]) => void;
 }
 
 const useStore = create<TStore>((set, get) => ({
@@ -30,67 +32,90 @@ const useStore = create<TStore>((set, get) => ({
   scale: [],
   lastNote: null,
   frets: 24,
-  addNote: async ({ x, y }: TActive) => {
-    const newNotes = get().notes.concat({ x, y });
 
-    set({ notes: newNotes });
+  addNote: ({ x, y }) => {
+    const newNote = { x, y };
+    set((state) => ({
+      notes: [...state.notes, newNote],
+      lastNote: newNote,
+    }));
   },
-  changeNumberStrings: async (strings: number) => {
-    
-    if(strings === 6) {
-      set({ tuning: ['E', 'B', 'G', 'D', 'A', 'E'] });
-    }
 
-    if(strings === 5) {
-      set({ tuning: ['G', 'D', 'A', 'E', 'B'] });
-    }
+  changeNumberStrings: (strings) => {
+    const defaultTunings: Record<number, string[]> = {
+      4: ['G', 'D', 'A', 'E'],
+      5: ['G', 'D', 'A', 'E', 'B'],
+      6: ['E', 'B', 'G', 'D', 'A', 'E'],
+      7: ['E', 'B', 'G', 'D', 'A', 'E', 'B'],
+    };
 
-    if(strings === 4) {
-      set({ tuning: ['G', 'D', 'A', 'E'] });
-    }
- 
-
-    if(strings === 7) {
-      set({ tuning: ['E', 'B', 'G', 'D', 'A', 'E', 'B']  });
-    }
- 
-    set({ strings });
+    set({
+      strings,
+      tuning: defaultTunings[strings] || get().tuning,
+    });
   },
-  changeColor: async (color: string) => {
+
+  changeColor: (color) => {
     set({ color });
   },
-  changeFrets: async (frets: string) => {
-    set({ frets: Number(frets) });
-  },
-  changeTuning: async (value: string, position: number) => {
-    const newTuning = get().tuning;
 
-    newTuning[position] = value;
+  changeFrets: (frets) => {
+    set({ frets });
+  },
 
-    set({ tuning: newTuning });
+  changeTuning: (value, position) => {
+    const currentTuning = [...get().tuning];
+    currentTuning[position] = value;
+    set({ tuning: currentTuning });
   },
-  clearNotes: async () => {
-    set({ notes: [], actives: [], scale: [] });
+
+  clearNotes: () => {
+    set({ notes: [], actives: [], scale: [], lastNote: null });
   },
-  clearNote: async () => {
-    set({ notes: get().notes.slice(0, -1), actives: get().actives.slice(0, -1), scale: get().scale.slice(0, -1) });
+
+  clearNote: () => {
+    set((state) => ({
+      notes: state.notes.slice(0, -1),
+      actives: state.actives.slice(0, -1),
+      scale: state.scale.slice(0, -1),
+    }));
   },
-  setActiveButton: async ({ x, y, color }: TActive) => {
-    
-    const newActives = get().actives.map((active: any) => {
-      if(active.x === x && active.y === y) {
-        return { x, y, color }
+
+  setActiveButton: ({ x, y, color }) => {
+    const exists = get().actives.some((a) => a.x === x && a.y === y);
+    if (!exists) {
+      set((state) => ({
+        actives: [...state.actives, { x, y, color }],
+      }));
+    }
+  },
+
+  addScale: (note) => {
+    set((state) => ({
+      scale: [...state.scale, note],
+    }));
+  },
+
+  selectScale: (scale: string | string[]) => {
+    const scaleArray = typeof scale === 'string' ? [scale] : scale;
+    const { strings, tuning, frets, color } = get();
+    const newNotes: { x: number; y: number }[] = [];
+
+    for (let string = 0; string < strings; string++) {
+      for (let fret = 0; fret <= frets; fret++) {
+        const note = getNoteFromPosition(fret, string, tuning);
+        if (scaleArray.includes(note)) {
+          newNotes.push({ x: fret, y: string });
+        }
       }
-
-      return active
-    }).concat({ x, y, color });
-    set({ actives: newActives });
+    }
+    
+    set({
+      notes: newNotes,
+      actives: newNotes.map(({ x, y }) => ({ x, y, color })),
+      scale: scaleArray,
+    });
   },
-  addScale: async (note: string) => {
-    const scale = get().scale.concat(note);
-
-    set({ scale });
-  }
 }));
 
 export { useStore };

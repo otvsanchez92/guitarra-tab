@@ -5,47 +5,32 @@ export const GuitarContent = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 22px;
-  height: 26px;
-  top: 4px;
-  left: 4px;
+  width: 100%;
+  height: 100%;
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 4;
-  padding: 0px;
-  border: 0px solid #fff;
-  opacity: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
-  border-radius: 2px;
   color: #fff;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s;
+  opacity: 0;
 
   &:hover {
-    transition: opacity 0.3s;
-    opacity: 1 !important;
+    opacity: 1 !important; 
+    background-color: #aaa !important;
   }
-`;
 
-export const Mark = styled.div`
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 16px;
-  background-color: #ddd;
-  position: absolute;
-  top: -8px;
-  left: 8px;
-  z-index: 1;
-  opacity: 0.7;
-`;
-
-export const TwoMark = styled.div`
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 16px;
-  background-color: #ddd;
-  z-index: 1;
-  opacity: 0.7;
-  margin-bottom: 44px;
+  &.active {
+    opacity: 1 !important; 
+  }
 `;
 
 export const MarksContainer = styled.div`
@@ -57,8 +42,6 @@ export const MarksContainer = styled.div`
 export const Tuning = styled.div`
   width: 30px;
   height: 32px;
-  display: block;
-  line-height: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,7 +52,9 @@ export const GuitarTable = styled.table`
   border-spacing: 0;
 `;
 
-export const GuitarRow = styled.tr``;
+export const GuitarRow = styled.tr`
+  height: 30px;
+`;
 
 export const GuitarColumn = styled.td`
   width: 30px;
@@ -88,6 +73,33 @@ export const GuitarColumnText = styled.td`
   text-align: center;
 `;
 
+export const Marks = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+export const Mark = styled.div`
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #ddd;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0.7;
+`;
+
+export const TwoMark = styled.div`
+  ${Mark}
+  margin-bottom: 44px;
+`;
+
 export const Line = styled.div`
   width: calc(100% + 4px);
   height: 2px;
@@ -97,3 +109,4 @@ export const Line = styled.div`
   position: absolute;
   left: -1px;
 `;
+
