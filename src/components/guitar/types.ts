@@ -1,7 +1,4 @@
-export type TActive = {
-  x: number;
-  y: number;
-};
+ import { TActive } from '@/store/types';
 
 export type TGuitarProps = {
   tuning: string[];
@@ -10,7 +7,7 @@ export type TGuitarProps = {
   color: string;
   editTuning: boolean;
   frets: number;
-  diagramIndex?: number;
+  notes: TActive[];
 };
 
 export interface IMarksProps extends TActive {

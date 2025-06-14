@@ -1,7 +1,10 @@
 import { TTabsProps } from './types';
 import { TabContainer } from './style';
+import { useTranslation } from 'react-i18next';
+import { Typography } from '@mui/material';
 
 const Tabs = ({ notes, tuning, strings }: TTabsProps) => {
+  const { t } = useTranslation();
   const completeString = '---';
 
   const complete = (value: number) => {
@@ -20,6 +23,9 @@ const Tabs = ({ notes, tuning, strings }: TTabsProps) => {
 
   return (
     <TabContainer>
+      <Typography fontWeight={'bold'} variant="overline">
+        {t('tabs.title')}
+      </Typography>
       {tuning
         .filter((note: string, index: number) => index < strings)
         .map((note: string, index: number) => (

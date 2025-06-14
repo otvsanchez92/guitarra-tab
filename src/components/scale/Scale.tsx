@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 const Scale = () => {
-  const { scale }: TStore = useStore((state: any) => state);
+  const { instruments }: TStore = useStore((state: any) => state);
   const { t } = useTranslation();
 
   return (
@@ -11,8 +11,8 @@ const Scale = () => {
       <Typography fontWeight={'bold'} variant="overline">
      {t('scale.title')}
       </Typography>{' '}
-      {scale
-        .filter((item: string, index: number) => scale.indexOf(item) === index)
+      {instruments[0].scale
+        .filter((item: string, index: number) => instruments[0].scale.indexOf(item) === index)
         .map(item => (
           <Typography key={item} variant="overline">{` ${item} `}</Typography>
         ))}

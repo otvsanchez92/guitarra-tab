@@ -1,4 +1,4 @@
-import { TActive } from '../guitar/types';
+import { TActive } from '@/store/types';
 
 export type TConfigProps = {
   onChangeNumberStrings: (strings: number) => void;
