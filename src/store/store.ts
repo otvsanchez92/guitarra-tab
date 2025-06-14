@@ -1,8 +1,27 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import { TActive } from './types';
 
-// eslint-disable-next-line
-const store = (set: any, get: any) => ({
+interface TStore {
+  notes: { x: number; y: number }[];
+  strings: number;
+  tuning: string[];
+  color: string;
+  actives: { x: number; y: number; color: string }[];
+  scale: string[];
+  lastNote: null;
+  frets: number;
+  addNote: (active: TActive) => void;
+  changeNumberStrings: (strings: number) => void;
+  changeColor: (color: string) => void;
+  changeFrets: (frets: string) => void;
+  changeTuning: (value: string, position: number) => void;
+  clearNotes: () => void;
+  clearNote: () => void;
+  setActiveButton: (active: TActive) => void;
+  addScale: (note: string) => void;
+}
+
+const useStore = create<TStore>((set, get) => ({
   notes: [],
   strings: 6,
   tuning: ['E', 'B', 'G', 'D', 'A', 'E'],
@@ -41,7 +60,7 @@ const store = (set: any, get: any) => ({
     set({ color });
   },
   changeFrets: async (frets: string) => {
-    set({ frets });
+    set({ frets: Number(frets) });
   },
   changeTuning: async (value: string, position: number) => {
     const newTuning = get().tuning;
@@ -72,7 +91,6 @@ const store = (set: any, get: any) => ({
 
     set({ scale });
   }
-});
-const useStore = create(store);
+}));
 
 export { useStore };

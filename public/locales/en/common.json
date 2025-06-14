@@ -1,0 +1,28 @@
+{
+  "header": {
+    "title": "Musical Diagrams"
+  },
+  "config": {
+    "controls": "Controls",
+    "settings": "Settings",
+    "strings": "Number of Strings",
+    "color": "Color",
+    "clear": "Clear All",
+    "undo": "Undo",
+    "editTuning": "Edit Tuning",
+    "saveTuning": "Save Tuning",
+    "copyScale": "Copy Scale",
+    "frets": "Number of Frets",
+    "download": "Download"
+  },
+  "colors": {
+    "red": "Red",
+    "blue": "Blue",
+    "green": "Green",
+    "orange": "Orange",
+    "purple": "Purple"
+  },
+  "scale": {
+    "title": "Scale:"
+  }
+}

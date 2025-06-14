@@ -1,0 +1,21 @@
+{
+  "header": {
+    "title": "Musical Diagrams"
+  },
+  "config": {
+    "controls": "Controles",
+    "settings": "Configurações",
+    "strings": "Número de Cordas",
+    "color": "Cor",
+    "clear": "Limpar Tudo",
+    "undo": "Desfazer",
+    "editTuning": "Editar Afinação",
+    "saveTuning": "Salvar Afinação",
+    "copyScale": "Copiar Escala",
+    "frets": "Número de Trastes",
+    "download": "Download"
+  },
+  "scale": {
+    "title": "Escala:"
+  }
+}

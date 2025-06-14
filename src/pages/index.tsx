@@ -47,10 +47,17 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Scale Tab Creator</title>
-        <meta name="description" content="Crie suas tabs" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Scale Tab Creator - Musical Scale Diagrams Generator</title>
+        <meta name="description" content="Create custom scale diagrams for guitar, bass, and other string instruments. Online tab generator with customizable tuning and number of strings." />
+        <meta name="keywords" content="scale diagrams, tabs, guitar, bass, string instruments, music theory, musical scales, tablatures, tab generator, customizable tuning" />
+        <meta name="author" content="Scale Tab Creator" />
+        <meta property="og:title" content="Scale Tab Creator - Musical Scale Diagrams Generator" />
+        <meta property="og:description" content="Create custom scale diagrams for guitar, bass, and other string instruments. Online tab generator with customizable tuning and number of strings." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/og-image.png" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
       <main>
         <Container>
@@ -66,6 +73,7 @@ export default function Home() {
             changeFrets={changeFrets}
             frets={frets}
           >
+            <div style={{ margin: 'auto' }} id="guitar">
               <Guitar
                 editTuning={editTuning}
                 frets={frets}
@@ -74,6 +82,7 @@ export default function Home() {
                 strings={strings}
                 color={color}
               />
+            </div>
           </Config>
           <Scale />
           <Tabs tuning={tuning} notes={notes} strings={strings} />

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Typography } from '@mui/material';
 
 export const Color = styled.div`
   width: 100%;
@@ -16,4 +17,8 @@ export const ConfigBar = styled.div`
   p {
     margin-bottom: 8px;
   }
+`;
+
+export const ConfigTitle = styled(Typography)`
+  margin: 16px auto;
 `;

@@ -61,7 +61,6 @@ const Guitar = ({ tuning, onSelectNote, strings, color, editTuning, frets }: TGu
 
   const renderTuning = () => (
     <div>
-      <></>
       <Tuning />
       {tuning
         .filter((note: string, index: number) => index < strings)
@@ -79,7 +78,8 @@ const Guitar = ({ tuning, onSelectNote, strings, color, editTuning, frets }: TGu
 
   return (
     <GuitarContent id="guitar" style={{
-    maxWidth:  frets === 24 ? 940 : 500 
+    maxWidth:  frets === 24 ? 940 : 500,
+    margin: 'auto'
     }}>
       {renderTuning()}
       <GuitarTable cellSpacing="0">{renderNotes()}</GuitarTable>

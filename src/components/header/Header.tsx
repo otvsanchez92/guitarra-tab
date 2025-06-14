@@ -1,21 +1,22 @@
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import { Toolbar } from '@mui/material';
 import React from 'react';
-import { Space } from './style';
+import { useTranslation } from 'react-i18next';
+import { Space, HeaderContainer, Logo } from './style';
+import { LanguageSwitcher } from '../language-switcher';
 
-const Header = () => {
-  const displayDesktop = () => {
-    return <Toolbar>{logo}</Toolbar>;
-  };
-
-  const logo = (
-    <Typography variant="h6" component="h1">
-      Scale Tab Creator
-    </Typography>
-  );
+const Header: React.FC = () => {
+  const { t } = useTranslation();
 
   return (
     <header>
-      <AppBar>{displayDesktop()}</AppBar>
+      <HeaderContainer>
+        <Toolbar>
+          <Logo variant="h6" component="h1">
+            {t('header.title')}
+          </Logo>
+          <LanguageSwitcher />
+        </Toolbar>
+      </HeaderContainer>
       <Space />
     </header>
   );

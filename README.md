@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Guitar Tab App
+
+A web application for creating and viewing guitar tabs built with Next.js.
 
 ## Getting Started
 
