@@ -24,39 +24,46 @@ describe('Tabs Component', () => {
 
   it('renders title correctly', () => {
     render(<Tabs {...mockProps} />);
-    expect(screen.getByText('tabs.title')).toBeInTheDocument();
+    const title = screen.getByText(/tabs.title/i);
+    expect(title).toBeInTheDocument();
   });
 
-  it('displays correct number of strings', () => {
+  it('renders correct number of strings with tuning', () => {
     render(<Tabs {...mockProps} />);
     const stringLines = screen.getAllByRole('heading', { level: undefined });
-    expect(stringLines.length).toBe(mockProps.strings);
+    expect(stringLines).toHaveLength(mockProps.strings);
+
+    // Verify each string has its tuning note
+    mockProps.tuning.slice(0, mockProps.strings).forEach((note: string, index: number) => {
+      expect(screen.getByText(`${note.padEnd(2)}|`)).toBeInTheDocument();
+    });
   });
 
-  it('renders notes with correct colors', () => {
+  it('renders notes correctly', () => {
     render(<Tabs {...mockProps} />);
-    const notes = screen.getAllByRole('heading', { level: undefined });
+    const { notes } = mockProps;
 
-    // Check first string (y=0) has red note at position 3
-    expect(notes[0]).toHaveStyle('color: red');
-    expect(notes[0]).toContainHTML('3--');
+    // Verify each note is rendered with correct position and color
+    notes.forEach(({ x, y, color }) => {
+      const noteElement = screen.getByText(`${x.toString().padEnd(3, '-')}`);
+      expect(noteElement).toHaveStyle(`color: ${color}`);
+      expect(noteElement).toBeInTheDocument();
+    });
 
-    // Check second string (y=1) has blue note at position 5
-    expect(notes[1]).toHaveStyle('color: blue');
-    expect(notes[1]).toContainHTML('5--');
-
-    // Check third string (y=2) has green note at position 7
-    expect(notes[2]).toHaveStyle('color: green');
-    expect(notes[2]).toContainHTML('7--');
+    // Verify empty positions are rendered as dashes
+    const dashElements = screen.getAllByText(/---/);
+    expect(dashElements).toHaveLength(18); // 6 strings * 3 positions - 3 notes = 18 dashes
   });
 
-  it('renders dashes for empty positions', () => {
-    render(<Tabs {...mockProps} />);
-    const notes = screen.getAllByRole('heading', { level: undefined });
+  it('renders with different number of strings', () => {
+    const props = { ...mockProps, strings: 4 };
+    render(<Tabs {...props} />);
+    const stringLines = screen.getAllByRole('heading', { level: undefined });
+    expect(stringLines).toHaveLength(props.strings);
 
-    // Check that empty positions have dashes
-    expect(notes[0]).toContainHTML('---');
-    expect(notes[1]).toContainHTML('---');
-    expect(notes[2]).toContainHTML('---');
+    // Verify only the first 4 tuning notes are shown
+    props.tuning.slice(0, props.strings).forEach((note: string, index: number) => {
+      expect(screen.getByText(`${note.padEnd(2)}|`)).toBeInTheDocument();
+    });
   });
 });

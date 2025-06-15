@@ -1,4 +1,5 @@
 export const translations = {
+  // Metadata
   title: 'Criador de Diagramas de Escalas - Gerador de Diagramas Musicais',
   description:
     'Crie diagramas personalizados de escalas para guitarra, baixo e outros instrumentos de cordas. Gerador online de tabs com afinação personalizável e número de cordas.',
@@ -8,6 +9,47 @@ export const translations = {
   ogTitle: 'Criador de Diagramas de Escalas - Gerador de Diagramas Musicais',
   ogDescription:
     'Crie diagramas personalizados de escalas para guitarra, baixo e outros instrumentos de cordas. Gerador online de tabs com afinação personalizável e número de cordas.',
+
+  // Home page
+  home: {
+    title: 'Escalas e Instrumentos Musicais',
+    commonScales: 'Escalas Comuns',
+    instruments: 'Instrumentos',
+    startWithScale: 'Começar com esta escala',
+    startWithInstrument: 'Começar com este instrumento',
+    strings: 'cordas'
+  },
+
+  // Scales page
+  scales: {
+    title: 'Escalas Musicais',
+    description: 'Explore diferentes escalas musicais e comece a criar diagramas',
+    type: {
+      diatonic: 'Diátonica',
+      pentatonic: 'Pentatônica',
+      modal: 'Modal',
+      hexatonic: 'Hexatônica'
+    },
+    examples: 'Exemplos',
+    notFound: 'Escala não encontrada',
+    selectTone: 'Selecionar Tom',
+    selectInstrument: 'Selecionar Instrumento',
+    notes: 'Notas',
+    start: 'Começar',
+    detailTitle: 'Escala {scale}'
+  },
+
+  // Instruments page
+  instruments: {
+    title: 'Instrumentos de Cordas',
+    description: 'Escolha seu instrumento e comece a criar diagramas',
+    category: {
+      strings: 'Cordas',
+      percussion: 'Percussão',
+      wind: 'Sopro',
+      keyboard: 'Teclado'
+    }
+  },
 
   // Components
   config: {
@@ -26,6 +68,7 @@ export const translations = {
 
   scale: {
     selectScale: 'Selecionar Escala',
-    addInstrument: 'Adicionar Instrumento'
+    addInstrument: 'Adicionar Instrumento',
+    examples: 'Exemplos'
   }
 };

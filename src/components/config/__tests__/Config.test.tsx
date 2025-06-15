@@ -47,35 +47,35 @@ describe('Config Component', () => {
     children: <div>Test</div>
   };
 
-  it('renders title correctly', () => {
+  it('renders controls title correctly', () => {
     render(<Config {...mockProps} />);
-    expect(screen.getByText('config.title')).toBeInTheDocument();
+    expect(screen.getByText('config.controls')).toBeInTheDocument();
   });
 
   it('calls onChangeNumberStrings when number of strings changes', () => {
     render(<Config {...mockProps} />);
-    const stringsInput = screen.getByLabelText('config.strings');
-    fireEvent.change(stringsInput, { target: { value: '6' } });
+    const stringsSelect = screen.getByRole('combobox', { name: /config.strings/i });
+    fireEvent.change(stringsSelect, { target: { value: '6' } });
     expect(mockStore.onChangeNumberStrings).toHaveBeenCalledWith(6);
   });
 
   it('calls onChangeColor when color changes', () => {
     render(<Config {...mockProps} />);
-    const colorInput = screen.getByLabelText('config.color');
-    fireEvent.change(colorInput, { target: { value: '#ff0000' } });
-    expect(mockStore.onChangeColor).toHaveBeenCalledWith('#ff0000');
+    const colorSelect = screen.getByRole('combobox', { name: /config.color/i });
+    fireEvent.change(colorSelect, { target: { value: 'red' } });
+    expect(mockStore.onChangeColor).toHaveBeenCalledWith('red');
   });
 
   it('calls clearNotes when clear button is clicked', () => {
     render(<Config {...mockProps} />);
-    const clearButton = screen.getByText('config.clear');
+    const clearButton = screen.getByRole('button', { name: /config.clear/i });
     fireEvent.click(clearButton);
     expect(mockStore.clearNotes).toHaveBeenCalled();
   });
 
   it('calls clearNote when undo button is clicked', () => {
     render(<Config {...mockProps} />);
-    const undoButton = screen.getByText('config.undo');
+    const undoButton = screen.getByRole('button', { name: /config.undo/i });
     fireEvent.click(undoButton);
     expect(mockStore.clearNote).toHaveBeenCalled();
   });
