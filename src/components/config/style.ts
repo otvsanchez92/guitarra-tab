@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 import { Typography } from '@mui/material';
 
-export const Color = styled.div`
+interface ColorProps {
+  style?: React.CSSProperties;
+}
+
+export const Color = styled.div<ColorProps>`
   width: 100%;
   height: 16px;
 `;
 
 export const ConfigContainer = styled.div`
   margin: 22px auto 32px auto;
-  diplay: flex;
+  display: flex;
 `;
 
 export const ConfigBar = styled.div`
