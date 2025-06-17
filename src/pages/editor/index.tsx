@@ -3,13 +3,13 @@ import Head from 'next/head';
 import { Container } from '@mui/material';
 import { Guitar } from '@/components/guitar';
 import { Config } from '@/components/config';
-import { Tabs } from '@/components/tabs';
-import { Scale } from '@/components/scale';
+import { Tabs } from '@/components/tabs'; 
 import { useStore } from '@/store';
 import type { TStore, TActive } from '@/store/types';
 import html2canvas from 'html2canvas';
 import { useRouter } from 'next/router';
 import { translations } from '@/locales/pt-BR';
+import { getScaleNotes } from '@/data/scaleUtils';
 
 export default function Editor() {
   const router = useRouter();
@@ -33,6 +33,14 @@ export default function Editor() {
       selectScale(scaleArray);
     }
   }, [router.query.scale, selectScale]);
+
+  useEffect(() => {
+    const scaleType = router.query.scaleType;
+    const tone = router.query.tone;
+    if (scaleType && tone) {
+      selectScale(getScaleNotes(scaleType as string, tone as string), tone);
+    } 
+  }, [router.query.scaleType, router.query.tone, selectScale]);
 
   useEffect(() => {
     const diagramsParam = router.query.diagrams;
@@ -74,8 +82,7 @@ export default function Editor() {
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <main>
-        <Container>
-          <Scale />
+        <Container> 
           <Config
             onChangeNumberStrings={changeNumberStrings}
             onChangeColor={changeColor}
@@ -105,11 +112,11 @@ export default function Editor() {
             </>
           </Config>
 
-          <Tabs
+       { /*  <Tabs
             tuning={instruments[0].tuning}
             strings={instruments[0].strings}
             notes={instruments.map(instrument => instrument.notes).flat() as TActive[]}
-          />
+          /> */}
         </Container>
       </main>
     </>

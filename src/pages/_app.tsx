@@ -14,11 +14,50 @@ import i18n from '@/locales/i18n';
 
 const theme = createTheme({
   palette: {
+    background: {
+      default: '#0D0D0D',
+      paper: '#1A1A1A'
+    },
     primary: {
-      // light: will be calculated from palette.primary.main,
-      main: '#308C58',
-      // dark: will be calculated from palette.primary.main,
-      contrastText: '#fff'
+      main: '#FFD700',
+      contrastText: '#0D0D0D'
+    },
+    secondary: {
+      main: '#00BFFF',
+      contrastText: '#0D0D0D'
+    },
+    text: {
+      primary: '#EAEAEA',
+      secondary: '#EAEAEA'
+    },
+    divider: '#3A3A3A',
+    action: {
+      hover: '#3A3A3A',
+      selected: '#9B59B6'
+    }
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '&.MuiButton-containedPrimary': {
+            backgroundColor: '#FFD700',
+            color: '#0D0D0D'
+          },
+          '&.MuiButton-containedSecondary': {
+            backgroundColor: '#00BFFF',
+            color: '#0D0D0D'
+          }
+        }
+      }
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#1A1A1A',
+          border: '1px solid #3A3A3A'
+        }
+      }
     }
   }
 });

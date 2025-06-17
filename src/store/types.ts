@@ -28,7 +28,7 @@ export interface TStore {
   clearNote: () => void;
   setActiveButton: (active: TActive) => void;
   addScale: (note: string) => void;
-  selectScale: (scale: string | string[]) => void;
+  selectScale: (scale: string | string[], tone?: string) => void;
   addInstrument: (times?: number) => void;
   color: string;
 }

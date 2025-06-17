@@ -26,15 +26,26 @@ export const ScaleCard: React.FC<ScaleCardProps> = ({ scale, onClick }) => {
     >
       <CardContent>
         <Typography variant="h6" gutterBottom>
-          {scale.name}
+          {scale.title}
         </Typography>
         <Typography variant="body2" color="text.secondary" gutterBottom>
           {scale.description}
         </Typography>
         <Box sx={{ mt: 2 }}>
-          <Typography variant="body1" gutterBottom>
-            {scale.notes.join(' - ')}
-          </Typography>
+          {scale.examples.map((example, index) => (
+            <Box
+              key={index}
+              sx={{
+                p: 1,
+                borderRadius: 1,
+                bgcolor: 'primary.main',
+                color: 'white',
+                fontSize: '1.2rem'
+              }}
+            >
+              {example}
+            </Box>
+          ))}
           <Typography variant="caption" color="text.secondary">
             Tipo: {scale.type}
           </Typography>

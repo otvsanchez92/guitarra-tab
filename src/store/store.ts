@@ -148,31 +148,31 @@ const useStore = create<TStore>((set, get) => ({
     });
   },
 
-  selectScale: (scale: string | string[]) => {
+  selectScale: (scale: string | string[], tone?: string) => {
     const scaleArray = typeof scale === 'string' ? [scale] : scale;
     const { strings, tuning, frets, color } = get().instruments[0];
-    const newNotes: { x: number; y: number }[] = [];
+    const newNotes: { x: number; y: number; color: string }[] = [];
 
     for (let string = 0; string < strings; string++) {
       for (let fret = 0; fret <= frets; fret++) {
         const note = getNoteFromPosition(fret, string, tuning);
+
+        console.log(tone === note);
         if (scaleArray.includes(note)) {
-          newNotes.push({ x: fret, y: string });
+          newNotes.push({ x: fret, y: string, color: tone === note ? 'blue' : 'red' });
         }
       }
     }
 
-    console.log(newNotes);
-
     set((state: TStore) => {
       const newState = [...state.instruments];
-      newState[0].actives = newNotes.map(({ x, y }) => ({ x, y, color }));
+      newState[0].actives = newNotes.map(({ x, y, color }) => ({ x, y, color }));
       newState[0].scale = scaleArray;
       newState[0].color = color;
       newState[0].frets = frets;
       newState[0].strings = strings;
       newState[0].tuning = tuning;
-      newState[0].notes = newNotes.map(({ x, y }) => ({ x, y, color }));
+      newState[0].notes = newNotes.map(({ x, y, color }) => ({ x, y, color }));
       return { instruments: newState };
     });
   }

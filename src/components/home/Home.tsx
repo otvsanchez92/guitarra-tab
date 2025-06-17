@@ -5,10 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { commonScales } from '@/data/scalesData';
 import { commonInstruments } from '@/data/instrumentsData';
 import { IconType } from 'react-icons';
-import { ReactElement } from 'react';
-
-
-
+ 
 const Home: React.FC = () => {
   const router = useRouter();
   const theme = useTheme();
@@ -40,7 +37,7 @@ const Home: React.FC = () => {
           </Typography>
         </Grid>
         {commonScales.map(scale => (
-          <Grid item xs={12} sm={6} md={3} key={scale.name}>
+          <Grid item xs={12} sm={6} md={3} key={scale.id}>
             <Card
               sx={{
                 height: '100%',
@@ -55,13 +52,17 @@ const Home: React.FC = () => {
             >
               <CardContent>
                 <Typography variant="h6" gutterBottom>
-                  {scale.name}
+                  {t(scale.title)}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {scale.description}
+                  {t(scale.description)}
                 </Typography>
                 <Box sx={{ mt: 2 }}>
-                  <Typography variant="body1">{scale.notes.join(' - ')}</Typography>
+
+
+
+                <Typography variant="body1">Example:</Typography>
+                  <Typography variant="body1">{scale.examples.join(', ')}</Typography>
                 </Box>
               </CardContent>
               <Button onClick={() => handleScaleClick(scale)} fullWidth variant="contained" sx={{ mt: 2 }}>

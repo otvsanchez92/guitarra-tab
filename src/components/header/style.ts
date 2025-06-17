@@ -7,7 +7,7 @@ export const Space = styled('div')(() => ({
 }));
 
 export const HeaderContainer = styled(AppBar)(({ theme }) => ({
-  background: theme.palette.primary.main,
+  background: theme.palette.background.default,
   boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
   color: theme.palette.common.white,
   padding: '0 24px',

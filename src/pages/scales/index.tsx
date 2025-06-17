@@ -28,7 +28,7 @@ export default function ScalesPage() {
 
         <Grid container spacing={4}>
           {commonScales.map(scale => (
-            <Grid item xs={12} sm={6} md={3} key={scale.name}>
+            <Grid item xs={12} sm={6} md={3} key={scale.id}>
               <ScaleCard scale={scale} onClick={() => handleScaleClick(scale)} />
             </Grid>
           ))}

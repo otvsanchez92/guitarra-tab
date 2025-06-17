@@ -2,6 +2,20 @@
   "header": {
     "title": "Musical Diagrams"
   },
+  "home": {
+    "title": "Home",
+    "commonScales": "Escala Mais Comum",
+    "instruments": "Instrumentos",
+    "startWithScale": "Iniciar com Escala",
+    "startWithInstrument": "Iniciar com Instrumento"
+  },
+  "colors": {
+    "red": "Vermelho",
+    "blue": "Azul",
+    "green": "Verde",
+    "orange": "Laranja",
+    "purple": " Roxo"
+  },
   "config": {
     "controls": "Controles",
     "settings": "Configurações",
@@ -21,5 +35,54 @@
   },
   "tabs": {
     "title": "Tabs:"
-  }
+  },
+  "scales": {
+    "selectTone": "Selecionar Tom",
+    "selectInstrument": "Selecionar Instrumento",
+    "pattern": "Pattern",
+    "examples": "Exemplos",
+    "type": "Tipo",
+    "detailTitle": "Escala {scale}",
+    "start": "Iniciar",
+      "major": {
+        "title": "Maior",
+        "description": "Escala mais comum em música ocidental, base para música clássica e popular"
+      },
+      "natural_minor": {
+        "title": "Menor Natural",
+        "description": "Escala menor mais comum, usada em música clássica e jazz"
+      },
+      "blues": {
+        "title": "Blues",
+        "description": "Escala característica do blues, com a quinta menor"
+      },
+      "major_pentatonic": {
+        "title": "Pentatônica Maior",
+        "description": "Escala de cinco notas, muito usada em rock e blues"
+      },
+      "minor_pentatonic": {
+        "title": "Pentatônica Menor",
+        "description": "Escala pentatônica mais comum, usada em rock, blues e jazz"
+      },
+      "dorian": {
+        "title": "Dórica",
+        "description": "Escala modal, usada em música moderna e jazz"
+      },
+      "mixolydian": {
+        "title": "Mixolídia",
+        "description": "Escala modal, usada em blues e rock"
+      },
+      "lydian": {
+        "title": "Lídia",
+        "description": "Escala modal com quartas aumentadas"
+      },
+      "phrygian": {
+        "title": "Frígia",
+        "description": "Escala modal com segunda menor"
+      },
+      "eolian": {
+        "title": "Eólia",
+        "description": "Escala modal equivalente à menor natural"
+      }
+    } 
 }

@@ -34,7 +34,7 @@ export const translations = {
     notFound: 'Escala não encontrada',
     selectTone: 'Selecionar Tom',
     selectInstrument: 'Selecionar Instrumento',
-    notes: 'Notas',
+    pattern: 'Padrão',
     start: 'Começar',
     detailTitle: 'Escala {scale}'
   },

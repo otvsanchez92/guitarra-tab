@@ -2,6 +2,13 @@
   "header": {
     "title": "Musical Diagrams"
   },
+  "home": {
+    "title": "Home",
+    "commonScales": "Common Scales",
+    "instruments": "Instruments",
+    "startWithScale": "Start with Scale",
+    "startWithInstrument": "Start with Instrument"
+  },
   "config": {
     "controls": "Controls",
     "settings": "Settings",
@@ -28,5 +35,54 @@
   },
   "tabs": {
     "title": "Tabs:"
+  },
+  "scales": {
+    "selectTone": "Select Tone",
+    "selectInstrument": "Select Instrument",
+    "pattern": "Pattern",
+    "examples": "Examples",
+    "type": "Type",
+    "detailTitle": "Scale {scale}",
+    "start": "Start",
+    "major": {
+      "title": "Major",
+      "description": "Most common scale in Western music, foundation for classical and popular music"
+    },
+    "natural_minor": {
+      "title": "Natural Minor",
+      "description": "Most common minor scale, used in classical music and jazz"
+    },
+    "blues": {
+      "title": "Blues",
+      "description": "Characteristic scale of blues, with a flat fifth"
+    },
+    "major_pentatonic": {
+      "title": "Major Pentatonic",
+      "description": "Five-note scale, widely used in rock and blues"
+    },
+    "minor_pentatonic": {
+      "title": "Minor Pentatonic",
+      "description": "Most common pentatonic scale, used in rock, blues, and jazz"
+    },
+    "dorian": {
+      "title": "Dorian",
+      "description": "Modal scale, used in modern music and jazz"
+    },
+    "mixolydian": {
+      "title": "Mixolydian",
+      "description": "Modal scale, used in blues and rock"
+    },
+    "lydian": {
+      "title": "Lydian",
+      "description": "Modal scale with augmented fourths"
+    },
+    "phrygian": {
+      "title": "Phrygian",
+      "description": "Modal scale with a minor second"
+    },
+    "eolian": {
+      "title": "Aeolian",
+      "description": "Modal scale equivalent to the natural minor"
+    }
   }
 }

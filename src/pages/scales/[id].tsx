@@ -4,13 +4,12 @@ import { Box, Container, Typography, Grid, Select, MenuItem, Button } from '@mui
 import { useTranslation } from 'react-i18next';
 import { commonScales } from '@/data/scalesData';
 import { commonInstruments } from '@/data/instrumentsData';
-import { useTheme } from '@mui/material';
+import { getScaleNotes } from '@/data/scaleUtils';
 
 export default function ScaleDetailPage() {
   const router = useRouter();
   const { id } = router.query;
   const { t } = useTranslation();
-  const theme = useTheme();
 
   const scale = commonScales.find(s => s.id === id);
   const [selectedTone, setSelectedTone] = React.useState('C');
@@ -26,14 +25,9 @@ export default function ScaleDetailPage() {
       router.push({
         pathname: '/editor',
         query: {
-          scale: scale.name,
-          notes: scale.notes.join(',').toLowerCase(),
-          description: scale.description,
-          instrument: instrument.name,
-          strings: instrument.strings,
-          tuning: instrument.tuning.join(',').toLowerCase(),
-          description: instrument.description,
-          tone: selectedTone
+          scaleType: scale.id,
+          tone: selectedTone,
+          strings: instrument.strings, 
         }
       });
     }
@@ -42,12 +36,12 @@ export default function ScaleDetailPage() {
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
       <Typography variant="h4" gutterBottom>
-        {t('scales.detailTitle', { scale: scale.name })}
+        {t(`scales.${scale.id}.title`)}
       </Typography>
 
       <Box sx={{ mb: 4 }}>
         <Typography variant="body1" color="text.secondary">
-          {scale.description}
+        {t(`scales.${scale.id}.description`)}
         </Typography>
         <Typography variant="body2" sx={{ mt: 2 }}>
           {t('scales.type')}: {scale.type}
@@ -98,24 +92,26 @@ export default function ScaleDetailPage() {
 
         <Grid item xs={12} md={6}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Typography variant="h6" gutterBottom>
-              {t('scales.notes')}
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-              {scale.notes.map((note, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    p: 1,
-                    borderRadius: 1,
-                    bgcolor: 'primary.main',
-                    color: 'white',
-                    fontSize: '1.2rem'
-                  }}
-                >
-                  {note}
-                </Box>
-              ))}
+            <Box>
+              <Typography variant="h6" gutterBottom>
+                {t('scales.pattern')}
+              </Typography>
+              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                {id && getScaleNotes(id as string, selectedTone).map((note, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      p: 1,
+                      borderRadius: 1,
+                      bgcolor: note === selectedTone ? 'blue' : 'red',
+                      color: 'white',
+                      fontSize: '1.2rem'
+                    }}
+                  >
+                    {note}
+                  </Box>
+                ))}
+              </Box>
             </Box>
           </Box>
         </Grid>
