@@ -10,35 +10,31 @@ import {
 } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 
-const StyledSelect = styled(Select)(({ theme }) => ({
+const StyledSelect = styled(Select)(() => ({
   '& .MuiSelect-select': {
-    padding: '6px 12px',
-    borderRadius: '4px',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    color: 'white',
+    padding: '4px',
+    minWidth: 'auto',
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
-    '&:hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    },
+    justifyContent: 'center',
   },
   '& .MuiSelect-icon': {
-    color: 'white', // seta branca
-    right: 8,        // posicionamento interno
+    display: 'none', // oculta a seta
   },
 }));
 
 const LanguageIconWrapper = styled(Box)({
   color: 'white',
-  fontSize: '1.2rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 export const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
 
   const handleLanguageChange = (event: SelectChangeEvent<string>) => {
-    const language = event.target.value; 
+    const language = event.target.value;
     i18n.changeLanguage(language);
   };
 
@@ -46,43 +42,19 @@ export const LanguageSwitcher: React.FC = () => {
     <StyledSelect
       value={i18n.language}
       onChange={handleLanguageChange as any}
-      sx={{ minWidth: 120, height: 40 }}
       disableUnderline
       input={<InputBase />}
+      renderValue={() => (
+        <LanguageIconWrapper>
+          <LanguageIcon />
+        </LanguageIconWrapper>
+      )}
     >
-      <MenuItem
-        value="en"
-        sx={{
-          color: 'primary.main',
-          '&:hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          },
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-        }}
-      >
-        <LanguageIconWrapper>
-          <LanguageIcon />
-        </LanguageIconWrapper>
-        en
+      <MenuItem value="en">
+        English
       </MenuItem>
-      <MenuItem
-        value="pt-BR"
-        sx={{
-          color: 'primary.main',
-          '&:hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          },
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-        }}
-      >
-        <LanguageIconWrapper>
-          <LanguageIcon />
-        </LanguageIconWrapper>
-        pt-BR
+      <MenuItem value="pt-BR">
+        Português
       </MenuItem>
     </StyledSelect>
   );

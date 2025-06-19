@@ -63,6 +63,12 @@ export const Header: React.FC = () => {
               </NavButton>
             </Navigation>
 
+          
+          </HeaderItems>
+
+          {/* Idioma */}
+          <LanguageSwitcher />
+
             {/* Menu Mobile (hamburguer) */}
             <IconButton
               size="large"
@@ -72,12 +78,8 @@ export const Header: React.FC = () => {
               sx={{ display: { xs: 'flex', md: 'none' }, ml: 1 }}
               onClick={(event: React.MouseEvent<HTMLElement>) => setMobileMenuAnchor(event.currentTarget)}
             >
-              <MenuIcon />
+              <MenuIcon sx={{ color: 'white' }} />
             </IconButton>
-          </HeaderItems>
-
-          {/* Idioma */}
-          <LanguageSwitcher />
         </Toolbar>
 
         {/* Menu suspenso mobile */}

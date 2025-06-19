@@ -26,7 +26,7 @@ const Home: React.FC = () => {
 
   return (
     <Box sx={{ flexGrow: 1, p: 4 }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h1" gutterBottom>
         {t('home.title')}
       </Typography>
 
