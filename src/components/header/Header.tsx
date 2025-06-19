@@ -12,8 +12,8 @@ const Header: React.FC = () => {
     <header>
       <HeaderContainer>
         <Toolbar>
-          <Logo variant="h6" component="h1">
-            <Image src="/images/logo.svg" alt="logo" width={200} height={50} title='Maps Musical' />
+          <Logo variant="h6">
+            <Image src="/images/logo.svg" alt="logo" width={200} height={50} title="Maps Musical" />
           </Logo>
           <LanguageSwitcher />
         </Toolbar>

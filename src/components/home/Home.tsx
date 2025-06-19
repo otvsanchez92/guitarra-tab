@@ -5,22 +5,22 @@ import { useTranslation } from 'react-i18next';
 import { commonScales } from '@/data/scalesData';
 import { commonInstruments } from '@/data/instrumentsData';
 import { IconType } from 'react-icons';
- 
+
 const Home: React.FC = () => {
   const router = useRouter();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const { t } = useTranslation();
 
-  const handleScaleClick = (scale: typeof commonScales[0]) => {
+  const handleScaleClick = (scale: (typeof commonScales)[0]) => {
     router.push({
-      pathname: `/scales/${scale.id}` 
+      pathname: `/scales/${scale.id}`
     });
   };
 
-  const handleInstrumentClick = (instrument: typeof commonInstruments[0] & { icon: IconType }) => {
+  const handleInstrumentClick = (instrument: (typeof commonInstruments)[0] & { icon: IconType }) => {
     router.push({
-      pathname: `/instruments/${instrument.id}`,
+      pathname: `/instruments/${instrument.id}`
     });
   };
 
@@ -58,10 +58,7 @@ const Home: React.FC = () => {
                   {t(scale.description)}
                 </Typography>
                 <Box sx={{ mt: 2 }}>
-
-
-
-                <Typography variant="body1">Example:</Typography>
+                  <Typography variant="body1">Example:</Typography>
                   <Typography variant="body1">{scale.examples.join(', ')}</Typography>
                 </Box>
               </CardContent>
@@ -95,7 +92,7 @@ const Home: React.FC = () => {
               }}
             >
               <CardContent>
-                {instrument.icon}
+                <>{instrument.icon}</>
                 <Typography variant="h6" gutterBottom>
                   {instrument.name}
                 </Typography>

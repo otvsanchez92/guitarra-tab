@@ -11,6 +11,6 @@ export type TConfigProps = {
   copyScale: () => void;
   changeFrets: (frets: number) => void;
   frets: number;
-  children: JSX.Element;
+  children: React.ReactNode;
   addInstrument: () => void;
 };

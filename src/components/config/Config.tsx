@@ -132,10 +132,12 @@ const Config: React.FC<ConfigProps> = ({
                         {colorsArray.map(color => (
                           <MenuItem key={color.value} value={color.value}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                              <Color
-                                style={{ backgroundColor: color.color, borderRadius: '50%', width: 16, height: 16 }}
-                              />
-                              <span>{color.label}</span>
+                              <>
+                                <Color
+                                  style={{ backgroundColor: color.color, borderRadius: '50%', width: 16, height: 16 }}
+                                />
+                                <span>{color.label}</span>
+                              </>
                             </Box>
                           </MenuItem>
                         ))}

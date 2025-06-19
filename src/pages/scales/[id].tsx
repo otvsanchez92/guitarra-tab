@@ -27,7 +27,7 @@ export default function ScaleDetailPage() {
         query: {
           scaleType: scale.id,
           tone: selectedTone,
-          strings: instrument.strings, 
+          strings: instrument.strings
         }
       });
     }
@@ -41,7 +41,7 @@ export default function ScaleDetailPage() {
 
       <Box sx={{ mb: 4 }}>
         <Typography variant="body1" color="text.secondary">
-        {t(`scales.${scale.id}.description`)}
+          {t(`scales.${scale.id}.description`)}
         </Typography>
         <Typography variant="body2" sx={{ mt: 2 }}>
           {t('scales.type')}: {scale.type}
@@ -59,7 +59,7 @@ export default function ScaleDetailPage() {
             </Typography>
             <Select
               value={selectedTone}
-              onChange={(e) => setSelectedTone(e.target.value as string)}
+              onChange={e => setSelectedTone(e.target.value as string)}
               fullWidth
               sx={{ mb: 2 }}
             >
@@ -77,7 +77,7 @@ export default function ScaleDetailPage() {
             </Typography>
             <Select
               value={selectedInstrument}
-              onChange={(e) => setSelectedInstrument(e.target.value as string)}
+              onChange={e => setSelectedInstrument(e.target.value as string)}
               fullWidth
               sx={{ mb: 2 }}
             >
@@ -97,20 +97,21 @@ export default function ScaleDetailPage() {
                 {t('scales.pattern')}
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {id && getScaleNotes(id as string, selectedTone).map((note, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      p: 1,
-                      borderRadius: 1,
-                      bgcolor: note === selectedTone ? 'blue' : 'red',
-                      color: 'white',
-                      fontSize: '1.2rem'
-                    }}
-                  >
-                    {note}
-                  </Box>
-                ))}
+                {id &&
+                  getScaleNotes(id as string, selectedTone).map((note, index) => (
+                    <Box
+                      key={index}
+                      sx={{
+                        p: 1,
+                        borderRadius: 1,
+                        bgcolor: note === selectedTone ? 'blue' : 'red',
+                        color: 'white',
+                        fontSize: '1.2rem'
+                      }}
+                    >
+                      {note}
+                    </Box>
+                  ))}
               </Box>
             </Box>
           </Box>

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Container } from '@mui/material';
 import { Guitar } from '@/components/guitar';
 import { Config } from '@/components/config';
-import { Tabs } from '@/components/tabs'; 
+import { Tabs } from '@/components/tabs';
 import { useStore } from '@/store';
 import type { TStore, TActive } from '@/store/types';
 import html2canvas from 'html2canvas';
@@ -38,8 +38,8 @@ export default function Editor() {
     const scaleType = router.query.scaleType;
     const tone = router.query.tone;
     if (scaleType && tone) {
-      selectScale(getScaleNotes(scaleType as string, tone as string), tone);
-    } 
+      selectScale(getScaleNotes(scaleType as string, tone as string), tone as string);
+    }
   }, [router.query.scaleType, router.query.tone, selectScale]);
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function Editor() {
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <main>
-        <Container> 
+        <Container>
           <Config
             onChangeNumberStrings={changeNumberStrings}
             onChangeColor={changeColor}
@@ -112,7 +112,7 @@ export default function Editor() {
             </>
           </Config>
 
-       { /*  <Tabs
+          {/*  <Tabs
             tuning={instruments[0].tuning}
             strings={instruments[0].strings}
             notes={instruments.map(instrument => instrument.notes).flat() as TActive[]}

@@ -9,8 +9,6 @@ export interface ScaleData {
   id: string;
 }
 
-
-
 export const commonScales: ScaleData[] = [
   {
     title: 'scales.major.title',
@@ -18,7 +16,7 @@ export const commonScales: ScaleData[] = [
     pattern: patterns.major,
     type: 'diatonic',
     examples: getScaleNotes('major', 'C'),
-    id: 'major',
+    id: 'major'
   },
   {
     title: 'scales.natural_minor.title',
@@ -26,7 +24,7 @@ export const commonScales: ScaleData[] = [
     pattern: patterns.natural_minor,
     type: 'diatonic',
     examples: getScaleNotes('natural_minor', 'C'),
-    id: 'natural_minor',
+    id: 'natural_minor'
   },
   {
     title: 'scales.blues.title',
@@ -34,7 +32,7 @@ export const commonScales: ScaleData[] = [
     pattern: patterns.blues,
     type: 'hexatonic',
     examples: getScaleNotes('blues', 'C'),
-    id: 'blues',
+    id: 'blues'
   },
   {
     title: 'scales.major_pentatonic.title',
@@ -42,7 +40,7 @@ export const commonScales: ScaleData[] = [
     pattern: patterns.major_pentatonic,
     type: 'pentatonic',
     examples: getScaleNotes('major_pentatonic', 'C'),
-    id: 'major_pentatonic',
+    id: 'major_pentatonic'
   },
   {
     title: 'scales.minor_pentatonic.title',
@@ -50,7 +48,7 @@ export const commonScales: ScaleData[] = [
     pattern: patterns.minor_pentatonic,
     type: 'pentatonic',
     examples: getScaleNotes('minor_pentatonic', 'C'),
-    id: 'minor_pentatonic',
+    id: 'minor_pentatonic'
   },
   {
     title: 'scales.dorian.title',
@@ -58,7 +56,7 @@ export const commonScales: ScaleData[] = [
     pattern: patterns.dorian,
     type: 'modal',
     examples: getScaleNotes('dorian', 'C'),
-    id: 'dorian',
+    id: 'dorian'
   },
   {
     title: 'scales.mixolydian.title',
@@ -66,7 +64,7 @@ export const commonScales: ScaleData[] = [
     pattern: patterns.mixolydian,
     type: 'modal',
     examples: getScaleNotes('mixolydian', 'C'),
-    id: 'mixolydian',
+    id: 'mixolydian'
   },
   {
     title: 'scales.lydian.title',
@@ -74,7 +72,7 @@ export const commonScales: ScaleData[] = [
     pattern: patterns.lydian,
     type: 'modal',
     examples: getScaleNotes('lydian', 'C'),
-    id: 'lydian',
+    id: 'lydian'
   },
   {
     title: 'scales.phrygian.title',
@@ -82,7 +80,7 @@ export const commonScales: ScaleData[] = [
     pattern: patterns.phrygian,
     type: 'modal',
     examples: getScaleNotes('phrygian', 'C'),
-    id: 'phrygian',
+    id: 'phrygian'
   },
   {
     title: 'scales.eolian.title',
@@ -90,6 +88,6 @@ export const commonScales: ScaleData[] = [
     pattern: patterns.eolian,
     type: 'modal',
     examples: getScaleNotes('eolian', 'C'),
-    id: 'eolian',
+    id: 'eolian'
   }
 ];

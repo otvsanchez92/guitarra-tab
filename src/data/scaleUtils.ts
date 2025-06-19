@@ -1,19 +1,28 @@
 export const sharpNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-export const flatNotes  = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+export const flatNotes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 
 const enharmonicMap: { [note: string]: number } = {
-  C: 0, 'B#': 0,
-  'C#': 1, Db: 1,
+  C: 0,
+  'B#': 0,
+  'C#': 1,
+  Db: 1,
   D: 2,
-  'D#': 3, Eb: 3,
-  E: 4, Fb: 4,
-  F: 5, 'E#': 5,
-  'F#': 6, Gb: 6,
+  'D#': 3,
+  Eb: 3,
+  E: 4,
+  Fb: 4,
+  F: 5,
+  'E#': 5,
+  'F#': 6,
+  Gb: 6,
   G: 7,
-  'G#': 8, Ab: 8,
+  'G#': 8,
+  Ab: 8,
   A: 9,
-  'A#': 10, Bb: 10,
-  B: 11, Cb: 11,
+  'A#': 10,
+  Bb: 10,
+  B: 11,
+  Cb: 11
 };
 
 export const noteToIndex = (note: string): number => {
@@ -49,7 +58,7 @@ export const getScaleType = (scale: string[]): string => {
     mixolydian: [2, 2, 1, 2, 2, 1, 2],
     lydian: [2, 2, 2, 1, 2, 2, 1],
     phrygian: [1, 2, 2, 2, 1, 2, 2],
-    eolian: [2, 1, 2, 2, 1, 2, 2],
+    eolian: [2, 1, 2, 2, 1, 2, 2]
   };
 
   for (const [name, pattern] of Object.entries(knownScales)) {
@@ -60,7 +69,9 @@ export const getScaleType = (scale: string[]): string => {
 };
 
 export const getScalePattern = (scale: string[]): string => {
-  return getScaleIntervals(scale).map(i => (i === 1 ? 'm' : i)).join(' - ');
+  return getScaleIntervals(scale)
+    .map(i => (i === 1 ? 'm' : i))
+    .join(' - ');
 };
 
 export const patterns: { [key: string]: number[] } = {
@@ -74,16 +85,10 @@ export const patterns: { [key: string]: number[] } = {
   mixolydian: [2, 2, 1, 2, 2, 1, 2],
   lydian: [2, 2, 2, 1, 2, 2, 1],
   phrygian: [1, 2, 2, 2, 1, 2, 2],
-  eolian: [2, 1, 2, 2, 1, 2, 2],
+  eolian: [2, 1, 2, 2, 1, 2, 2]
 };
 
-
-export const getScaleNotes = (
-  scaleType: string,
-  rootNote: string,
-  useFlats: boolean = false
-): string[] => {
-
+export const getScaleNotes = (scaleType: string, rootNote: string, useFlats: boolean = false): string[] => {
   const intervals = patterns[scaleType];
   if (!intervals) return [];
 
@@ -100,7 +105,7 @@ export const getScaleNotes = (
     8: ['G#', 'Ab'],
     9: ['A'],
     10: ['A#', 'Bb'],
-    11: ['B', 'Cb'],
+    11: ['B', 'Cb']
   };
 
   const rootIndex = noteToIndex(rootNote);

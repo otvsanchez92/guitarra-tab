@@ -6,7 +6,7 @@ import { Typography } from '@mui/material';
 const Tabs = ({ notes, tuning, strings }: TTabsProps) => {
   const { t } = useTranslation();
 
-  const lines: Record<number, (string | JSX.Element)[]> = {};
+  const lines: Record<number, (string | React.ReactNode)[]> = {};
 
   for (let i = 0; i < strings; i++) {
     lines[i] = [];

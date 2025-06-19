@@ -26,7 +26,7 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({ instrument, onCl
       }}
     >
       <CardContent>
-        {instrument.icon}
+        <>{instrument.icon}</>
         <Typography variant="h6" gutterBottom>
           {instrument.name}
         </Typography>
