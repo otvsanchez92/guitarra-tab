@@ -10,9 +10,13 @@ export const Color = styled.div<ColorProps>`
   height: 16px;
 `;
 
+export const Controls = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const ConfigContainer = styled.div`
   margin: 22px auto 32px auto;
-  display: flex;
 `;
 
 export const ConfigBar = styled.div`

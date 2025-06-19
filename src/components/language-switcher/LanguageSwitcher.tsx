@@ -1,35 +1,52 @@
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Select, MenuItem, InputBase } from '@mui/material';
-import { useState } from 'react';
+import {
+  Select,
+  MenuItem,
+  styled,
+  InputBase,
+  Box,
+  SelectChangeEvent,
+} from '@mui/material';
+import LanguageIcon from '@mui/icons-material/Language';
 
-export const LanguageSwitcher = () => {
+const StyledSelect = styled(Select)(({ theme }) => ({
+  '& .MuiSelect-select': {
+    padding: '6px 12px',
+    borderRadius: '4px',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    '&:hover': {
+      backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    },
+  },
+  '& .MuiSelect-icon': {
+    color: 'white', // seta branca
+    right: 8,        // posicionamento interno
+  },
+}));
+
+const LanguageIconWrapper = styled(Box)({
+  color: 'white',
+  fontSize: '1.2rem',
+});
+
+export const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(i18n.language);
 
-  const handleChange = (event: any) => {
-    const newLang = event.target.value;
-    i18n.changeLanguage(newLang);
-    setLanguage(newLang);
+  const handleLanguageChange = (event: SelectChangeEvent<string>) => {
+    const language = event.target.value; 
+    i18n.changeLanguage(language);
   };
 
   return (
-    <Select
-      value={language}
-      onChange={handleChange}
-      size="small"
-      sx={{
-        minWidth: '120px',
-        '& .MuiSelect-select': {
-          padding: '6px 12px',
-          borderRadius: '4px',
-          backgroundColor: 'rgba(255, 255, 255, 0.1)',
-          color: 'white',
-          '&:hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0.15)'
-          }
-        }
-      }}
-      IconComponent={() => <span style={{ color: 'white' }}>▼</span>}
+    <StyledSelect
+      value={i18n.language}
+      onChange={handleLanguageChange as any}
+      sx={{ minWidth: 120, height: 40 }}
       disableUnderline
       input={<InputBase />}
     >
@@ -38,23 +55,35 @@ export const LanguageSwitcher = () => {
         sx={{
           color: 'primary.main',
           '&:hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0.05)'
-          }
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          },
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
         }}
       >
-        English
+        <LanguageIconWrapper>
+          <LanguageIcon />
+        </LanguageIconWrapper>
+        en
       </MenuItem>
       <MenuItem
         value="pt-BR"
         sx={{
           color: 'primary.main',
           '&:hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0.05)'
-          }
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          },
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
         }}
       >
-        Português
+        <LanguageIconWrapper>
+          <LanguageIcon />
+        </LanguageIconWrapper>
+        pt-BR
       </MenuItem>
-    </Select>
+    </StyledSelect>
   );
 };

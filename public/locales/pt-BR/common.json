@@ -1,6 +1,9 @@
 {
   "header": {
-    "title": "Musical Diagrams"
+    "title": "Maps Musical",
+    "scales": "Escalas Comuns",
+    "instruments": "Instrumentos",
+    "editor": "Editor"
   },
   "home": {
     "title": "Home",
@@ -84,5 +87,5 @@
         "title": "Eólia",
         "description": "Escala modal equivalente à menor natural"
       }
-    } 
+    }
 }

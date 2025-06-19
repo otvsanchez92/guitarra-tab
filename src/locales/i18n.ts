@@ -9,7 +9,7 @@ i18n
     fallbackLng: 'en',
     debug: true,
     detection: {
-      order: ['querystring', 'cookie'],
+      order: ['querystring', 'cookie', 'navigator'],
       caches: ['cookie']
     },
     interpolation: {

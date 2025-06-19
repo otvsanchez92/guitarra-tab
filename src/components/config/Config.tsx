@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { Color, ConfigContainer, ConfigBar, ConfigTitle } from './style';
+import { Color, ConfigContainer, ConfigBar, ConfigTitle, Controls } from './style';
 import { Undo, Clear, Edit, Save, Download } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { TConfigProps } from './types';
@@ -56,6 +56,8 @@ const Config: React.FC<ConfigProps> = ({
     <ConfigContainer>
       {children}
 
+
+<Controls>
       <ConfigBar>
         <ConfigTitle>{t('config.controls')}:</ConfigTitle>
         <Grid container spacing={3} alignItems="center">
@@ -287,6 +289,7 @@ const Config: React.FC<ConfigProps> = ({
           </Grid>
         </Grid>
       </ConfigBar>
+      </Controls>
     </ConfigContainer>
   );
 };

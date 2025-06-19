@@ -1,6 +1,9 @@
 {
   "header": {
-    "title": "Musical Diagrams"
+    "title": "Musical Diagrams",
+    "scales": "Common Scales",
+    "instruments": "Instruments",
+    "editor": "Editor"
   },
   "home": {
     "title": "Home",

@@ -96,11 +96,6 @@ const Home: React.FC = () => {
                 <Typography variant="h6" gutterBottom>
                   {instrument.name}
                 </Typography>
-                {instrument.strings > 0 && (
-                  <Typography variant="body2" color="text.secondary">
-                    {t('home.strings', { count: instrument.strings })}
-                  </Typography>
-                )}
               </CardContent>
               <Button onClick={() => handleInstrumentClick(instrument)} fullWidth variant="contained" sx={{ mt: 2 }}>
                 {t('home.startWithInstrument')}
