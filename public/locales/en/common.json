@@ -40,6 +40,7 @@
     "title": "Tabs:"
   },
   "scales": {
+    "title": "Scales",
     "selectTone": "Select Tone",
     "selectInstrument": "Select Instrument",
     "pattern": "Pattern",
@@ -102,6 +103,8 @@
     "cavaquinho": "Cavaquinho"
   },
   "instruments": {
+    "title": "Instruments",
+    "startWithInstrument": "Start with Instrument",
     "guitar": "Guitar",
     "bass": "Bass",
     "violin": "Violin",

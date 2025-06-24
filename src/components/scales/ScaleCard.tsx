@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardContent, Typography, Box, useTheme, useMediaQuery } from '@mui/material';
 import { ScaleData } from '../../data/scalesData';
 import { ButtonCard } from './styles';
+import { useTranslation } from 'react-i18next';
 
 interface ScaleCardProps {
   scale: ScaleData;
@@ -11,6 +12,8 @@ interface ScaleCardProps {
 export const ScaleCard: React.FC<ScaleCardProps> = ({ scale, onClick }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const { t } = useTranslation();
 
   return (
     <Card
@@ -27,28 +30,19 @@ export const ScaleCard: React.FC<ScaleCardProps> = ({ scale, onClick }) => {
     >
       <CardContent>
         <Typography variant="h6" gutterBottom>
-          {scale.title}
+          {t(`${scale.title}`)}
         </Typography>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          {scale.description}
+        <Typography variant="body2" color="#fff" gutterBottom>
+          {t(`${scale.description}`)}
         </Typography>
         <Box sx={{ mt: 2 }}>
-          {scale.examples.map((example, index) => (
-            <Box
-              key={index}
-              sx={{
-                p: 1,
-                borderRadius: 1,
-                bgcolor: 'primary.main',
-                color: 'white',
-                fontSize: '1.2rem'
-              }}
-            >
-              {example}
-            </Box>
-          ))}
-          <Typography variant="caption" color="text.secondary">
-            Tipo: {scale.type}
+          <div>
+            {scale.examples.map((example, index) => (
+              <span key={index} style={{ marginRight: '5px' }}>{example}</span>
+            ))}
+          </div>
+          <Typography variant="caption" color="#fff">
+            Tipo: {t(scale.type)}
           </Typography>
         </Box>
       </CardContent>

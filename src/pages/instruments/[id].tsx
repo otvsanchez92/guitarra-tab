@@ -1,12 +1,12 @@
 import React from 'react';
-import { Box, Grid, Typography, Container } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router'; 
 import { commonInstruments, InstrumentData } from '@/data/instrumentsData';
 import { commonScales } from '@/data/scalesData';
-import { Card, CardContent } from '@mui/material';
 import { ScaleData } from '@/data/scalesData';
-import { ButtonCard } from '@/components/scales/styles';
+import { PageLayout } from '@/components/common/PageLayout';
+import { ScaleCard } from '@/components/common/Card';
 
 
 export default function InstrumentsPage() {
@@ -33,48 +33,20 @@ export default function InstrumentsPage() {
 
  
   return (
-    <Container>
-      <Box sx={{ flexGrow: 1, p: 4 }}>
-        <Typography variant="h1" gutterBottom>
-        {t(instrument.name)}
-        </Typography>
-
-      
-          <Grid container spacing={4} sx={{ mb: 4 }}>
-            {commonScales.map(scale => (
-              <Grid item xs={12} sm={6} md={4} key={scale.id}>
-              <Card
-                sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                    transition: 'transform 0.3s ease-in-out'
-                  }
-                }}
-              >
-                <CardContent>
-                  <Typography variant="h6" gutterBottom>
-                    {t(scale.title)}
-                  </Typography>
-                  <Typography variant="body2" color="#fff">
-                    {t(scale.description)}
-                  </Typography>
-                  <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1">Example:</Typography>
-                    <Typography variant="body1">{scale.examples.join(', ')}</Typography>
-                  </Box>
-                </CardContent>
-                <ButtonCard onClick={() => handleScaleClick(scale)} fullWidth variant="contained" sx={{ mt: 2 }}>
-                  {t('home.startWithScale')}
-                </ButtonCard>
-              </Card>
-            </Grid>
-          ))}
+    <PageLayout title={t(instrument.name)}>
+      <Grid container spacing={4}>
+        {commonScales.map(scale => (
+          <Grid item xs={12} sm={6} md={4} key={scale.id}>
+            <ScaleCard
+              title={t(scale.title)}
+              description={t(scale.description)}
+              examples={scale.examples}
+              onClick={() => handleScaleClick(scale)}
+              buttonText={t('home.startWithScale')}
+            />
           </Grid>
-      </Box>
-    </Container>
+        ))}
+      </Grid>
+    </PageLayout>
   );
 }

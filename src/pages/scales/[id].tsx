@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { commonScales } from '@/data/scalesData';
 import { commonInstruments } from '@/data/instrumentsData';
 import { getScaleNotes } from '@/data/scaleUtils';
+import { PageLayout } from '@/components/common/PageLayout';
 
 export default function ScaleDetailPage() {
   const router = useRouter();
@@ -34,11 +35,10 @@ export default function ScaleDetailPage() {
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        {t(`scales.${scale.id}.title`)}
-      </Typography>
+ 
 
+<PageLayout title={t(`scales.${scale.id}.title`)}>
+<>
       <Box sx={{ mb: 4 }}>
         <Typography variant="body1" color="#fff">
           {t(`scales.${scale.id}.description`)}
@@ -83,7 +83,7 @@ export default function ScaleDetailPage() {
             >
               {commonInstruments.map(instrument => (
                 <MenuItem key={instrument.id} value={instrument.id}>
-                  {instrument.name}
+                  {t(instrument.name)}
                 </MenuItem>
               ))}
             </Select>
@@ -132,6 +132,7 @@ export default function ScaleDetailPage() {
           {t('scales.start')}
         </Button>
       </Box>
-    </Container>
+      </>
+      </PageLayout>
   );
 }

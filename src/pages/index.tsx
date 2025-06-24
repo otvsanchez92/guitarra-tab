@@ -37,9 +37,9 @@ export default function Index() {
         <meta name="msapplication-TileColor" content="#0D0D0D" />
       </Head>
       <main>
-        <Container>
+    
           <Home />
-        </Container>
+     
       </main>
     </>
   );

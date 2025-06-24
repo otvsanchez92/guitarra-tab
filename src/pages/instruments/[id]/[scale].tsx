@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { Box, Container, Typography, Grid, Select, MenuItem, Button, styled } from '@mui/material';
 import { alpha } from '@mui/material/styles';
+import { PageLayout } from '@/components/common/PageLayout';
 
 const StyledSelect = styled(Select)({
   '& .MuiSelect-select': {
@@ -62,11 +63,8 @@ export default function ScaleDetailPage() {
   };
 
   return (
-    <Container  maxWidth="md" sx={{ py: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        {t(`scales.${scale.id}.title`)}
-      </Typography>
-
+    <PageLayout title={t(scale.title)}>
+      <>
       <Box sx={{ mb: 4 }}>
         <Typography variant="body1" color="text.secondary">
           {t(`scales.${scale.id}.description`)}
@@ -160,6 +158,7 @@ export default function ScaleDetailPage() {
           {t('scales.start')}
         </Button>
       </Box>
-    </Container>
+      </>
+      </PageLayout>
   );
 }
