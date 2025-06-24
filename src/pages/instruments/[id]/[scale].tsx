@@ -1,6 +1,34 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Box, Container, Typography, Grid, Select, MenuItem, Button } from '@mui/material';
+import { Box, Container, Typography, Grid, Select, MenuItem, Button, styled } from '@mui/material';
+import { alpha } from '@mui/material/styles';
+
+const StyledSelect = styled(Select)({
+  '& .MuiSelect-select': {
+    color: '#ffffff',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  },
+  '& .MuiOutlinedInput-notchedOutline': {
+    borderColor: '#ffffff',
+  },
+  '&:hover .MuiOutlinedInput-notchedOutline': {
+    borderColor: '#ffffff',
+  },
+  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+    borderColor: '#ffffff',
+  },
+  '& .MuiSelect-icon': {
+    color: '#ffffff',
+  },
+});
+
+const StyledMenuItem = styled(MenuItem)({
+  color: '#ffffff',
+  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  '&:hover': {
+    backgroundColor: alpha('#ffffff', 0.1),
+  },
+});
 import { useTranslation } from 'react-i18next';
 import { commonScales } from '@/data/scalesData';
 import { commonInstruments } from '@/data/instrumentsData';
@@ -34,13 +62,13 @@ export default function ScaleDetailPage() {
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
+    <Container  maxWidth="md" sx={{ py: 4 }}>
       <Typography variant="h4" gutterBottom>
         {t(`scales.${scale.id}.title`)}
       </Typography>
 
       <Box sx={{ mb: 4 }}>
-        <Typography variant="body1" color="#fff">
+        <Typography variant="body1" color="text.secondary">
           {t(`scales.${scale.id}.description`)}
         </Typography>
         <Typography variant="body2" sx={{ mt: 2 }}>
@@ -51,42 +79,42 @@ export default function ScaleDetailPage() {
         </Typography>
       </Box>
 
-      <Grid container spacing={4} sx={{ mb: 4 }}>
+      <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
           <Box sx={{ mb: 3 }}>
             <Typography variant="h6" gutterBottom>
               {t('scales.selectTone')}
             </Typography>
-            <Select
+            <StyledSelect
               value={selectedTone}
-              onChange={e => setSelectedTone(e.target.value as string)}
-              fullWidth
+              onChange={(e) => setSelectedTone(e.target.value as string)}
+              displayEmpty
               sx={{ mb: 2 }}
             >
               {['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'].map(tone => (
-                <MenuItem key={tone} value={tone}>
+                <StyledMenuItem key={tone} value={tone}>
                   {tone}
-                </MenuItem>
+                </StyledMenuItem>
               ))}
-            </Select>
+            </StyledSelect>
           </Box>
 
           <Box>
             <Typography variant="h6" gutterBottom>
               {t('scales.selectInstrument')}
             </Typography>
-            <Select
+            <StyledSelect
               value={selectedInstrument}
-              onChange={e => setSelectedInstrument(e.target.value as string)}
-              fullWidth
+              onChange={(e) => setSelectedInstrument(e.target.value as string)}
+              displayEmpty
               sx={{ mb: 2 }}
             >
               {commonInstruments.map(instrument => (
-                <MenuItem key={instrument.id} value={instrument.id}>
-                  {instrument.name}
-                </MenuItem>
+                <StyledMenuItem key={instrument.id} value={instrument.id}>
+                  {t(instrument.name)}
+                </StyledMenuItem>
               ))}
-            </Select>
+            </StyledSelect>
           </Box>
         </Grid>
 

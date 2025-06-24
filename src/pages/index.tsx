@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { Container } from '@mui/material';
 
-import { translations } from '@/locales/pt-BR';
 import { Home } from '@/components/home';
 
 export default function Index() {

@@ -17,14 +17,11 @@ export const HeaderItems = styled('div')({
 });
 
 export const HeaderContainer = styled(AppBar)(({ theme }) => ({
+  position: 'static',
   backgroundColor: 'rgba(0, 0, 0, 0.8)',
   backdropFilter: 'blur(10px)',
   boxShadow: 'none',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  zIndex: 1000,
+  color: '#fff'
 }));
 
 export const Logo = styled(Typography)({

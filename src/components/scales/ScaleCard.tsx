@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, CardContent, Typography, Box, Button, useTheme, useMediaQuery } from '@mui/material';
+import { Card, CardContent, Typography, Box, useTheme, useMediaQuery } from '@mui/material';
 import { ScaleData } from '../../data/scalesData';
+import { ButtonCard } from './styles';
 
 interface ScaleCardProps {
   scale: ScaleData;
@@ -51,9 +52,9 @@ export const ScaleCard: React.FC<ScaleCardProps> = ({ scale, onClick }) => {
           </Typography>
         </Box>
       </CardContent>
-      <Button fullWidth variant="contained" sx={{ mt: 2 }} onClick={onClick}>
+      <ButtonCard fullWidth variant="contained" sx={{ mt: 2 }} onClick={onClick}>
         Começar com esta escala
-      </Button>
+      </ButtonCard>
     </Card>
   );
 };

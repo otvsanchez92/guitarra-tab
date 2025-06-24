@@ -87,5 +87,27 @@
         "title": "Eólia",
         "description": "Escala modal equivalente à menor natural"
       }
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "scales": "Escalas",
+      "editor": "Editor",
+      "instruments": "Instrumentos",
+      "guitar": "Guitarra",
+      "bass": "Baixo",
+      "violin": "Violino",
+      "ukulele": "Ukulele",
+      "banjo": "Banjo",
+      "mandolin": "Mandolin",
+      "cavaquinho": "Cavaquinho"
+    },
+    "instruments": {
+      "guitar": "Guitarra",
+      "bass": "Baixo",
+      "violin": "Violino",
+      "ukulele": "Ukulele",
+      "banjo": "Banjo",
+      "mandolin": "Mandolin",
+      "cavaquinho": "Cavaquinho"
     }
 }

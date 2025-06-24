@@ -87,5 +87,27 @@
       "title": "Aeolian",
       "description": "Modal scale equivalent to the natural minor"
     }
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "scales": "Scales",
+    "editor": "Editor",
+    "instruments": "Instruments",
+    "guitar": "Guitar",
+    "bass": "Bass",
+    "violin": "Violin",
+    "ukulele": "Ukulele",
+    "banjo": "Banjo",
+    "mandolin": "Mandolin",
+    "cavaquinho": "Cavaquinho"
+  },
+  "instruments": {
+    "guitar": "Guitar",
+    "bass": "Bass",
+    "violin": "Violin",
+    "ukulele": "Ukulele",
+    "banjo": "Banjo",
+    "mandolin": "Mandolin",
+    "cavaquinho": "Cavaquinho"
   }
 }

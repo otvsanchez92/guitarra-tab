@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { commonScales } from '@/data/scalesData';
 import { commonInstruments } from '@/data/instrumentsData';
 import { IconType } from 'react-icons';
+import { ButtonCard } from './styles';
 
 const Home: React.FC = () => {
   const router = useRouter();
@@ -54,7 +55,7 @@ const Home: React.FC = () => {
                 <Typography variant="h6" gutterBottom>
                   {t(scale.title)}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="#fff">
                   {t(scale.description)}
                 </Typography>
                 <Box sx={{ mt: 2 }}>
@@ -62,9 +63,9 @@ const Home: React.FC = () => {
                   <Typography variant="body1">{scale.examples.join(', ')}</Typography>
                 </Box>
               </CardContent>
-              <Button onClick={() => handleScaleClick(scale)} fullWidth variant="contained" sx={{ mt: 2 }}>
+              <ButtonCard onClick={() => handleScaleClick(scale)} fullWidth variant="contained" sx={{ mt: 2 }}>
                 {t('home.startWithScale')}
-              </Button>
+              </ButtonCard>
             </Card>
           </Grid>
         ))}
@@ -94,12 +95,12 @@ const Home: React.FC = () => {
               <CardContent>
                 <>{instrument.icon}</>
                 <Typography variant="h6" gutterBottom>
-                  {instrument.name}
+                  {t(instrument.name)}
                 </Typography>
               </CardContent>
-              <Button onClick={() => handleInstrumentClick(instrument)} fullWidth variant="contained" sx={{ mt: 2 }}>
+              <ButtonCard onClick={() => handleInstrumentClick(instrument)} fullWidth variant="contained" sx={{ mt: 2 }}>
                 {t('home.startWithInstrument')}
-              </Button>
+              </ButtonCard>
             </Card>
           </Grid>
         ))}

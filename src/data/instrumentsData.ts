@@ -14,7 +14,7 @@ export interface InstrumentData {
 
 export const commonInstruments: InstrumentData[] = [
   {
-    name: 'Guitarra',
+    name: 'instruments.guitar',
     icon: FaGuitar,
     strings: 6,
     tuning: ['E', 'A', 'D', 'G', 'B', 'E'],
@@ -24,7 +24,7 @@ export const commonInstruments: InstrumentData[] = [
     id: 'electric-guitar'
   },
   {
-    name: 'Baixo',
+    name: 'instruments.bass',
     icon: FaGuitar,
     strings: 4,
     tuning: ['E', 'A', 'D', 'G'],
@@ -34,7 +34,7 @@ export const commonInstruments: InstrumentData[] = [
     id: 'bass'
   },
   {
-    name: 'Violino',
+    name: 'instruments.violin',
     icon: FaMusic,
     strings: 4,
     tuning: ['G', 'D', 'A', 'E'],
@@ -44,7 +44,7 @@ export const commonInstruments: InstrumentData[] = [
     id: 'violin'
   },
   {
-    name: 'Ukulele',
+    name: 'instruments.ukulele',
     icon: FaGuitar,
     strings: 4,
     tuning: ['G', 'C', 'E', 'A'],
@@ -54,7 +54,7 @@ export const commonInstruments: InstrumentData[] = [
     id: 'ukulele'
   },
   {
-    name: 'Banjo',
+    name: 'instruments.banjo',
     icon: FaGuitar,
     strings: 5,
     tuning: ['G', 'D', 'G', 'B', 'D'],
@@ -64,7 +64,7 @@ export const commonInstruments: InstrumentData[] = [
     id: 'banjo'
   },
   {
-    name: 'Mandolin',
+    name: 'instruments.mandolin',
     icon: FaGuitar,
     strings: 8,
     tuning: ['G', 'D', 'A', 'E'],
@@ -74,7 +74,7 @@ export const commonInstruments: InstrumentData[] = [
     id: 'mandolin'
   },
   {
-    name: 'Cavaquinho',
+    name: 'instruments.cavaquinho',
     icon: FaGuitar,
     strings: 4,
     tuning: ['D', 'G', 'B', 'D'],
@@ -82,15 +82,5 @@ export const commonInstruments: InstrumentData[] = [
     category: 'Cordas',
     examples: ['Carioca', 'Baiano', 'Capixaba'],
     id: 'cavaquinho'
-  },
-  {
-    name: 'Violão',
-    icon: FaGuitar,
-    strings: 6,
-    tuning: ['E', 'A', 'D', 'G', 'B', 'E'],
-    description: 'Guitarra acústica',
-    category: 'Cordas',
-    examples: ['Classical', 'Steel String', '12-String'],
-    id: 'guitar'
   }
 ];

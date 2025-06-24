@@ -20,6 +20,7 @@ import {
   Box,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Breadcrumb } from '../navigation-map';
 
 export const Header: React.FC = () => {
   const { t } = useTranslation();
@@ -37,6 +38,7 @@ export const Header: React.FC = () => {
     <header>
       <HeaderContainer>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {/* Logo e Navegação Desktop */}
           <HeaderItems>
             <Link href="/" title="Maps Musical">
               <Logo variant="h6">
@@ -50,7 +52,6 @@ export const Header: React.FC = () => {
               </Logo>
             </Link>
 
-            {/* Menu Desktop */}
             <Navigation sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
               <NavButton href="/scales" variant="text">
                 {t('header.scales')}
@@ -62,24 +63,23 @@ export const Header: React.FC = () => {
                 {t('header.instruments')}
               </NavButton>
             </Navigation>
-
-          
           </HeaderItems>
 
-          {/* Idioma */}
-          <LanguageSwitcher />
+          {/* Idioma + Menu Mobile */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <LanguageSwitcher />
 
-            {/* Menu Mobile (hamburguer) */}
             <IconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ display: { xs: 'flex', md: 'none' }, ml: 1 }}
+              sx={{ display: { xs: 'flex', md: 'none' } }}
               onClick={(event: React.MouseEvent<HTMLElement>) => setMobileMenuAnchor(event.currentTarget)}
             >
               <MenuIcon sx={{ color: 'white' }} />
             </IconButton>
+          </Box>
         </Toolbar>
 
         {/* Menu suspenso mobile */}
@@ -89,8 +89,11 @@ export const Header: React.FC = () => {
           onClose={handleMenuClose}
           sx={{
             '& .MuiPaper-root': {
-              backgroundColor: 'rgba(0, 0, 0, 0.8)',
-              color: 'white',
+              backgroundColor: '#1a1a1a',
+              color: '#ffffff',
+            },
+            '& .MuiMenuItem-root': {
+              color: '#ffffff',
             },
           }}
         >
@@ -104,8 +107,8 @@ export const Header: React.FC = () => {
             {t('header.instruments')}
           </MenuItem>
         </Menu>
+        <Breadcrumb />
       </HeaderContainer>
-      <Space />
     </header>
   );
 };

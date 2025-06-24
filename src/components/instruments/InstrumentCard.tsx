@@ -30,7 +30,7 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({ instrument, onCl
         <Typography variant="h6" gutterBottom>
           {instrument.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
+        <Typography variant="body2" color="#fff" gutterBottom>
           {instrument.description}
         </Typography>
         {instrument.strings > 0 && (
@@ -38,7 +38,7 @@ export const InstrumentCard: React.FC<InstrumentCardProps> = ({ instrument, onCl
             {instrument.strings} cordas
           </Typography>
         )}
-        <Typography variant="caption" color="text.secondary">
+        <Typography variant="caption" color="#fff">
           Categoria: {instrument.category}
         </Typography>
       </CardContent>
