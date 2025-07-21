@@ -1,18 +1,20 @@
 import Head from 'next/head';
+import { useTranslation } from 'react-i18next';
 import { Container } from '@mui/material';
 
 import { Home } from '@/components/home';
 
 export default function Index() {
+  const { t } = useTranslation();
   return (
     <>
       <Head>
-        <title>Maps Musical</title>
-        <meta name="description" content="Maps Musical" />
-        <meta name="keywords" content="Maps Musical" />
-        <meta name="author" content="Maps Musical" />
-        <meta property="og:title" content="Maps Musical" />
-        <meta property="og:description" content="Maps Musical" />
+        <title>{t('title')}</title>
+        <meta name="description" content={t('description')} />
+        <meta name="keywords" content={t('keywords')} />
+        <meta name="author" content={t('author')} />
+        <meta property="og:title" content={t('ogTitle')} />
+        <meta property="og:description" content={t('description')} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/og-image.png" />
         {/* Favicon */}

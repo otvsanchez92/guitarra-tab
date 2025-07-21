@@ -1,4 +1,12 @@
 {
+  "title": "Maps Musical",
+  "description": "Maps Musical",
+  "keywords": "Maps Musical",
+  "author": "Maps Musical",
+  "ogTitle": "Maps Musical",
+  "ogDescription": "Maps Musical",
+  "ogKeywords": "Maps Musical",
+  "ogAuthor": "Maps Musical",
   "header": {
     "title": "Maps Musical",
     "scales": "Escalas Comuns",
@@ -112,5 +120,10 @@
       "banjo": "Banjo",
       "mandolin": "Mandolin",
       "cavaquinho": "Cavaquinho"
+    },
+    "editor": {
+      "title": "Editor",
+      "scale": "Escala",
+      "tabs": "Tabs"
     }
 }

@@ -1,4 +1,12 @@
 {
+  "title": "Musical Diagrams",
+  "description": "Musical Diagrams",
+  "keywords": "Musical Diagrams",
+  "author": "Musical Diagrams",
+  "ogTitle": "Musical Diagrams",
+  "ogDescription": "Musical Diagrams",
+  "ogKeywords": "Musical Diagrams",
+  "ogAuthor": "Musical Diagrams",
   "header": {
     "title": "Musical Diagrams",
     "scales": "Common Scales",
@@ -112,5 +120,10 @@
     "banjo": "Banjo",
     "mandolin": "Mandolin",
     "cavaquinho": "Cavaquinho"
+  },
+  "editor": {
+    "title": "Edit",
+    "scale": "Scale",
+    "tabs": "Tabs"
   }
 }
