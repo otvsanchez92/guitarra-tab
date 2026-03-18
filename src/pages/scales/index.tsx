@@ -1,23 +1,16 @@
-import { Container, Box, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { ScaleCard } from '@/components/scales/ScaleCard';
-import { commonScales } from '@/data/scalesData';
-import { Typography } from '@mui/material';
+import { commonScales, ScaleData } from '@/data/scalesData';
 import { PageLayout } from '@/components/common/PageLayout';
 
 export default function ScalesPage() {
   const { t } = useTranslation();
   const router = useRouter();
 
-  const handleScaleClick = (scale: any) => {
-    router.push({
-      pathname: '/editor',
-      query: {
-        scale: scale.name,
-        notes: scale.notes.join(',')
-      }
-    });
+  const handleScaleClick = (scale: ScaleData) => {
+    router.push(`/scales/${scale.id}`);
   };
 
   return (

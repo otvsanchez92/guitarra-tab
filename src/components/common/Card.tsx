@@ -1,5 +1,6 @@
 import { Card, CardContent, Typography, Button, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 
 interface CardProps {
   title: string;
@@ -26,6 +27,7 @@ const StyledButton = styled(Button)({
 });
 
 export function ScaleCard({ title, description, examples, onClick, buttonText, buttonVariant = 'contained' }: CardProps) {
+  const { t } = useTranslation();
   return (
     <StyledCard>
       <CardContent>
@@ -37,34 +39,16 @@ export function ScaleCard({ title, description, examples, onClick, buttonText, b
         </Typography>
         {examples && examples.length > 0 && (
           <Box sx={{ mt: 2 }}>
-            <Typography variant="body1">Example:</Typography>
-            <Typography variant="body1">{examples.join(', ')}</Typography>
+            <Typography variant="caption" color="text.secondary">
+              {t('scales.examples')}:
+            </Typography>
+            <Typography variant="body2">{examples.join(', ')}</Typography>
           </Box>
         )}
       </CardContent>
       {onClick && (
         <StyledButton onClick={onClick} fullWidth variant={buttonVariant}>
-          {buttonText || 'Start'}
-        </StyledButton>
-      )}
-    </StyledCard>
-  );
-}
-
-export function InstrumentCard({ title, description, onClick, buttonText }: CardProps) {
-  return (
-    <StyledCard>
-      <CardContent>
-        <Typography variant="h6" gutterBottom>
-          {title}
-        </Typography>
-        <Typography variant="body2" color="#fff">
-          {description}
-        </Typography>
-      </CardContent>
-      {onClick && (
-        <StyledButton onClick={onClick} fullWidth variant="contained">
-          {buttonText || 'View Scales'}
+          {buttonText || t('home.startWithScale')}
         </StyledButton>
       )}
     </StyledCard>

@@ -1,73 +1,111 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Box, Grid, Card, CardContent, Typography, Button, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Grid, Typography, Button, Container, Divider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { commonScales } from '@/data/scalesData';
 import { commonInstruments, InstrumentData } from '@/data/instrumentsData';
-import type { ReactNode } from 'react';
-import { ButtonCard } from './styles';
-import { PageLayout } from '@/components/common/PageLayout';
 import { ScaleCard } from '@/components/common/Card';
 import { InstrumentCard } from '@/components/common/InstrumentCard';
 
 const Home = () => {
   const router = useRouter();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const { t } = useTranslation();
 
   const handleScaleClick = (scale: (typeof commonScales)[0]) => {
-    router.push({
-      pathname: `/scales/${scale.id}`
-    });
+    router.push(`/scales/${scale.id}`);
   };
 
   const handleInstrumentClick = (instrument: InstrumentData) => {
-    router.push({
-      pathname: `/instruments/${instrument.id}`
-    });
+    router.push(`/instruments/${instrument.id}`);
   };
 
   return (
-    <PageLayout title={t('home.title')}>
-      <Grid container spacing={4} sx={{ mb: 4 }}>
-        <Grid item xs={12}>
-          <Typography variant="h5" gutterBottom>
-            {t('home.commonScales')}
-          </Typography>
-        </Grid>
-        {commonScales.map((scale) => (
-          <Grid item xs={12} sm={6} md={4} key={scale.id}>
-            <ScaleCard
-              title={t(scale.title)}
-              description={t(scale.description)}
-              examples={scale.examples}
-              onClick={() => handleScaleClick(scale)}
-              buttonText={t('home.startWithScale')}
-            />
-          </Grid>
-        ))}
-      </Grid>
+    <Container maxWidth="lg">
+      {/* Hero */}
+      <Box
+        sx={{
+          py: { xs: 6, md: 10 },
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 3
+        }}
+      >
+        <Typography
+          variant="h2"
+          component="h1"
+          sx={{ fontFamily: 'Lilita One, sans-serif', fontSize: { xs: '2.2rem', md: '3.5rem' } }}
+        >
+          {t('home.title')}
+        </Typography>
+        <Typography
+          variant="h6"
+          color="text.secondary"
+          sx={{ maxWidth: 560, lineHeight: 1.6 }}
+        >
+          {t('home.subtitle')}
+        </Typography>
+        <Button
+          variant="contained"
+          size="large"
+          onClick={() => router.push('/editor')}
+          sx={{ px: 5, py: 1.5, fontSize: '1rem', mt: 1 }}
+        >
+          {t('home.openEditor')}
+        </Button>
+      </Box>
 
-      <Grid container spacing={4}>
-        <Grid item xs={12}>
-          <Typography variant="h5" gutterBottom>
-            {t('home.instruments')}
-          </Typography>
+      <Divider sx={{ mb: 6, opacity: 0.2 }} />
+
+      {/* Scales */}
+      <Box sx={{ mb: 8 }}>
+        <Typography variant="h4" gutterBottom sx={{ fontFamily: 'Lilita One, sans-serif' }}>
+          {t('home.commonScales')}
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
+          {t('home.commonScalesSubtitle')}
+        </Typography>
+        <Grid container spacing={3}>
+          {commonScales.map(scale => (
+            <Grid item xs={12} sm={6} md={4} key={scale.id}>
+              <ScaleCard
+                title={t(scale.title)}
+                description={t(scale.description)}
+                examples={scale.examples}
+                onClick={() => handleScaleClick(scale)}
+                buttonText={t('home.startWithScale')}
+              />
+            </Grid>
+          ))}
         </Grid>
-        {commonInstruments.map((instrument) => (
-          <Grid item xs={12} sm={6} md={4} key={instrument.name}>
-            <InstrumentCard
-              title={t(instrument.name)}
-              description={instrument.description}
-              icon={instrument.icon}
-              onClick={() => handleInstrumentClick(instrument)}
-              buttonText={t('home.startWithInstrument')}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </PageLayout>
+      </Box>
+
+      <Divider sx={{ mb: 6, opacity: 0.2 }} />
+
+      {/* Instruments */}
+      <Box sx={{ mb: 8 }}>
+        <Typography variant="h4" gutterBottom sx={{ fontFamily: 'Lilita One, sans-serif' }}>
+          {t('home.instruments')}
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
+          {t('home.instrumentsSubtitle')}
+        </Typography>
+        <Grid container spacing={3}>
+          {commonInstruments.map(instrument => (
+            <Grid item xs={12} sm={6} md={4} key={instrument.id}>
+              <InstrumentCard
+                title={t(instrument.name)}
+                description={t(instrument.description)}
+                icon={instrument.icon}
+                onClick={() => handleInstrumentClick(instrument)}
+                buttonText={t('home.startWithInstrument')}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </Container>
   );
 };
 

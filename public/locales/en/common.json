@@ -14,11 +14,15 @@
     "editor": "Editor"
   },
   "home": {
-    "title": "Home",
+    "title": "Musical Scale Maps",
+    "subtitle": "Visualize scales and chords on the fretboard of any string instrument",
     "commonScales": "Common Scales",
+    "commonScalesSubtitle": "Choose a scale to visualize it on the fretboard",
     "instruments": "Instruments",
-    "startWithScale": "Start with Scale",
-    "startWithInstrument": "Start with Instrument"
+    "instrumentsSubtitle": "Choose an instrument to explore its compatible scales",
+    "startWithScale": "Explore scale",
+    "startWithInstrument": "Explore instrument",
+    "openEditor": "Open Editor"
   },
   "config": {
     "controls": "Controls",
@@ -56,6 +60,13 @@
     "type": "Type",
     "detailTitle": "Scale {scale}",
     "start": "Start",
+    "notFound": "Scale not found",
+    "types": {
+      "diatonic": "Diatonic",
+      "pentatonic": "Pentatonic",
+      "modal": "Modal",
+      "hexatonic": "Hexatonic"
+    },
     "major": {
       "title": "Major",
       "description": "Most common scale in Western music, foundation for classical and popular music"
@@ -119,7 +130,16 @@
     "ukulele": "Ukulele",
     "banjo": "Banjo",
     "mandolin": "Mandolin",
-    "cavaquinho": "Cavaquinho"
+    "cavaquinho": "Cavaquinho",
+    "descriptions": {
+      "electric-guitar": "The most popular string instrument in the world",
+      "bass": "The rhythmic foundation of any band",
+      "violin": "Classic bowed string instrument",
+      "ukulele": "Hawaiian string instrument with a cheerful sound",
+      "banjo": "String instrument with a characteristic bright resonance",
+      "mandolin": "Eight-string instrument with a distinctive bright tone",
+      "cavaquinho": "Traditional Brazilian string instrument"
+    }
   },
   "editor": {
     "title": "Edit",

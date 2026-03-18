@@ -30,11 +30,14 @@ const StyledButton = styled(Button)({
 export function InstrumentCard({ title, description, icon: Icon, onClick, buttonText, buttonVariant = 'contained' }: InstrumentCardProps) {
   return (
     <StyledCard>
-      <CardContent>
+      <CardContent sx={{ textAlign: 'center', width: '100%' }}>
+        <Icon size={40} style={{ marginBottom: '0.75rem' }} />
         <Typography variant="h6" gutterBottom>
           {title}
         </Typography>
-        <Icon size={48} style={{ marginBottom: '1rem' }} />
+        <Typography variant="body2" color="text.secondary">
+          {description}
+        </Typography>
       </CardContent>
       {onClick && (
         <StyledButton onClick={onClick} fullWidth variant={buttonVariant}>

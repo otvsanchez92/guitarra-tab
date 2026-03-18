@@ -18,7 +18,7 @@ export const commonInstruments: InstrumentData[] = [
     icon: FaGuitar,
     strings: 6,
     tuning: ['E', 'A', 'D', 'G', 'B', 'E'],
-    description: 'Instrumento de cordas mais popular do mundo',
+    description: 'instruments.descriptions.electric-guitar',
     category: 'Cordas',
     examples: ['Fender Stratocaster', 'Gibson Les Paul', 'Ibanez RG'],
     id: 'electric-guitar'
@@ -28,7 +28,7 @@ export const commonInstruments: InstrumentData[] = [
     icon: FaGuitar,
     strings: 4,
     tuning: ['E', 'A', 'D', 'G'],
-    description: 'Instrumento de baixo fundamental em bandas',
+    description: 'instruments.descriptions.bass',
     category: 'Cordas',
     examples: ['Fender Precision', 'Fender Jazz', 'Music Man StingRay'],
     id: 'bass'
@@ -38,7 +38,7 @@ export const commonInstruments: InstrumentData[] = [
     icon: FaMusic,
     strings: 4,
     tuning: ['G', 'D', 'A', 'E'],
-    description: 'Instrumento de cordas friccionadas',
+    description: 'instruments.descriptions.violin',
     category: 'Cordas',
     examples: ['Stradivarius', 'Guarneri', 'Amati'],
     id: 'violin'
@@ -48,7 +48,7 @@ export const commonInstruments: InstrumentData[] = [
     icon: FaGuitar,
     strings: 4,
     tuning: ['G', 'C', 'E', 'A'],
-    description: 'Instrumento havaiano de cordas',
+    description: 'instruments.descriptions.ukulele',
     category: 'Cordas',
     examples: ['Soprano', 'Concert', 'Tenor', 'Barítono'],
     id: 'ukulele'
@@ -58,7 +58,7 @@ export const commonInstruments: InstrumentData[] = [
     icon: FaGuitar,
     strings: 5,
     tuning: ['G', 'D', 'G', 'B', 'D'],
-    description: 'Instrumento de cordas com característica ressonância',
+    description: 'instruments.descriptions.banjo',
     category: 'Cordas',
     examples: ['Bluegrass', 'Jug Band', 'Irish'],
     id: 'banjo'
@@ -68,7 +68,7 @@ export const commonInstruments: InstrumentData[] = [
     icon: FaGuitar,
     strings: 8,
     tuning: ['G', 'D', 'A', 'E'],
-    description: 'Instrumento de cordas com corpo em forma de oito',
+    description: 'instruments.descriptions.mandolin',
     category: 'Cordas',
     examples: ['Irish', 'Bluegrass', 'Italian'],
     id: 'mandolin'
@@ -78,7 +78,7 @@ export const commonInstruments: InstrumentData[] = [
     icon: FaGuitar,
     strings: 4,
     tuning: ['D', 'G', 'B', 'D'],
-    description: 'Instrumento tradicional brasileiro',
+    description: 'instruments.descriptions.cavaquinho',
     category: 'Cordas',
     examples: ['Carioca', 'Baiano', 'Capixaba'],
     id: 'cavaquinho'

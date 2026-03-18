@@ -21,11 +21,8 @@ export const getPositionFromNote = (
   frets: number
 ): { x: number; y: number } | null => {
   const openNote = tuning[string];
-  console.log(openNote);
   const openIndex = notes.indexOf(openNote);
-  console.log(openIndex);
   const targetIndex = notes.indexOf(note);
-  console.log(targetIndex);
   if (openIndex === -1 || targetIndex === -1) return null;
 
   for (let fret = 0; fret <= frets; fret++) {

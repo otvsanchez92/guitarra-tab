@@ -14,11 +14,15 @@
     "editor": "Editor"
   },
   "home": {
-    "title": "Home",
-    "commonScales": "Escala Mais Comum",
+    "title": "Maps Musical",
+    "subtitle": "Visualize escalas e acordes no braço de qualquer instrumento de corda",
+    "commonScales": "Escalas Comuns",
+    "commonScalesSubtitle": "Escolha uma escala para visualizá-la no braço do instrumento",
     "instruments": "Instrumentos",
-    "startWithScale": "Iniciar com Escala",
-    "startWithInstrument": "Iniciar com Instrumento"
+    "instrumentsSubtitle": "Escolha um instrumento para explorar suas escalas compatíveis",
+    "startWithScale": "Explorar escala",
+    "startWithInstrument": "Explorar instrumento",
+    "openEditor": "Abrir Editor"
   },
   "colors": {
     "red": "Vermelho",
@@ -51,11 +55,18 @@
     "title": "Escalas",
     "selectTone": "Selecionar Tom",
     "selectInstrument": "Selecionar Instrumento",
-    "pattern": "Pattern",
+    "pattern": "Padrão",
     "examples": "Exemplos",
     "type": "Tipo",
     "detailTitle": "Escala {scale}",
     "start": "Iniciar",
+    "notFound": "Escala não encontrada",
+    "types": {
+      "diatonic": "Diatônica",
+      "pentatonic": "Pentatônica",
+      "modal": "Modal",
+      "hexatonic": "Hexatônica"
+    },
       "major": {
         "title": "Maior",
         "description": "Escala mais comum em música ocidental, base para música clássica e popular"
@@ -119,7 +130,16 @@
       "ukulele": "Ukulele",
       "banjo": "Banjo",
       "mandolin": "Mandolin",
-      "cavaquinho": "Cavaquinho"
+      "cavaquinho": "Cavaquinho",
+      "descriptions": {
+        "electric-guitar": "O instrumento de cordas mais popular do mundo",
+        "bass": "A base rítmica de qualquer banda",
+        "violin": "Clássico instrumento de cordas friccionadas",
+        "ukulele": "Instrumento havaiano com som alegre e vibrante",
+        "banjo": "Instrumento de cordas com ressonância brilhante característica",
+        "mandolin": "Instrumento de oito cordas com timbre brilhante e distinto",
+        "cavaquinho": "Instrumento de corda tradicional brasileiro"
+      }
     },
     "editor": {
       "title": "Editor",

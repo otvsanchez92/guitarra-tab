@@ -24,7 +24,7 @@ export default function Editor() {
     instruments,
     addInstrument,
     color
-  }: TStore = useStore((state: any) => state);
+  }: TStore = useStore((state: TStore) => state);
 
   useEffect(() => {
     const scaleParam = router.query.scale;
@@ -41,6 +41,13 @@ export default function Editor() {
       selectScale(getScaleNotes(scaleType as string, tone as string), tone as string);
     }
   }, [router.query.scaleType, router.query.tone, selectScale]);
+
+  useEffect(() => {
+    const stringsParam = router.query.strings;
+    if (stringsParam) {
+      changeNumberStrings(Number(stringsParam));
+    }
+  }, [router.query.strings, changeNumberStrings]);
 
   useEffect(() => {
     const diagramsParam = router.query.diagrams;

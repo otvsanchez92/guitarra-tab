@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography, Box, useTheme, useMediaQuery } from '@mui/material';
+import { Card, CardContent, Typography, Box } from '@mui/material';
 import { ScaleData } from '../../data/scalesData';
 import { ButtonCard } from './styles';
 import { useTranslation } from 'react-i18next';
@@ -10,10 +10,7 @@ interface ScaleCardProps {
 }
 
 export const ScaleCard: React.FC<ScaleCardProps> = ({ scale, onClick }) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-    const { t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Card
@@ -30,10 +27,10 @@ export const ScaleCard: React.FC<ScaleCardProps> = ({ scale, onClick }) => {
     >
       <CardContent>
         <Typography variant="h6" gutterBottom>
-          {t(`${scale.title}`)}
+          {t(scale.title)}
         </Typography>
         <Typography variant="body2" color="#fff" gutterBottom>
-          {t(`${scale.description}`)}
+          {t(scale.description)}
         </Typography>
         <Box sx={{ mt: 2 }}>
           <div>
@@ -42,12 +39,12 @@ export const ScaleCard: React.FC<ScaleCardProps> = ({ scale, onClick }) => {
             ))}
           </div>
           <Typography variant="caption" color="#fff">
-            Tipo: {t(scale.type)}
+            {t('scales.type')}: {t(`scales.types.${scale.type}`)}
           </Typography>
         </Box>
       </CardContent>
       <ButtonCard fullWidth variant="contained" sx={{ mt: 2 }} onClick={onClick}>
-        Começar com esta escala
+        {t('home.startWithScale')}
       </ButtonCard>
     </Card>
   );

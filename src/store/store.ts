@@ -2,6 +2,13 @@ import { create } from 'zustand';
 import { TInstrument, TStore } from './types';
 import { getPositionFromNote, getNotesSequence, getNoteFromPosition } from '../utils/scales';
 
+const enharmonicToSharp: Record<string, string> = {
+  Db: 'C#', Eb: 'D#', Fb: 'E', Gb: 'F#', Ab: 'G#', Bb: 'A#', Cb: 'B',
+  'B#': 'C', 'E#': 'F'
+};
+
+const normalizeNote = (note: string): string => enharmonicToSharp[note] ?? note;
+
 const initialState: TInstrument = {
   notes: [],
   strings: 6,
@@ -20,7 +27,6 @@ const useStore = create<TStore>((set, get) => ({
   color: 'red',
 
   addInstrument: times => {
-    console.log(' chamou ', times);
     set((state: TStore) => {
       if (!times) {
         const newState = [...state.instruments];
@@ -36,7 +42,6 @@ const useStore = create<TStore>((set, get) => ({
           lastInstrument: newState.length - 1
         };
       } else {
-        console.log(' oiii ');
         const newState = [];
 
         for (let i = 0; i < times; i++) {
@@ -150,6 +155,8 @@ const useStore = create<TStore>((set, get) => ({
 
   selectScale: (scale: string | string[], tone?: string) => {
     const scaleArray = typeof scale === 'string' ? [scale] : scale;
+    const normalizedScale = scaleArray.map(normalizeNote);
+    const normalizedTone = tone ? normalizeNote(tone) : undefined;
     const { strings, tuning, frets, color } = get().instruments[0];
     const newNotes: { x: number; y: number; color: string }[] = [];
 
@@ -157,9 +164,8 @@ const useStore = create<TStore>((set, get) => ({
       for (let fret = 0; fret <= frets; fret++) {
         const note = getNoteFromPosition(fret, string, tuning);
 
-        console.log(tone === note);
-        if (scaleArray.includes(note)) {
-          newNotes.push({ x: fret, y: string, color: tone === note ? 'blue' : 'red' });
+        if (normalizedScale.includes(note)) {
+          newNotes.push({ x: fret, y: string, color: normalizedTone === note ? 'blue' : 'red' });
         }
       }
     }
