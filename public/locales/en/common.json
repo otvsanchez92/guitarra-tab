@@ -145,5 +145,8 @@
     "title": "Edit",
     "scale": "Scale",
     "tabs": "Tabs"
+  },
+  "guitar": {
+    "selectNote": "Select note"
   }
 }

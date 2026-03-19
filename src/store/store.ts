@@ -63,10 +63,11 @@ const useStore = create<TStore>((set, get) => ({
     set((state: TStore) => {
       const newState = state.instruments.map(inst => {
         if (inst.instrument === instrument) {
-          return {
-            ...inst,
-            notes: [...inst.notes, { x, y, color }]
-          };
+          const existingIndex = inst.notes.findIndex(n => n.x === x && n.y === y);
+          if (existingIndex >= 0) {
+            return { ...inst, notes: inst.notes.filter((_, i) => i !== existingIndex) };
+          }
+          return { ...inst, notes: [...inst.notes, { x, y, color }] };
         }
         return inst;
       });
@@ -134,15 +135,17 @@ const useStore = create<TStore>((set, get) => ({
   },
 
   setActiveButton: ({ x, y }) => {
-    const exists = get().instruments[0].actives.some(a => a.x === x && a.y === y);
-    if (!exists) {
-      set((state: TStore) => {
-        const newState = [...state.instruments];
+    set((state: TStore) => {
+      const newState = [...state.instruments];
+      const existingIndex = newState[0].actives.findIndex(a => a.x === x && a.y === y);
+      if (existingIndex >= 0) {
+        newState[0].actives = newState[0].actives.filter((_, i) => i !== existingIndex);
+      } else {
         const currentColor = get().instruments[0].color;
         newState[0].actives.push({ x, y, color: currentColor });
-        return { instruments: newState };
-      });
-    }
+      }
+      return { instruments: newState };
+    });
   },
 
   addScale: note => {

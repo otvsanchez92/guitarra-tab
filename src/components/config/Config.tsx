@@ -1,9 +1,27 @@
 import React, { useState } from 'react';
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { Color, ConfigContainer, ConfigBar, ConfigTitle, Controls } from './style';
-import { Undo, Clear, Edit, Save, Download } from '@mui/icons-material';
+import {
+  Box,
+  Button,
+  Divider,
+  FormControl,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Tooltip
+} from '@mui/material';
+import {
+  Undo,
+  DeleteOutline,
+  Edit,
+  Save,
+  FileDownload,
+  AddBox
+} from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { TConfigProps } from './types';
+import { ConfigContainer, Toolbar, ColorDot } from './style';
 
 interface ConfigProps extends TConfigProps {
   addInstrument: () => void;
@@ -22,274 +40,167 @@ const Config: React.FC<ConfigProps> = ({
   frets,
   children,
   addInstrument
-}: ConfigProps) => {
+}) => {
   const [strings, setStrings] = useState('6');
-  const [colors, setColor] = useState('red');
+  const [color, setColor] = useState('red');
   const { t } = useTranslation();
 
-  const handleChange = (event: SelectChangeEvent) => {
-    const value = event.target.value;
-    setStrings(value as string);
-    onChangeNumberStrings(Number(value));
-  };
-
-  const handleChangeFrets = (event: SelectChangeEvent) => {
-    const value = event.target.value;
-    changeFrets(Number(value));
-  };
-
   const colorsArray = [
-    { value: 'red', label: t('colors.red'), color: 'red' },
-    { value: 'blue', label: t('colors.blue'), color: 'blue' },
-    { value: 'green', label: t('colors.green'), color: 'green' },
-    { value: 'orange', label: t('colors.orange'), color: 'orange' },
-    { value: 'purple', label: t('colors.purple'), color: 'purple' }
+    { value: 'red', label: t('colors.red') },
+    { value: 'blue', label: t('colors.blue') },
+    { value: 'green', label: t('colors.green') },
+    { value: 'orange', label: t('colors.orange') },
+    { value: 'purple', label: t('colors.purple') }
   ];
 
-  const handleChangeColor = (event: SelectChangeEvent) => {
-    const value = event.target.value;
-    setColor(value);
-    onChangeColor(value);
+  const colorMap: Record<string, string> = {
+    red: '#e74c3c',
+    blue: '#3498db',
+    green: '#2ecc71',
+    orange: '#e67e22',
+    purple: '#9b59b6'
+  };
+
+  const handleStringsChange = (e: SelectChangeEvent) => {
+    setStrings(e.target.value);
+    onChangeNumberStrings(Number(e.target.value));
+  };
+
+  const handleFretsChange = (e: SelectChangeEvent) => {
+    changeFrets(Number(e.target.value));
+  };
+
+  const handleColorChange = (e: SelectChangeEvent) => {
+    setColor(e.target.value);
+    onChangeColor(e.target.value);
   };
 
   return (
     <ConfigContainer>
       {children}
 
-
-<Controls>
-      <ConfigBar>
-        <ConfigTitle>{t('config.controls')}:</ConfigTitle>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={12}>
-            <Grid container spacing={2} justifyContent="space-between">
-              {/* Grupo de ações */}
-              <Grid item>
-                <Grid container spacing={1} alignItems="center">
-                  <Grid item>
-                    <Button
-                      onClick={clearNotes}
-                      title={t('config.clear')}
-                      variant="contained"
-                      startIcon={<Clear />}
-                      size="small"
-                      sx={{
-                        textTransform: 'none',
-                        borderRadius: 2,
-                        minWidth: 120,
-                        backgroundColor: '#ff4444',
-                        '&:hover': {
-                          backgroundColor: '#ff3333'
-                        }
-                      }}
-                    >
-                      {t('config.clear')}
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button
-                      disabled={actives.length < 0}
-                      onClick={clearNote}
-                      title={t('config.undo')}
-                      variant="contained"
-                      startIcon={<Undo />}
-                      size="small"
-                      sx={{
-                        textTransform: 'none',
-                        borderRadius: 2,
-                        minWidth: 120,
-                        backgroundColor: '#4a90e2',
-                        '&:hover': {
-                          backgroundColor: '#357abd'
-                        }
-                      }}
-                    >
-                      {t('config.undo')}
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Grid>
-
-              {/* Grupo de configurações */}
-              <Grid item>
-                <Grid container spacing={1} alignItems="center">
-                  <Grid item xs={6}>
-                    <FormControl fullWidth size="small">
-                      <InputLabel id="select-colors" sx={{ textTransform: 'none' }}>
-                        {t('config.color')}
-                      </InputLabel>
-                      <Select
-                        labelId="select-colors"
-                        id="colors-select"
-                        value={colors}
-                        label={t('config.color')}
-                        onChange={handleChangeColor}
-                        sx={{
-                          borderRadius: 2,
-                          '& .MuiOutlinedInput-root': {
-                            borderRadius: 2
-                          }
-                        }}
-                      >
-                        {colorsArray.map(color => (
-                          <MenuItem key={color.value} value={color.value}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                              <>
-                                <Color
-                                  style={{ backgroundColor: color.color, borderRadius: '50%', width: 16, height: 16 }}
-                                />
-                                <span>{color.label}</span>
-                              </>
-                            </Box>
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Button
-                      onClick={copyScale}
-                      title={t('config.copyScale')}
-                      variant="contained"
-                      startIcon={<Download />}
-                      size="small"
-                      sx={{
-                        textTransform: 'none',
-                        borderRadius: 2,
-                        minWidth: 120,
-                        backgroundColor: '#2ecc71',
-                        '&:hover': {
-                          backgroundColor: '#27ae60'
-                        }
-                      }}
-                    >
-                      {t('config.copyScale')}
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </ConfigBar>
-
-      <ConfigBar>
-        <ConfigTitle>{t('config.settings')}:</ConfigTitle>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={4}>
-            <FormControl fullWidth size="small">
-              <InputLabel id="select-frets" sx={{ textTransform: 'none' }}>
-                {t('config.frets')}
-              </InputLabel>
-              <Select
-                labelId="select-frets"
-                id="frets-select"
-                value={frets.toString()}
-                label={t('config.frets')}
-                onChange={handleChangeFrets}
-                defaultValue="24"
-                sx={{
-                  borderRadius: 2,
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: 2
-                  }
-                }}
-              >
-                <MenuItem value={'24'}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <span>24</span>
-                  </Box>
-                </MenuItem>
-                <MenuItem value={'12'}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <span>12</span>
-                  </Box>
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={4}>
-            <FormControl fullWidth size="small">
-              <InputLabel id="select-strings" sx={{ textTransform: 'none' }}>
-                {t('config.strings')}
-              </InputLabel>
-              <Select
-                labelId="select-strings"
-                id="strings-select"
-                value={strings.toString()}
-                label={t('config.strings')}
-                onChange={handleChange}
-                sx={{
-                  borderRadius: 2,
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: 2
-                  }
-                }}
-              >
-                <MenuItem value={'7'}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <span>7</span>
-                  </Box>
-                </MenuItem>
-                <MenuItem value={'6'}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <span>6</span>
-                  </Box>
-                </MenuItem>
-                <MenuItem value={'5'}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <span>5</span>
-                  </Box>
-                </MenuItem>
-                <MenuItem value={'4'}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <span>4</span>
-                  </Box>
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={4}>
-            <Button
-              onClick={addInstrument}
-              title={t('config.addInstrument')}
-              variant="contained"
+      <Toolbar>
+        {/* Ações */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+          <Tooltip title={t('config.clear')}>
+            <IconButton
+              onClick={clearNotes}
               size="small"
-              sx={{
-                textTransform: 'none',
-                borderRadius: 2,
-                minWidth: 120
-              }}
+              sx={{ color: '#e74c3c', '&:hover': { bgcolor: 'rgba(231,76,60,0.12)' } }}
             >
-              {t('config.addInstrument')}
-            </Button>
-          </Grid>
-          <Grid item xs={4}>
-            <Button
+              <DeleteOutline />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title={t('config.undo')}>
+            <span>
+              <IconButton
+                onClick={clearNote}
+                disabled={actives.length === 0}
+                size="small"
+                sx={{ color: '#aaa', '&:hover': { bgcolor: 'rgba(255,255,255,0.08)' } }}
+              >
+                <Undo />
+              </IconButton>
+            </span>
+          </Tooltip>
+
+          <Tooltip title={editTuning ? t('config.saveTuning') : t('config.editTuning')}>
+            <IconButton
               onClick={changeTuning}
-              title={t('config.editTuning')}
-              variant="contained"
               size="small"
               sx={{
-                textTransform: 'none',
-                borderRadius: 2,
-                minWidth: 120
+                color: editTuning ? '#2ecc71' : '#aaa',
+                '&:hover': { bgcolor: 'rgba(255,255,255,0.08)' }
               }}
             >
-              {editTuning ? (
-                <>
-                  <Save sx={{ mr: 1 }} /> {t('config.saveTuning')}
-                </>
-              ) : (
-                <>
-                  <Edit sx={{ mr: 1 }} /> {t('config.editTuning')}
-                </>
+              {editTuning ? <Save /> : <Edit />}
+            </IconButton>
+          </Tooltip>
+        </Box>
+
+        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: '#333' }} />
+
+        {/* Seletores */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+          <FormControl size="small" sx={{ minWidth: 80 }}>
+            <InputLabel sx={{ fontSize: 12 }}>{t('config.strings')}</InputLabel>
+            <Select
+              value={strings}
+              label={t('config.strings')}
+              onChange={handleStringsChange}
+              sx={{ fontSize: 13, borderRadius: 1.5 }}
+            >
+              {['4', '5', '6', '7'].map(n => (
+                <MenuItem key={n} value={n}>{n}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <FormControl size="small" sx={{ minWidth: 80 }}>
+            <InputLabel sx={{ fontSize: 12 }}>{t('config.frets')}</InputLabel>
+            <Select
+              value={frets.toString()}
+              label={t('config.frets')}
+              onChange={handleFretsChange}
+              sx={{ fontSize: 13, borderRadius: 1.5 }}
+            >
+              <MenuItem value="12">12</MenuItem>
+              <MenuItem value="24">24</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl size="small" sx={{ minWidth: 110 }}>
+            <InputLabel sx={{ fontSize: 12 }}>{t('config.color')}</InputLabel>
+            <Select
+              value={color}
+              label={t('config.color')}
+              onChange={handleColorChange}
+              sx={{ fontSize: 13, borderRadius: 1.5 }}
+              renderValue={val => (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <ColorDot style={{ backgroundColor: colorMap[val] }} />
+                  {colorsArray.find(c => c.value === val)?.label}
+                </Box>
               )}
-            </Button>
-          </Grid>
-        </Grid>
-      </ConfigBar>
-      </Controls>
+            >
+              {colorsArray.map(c => (
+                <MenuItem key={c.value} value={c.value}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <ColorDot style={{ backgroundColor: colorMap[c.value] }} />
+                    {c.label}
+                  </Box>
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+
+        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: '#333' }} />
+
+        {/* Ações secundárias */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+          <Tooltip title={t('config.addInstrument')}>
+            <IconButton
+              onClick={addInstrument}
+              size="small"
+              sx={{ color: '#9b59b6', '&:hover': { bgcolor: 'rgba(155,89,182,0.12)' } }}
+            >
+              <AddBox />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title={t('config.download')}>
+            <IconButton
+              onClick={copyScale}
+              size="small"
+              sx={{ color: '#2ecc71', '&:hover': { bgcolor: 'rgba(46,204,113,0.12)' } }}
+            >
+              <FileDownload />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      </Toolbar>
     </ConfigContainer>
   );
 };

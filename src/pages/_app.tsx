@@ -53,8 +53,10 @@ const theme = createTheme({
     }
   },
   palette: {
+    mode: 'dark',
     background: {
-      default: '#0D0D0D', 
+      default: '#0D0D0D',
+      paper: '#1a1a1a'
     },
     primary: {
       main: '#FFD700',
@@ -65,12 +67,12 @@ const theme = createTheme({
       contrastText: '#0D0D0D'
     },
     text: {
-      primary: '#3A3A3A',
-      secondary:'#3A3A3A'
+      primary: '#f0f0f0',
+      secondary: '#a0a0a0'
     },
-    divider: '#3A3A3A',
+    divider: '#333333',
     action: {
-      hover: '#3A3A3A',
+      hover: 'rgba(255,255,255,0.06)',
       selected: '#9B59B6'
     },
     common: {

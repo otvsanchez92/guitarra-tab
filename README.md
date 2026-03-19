@@ -1,40 +1,100 @@
-# Guitar Tab App
+# Maps Musical
 
-A web application for creating and viewing guitar tabs built with Next.js.
+Visualize escalas e acordes no braço de qualquer instrumento de corda.
 
-## Getting Started
+> Visualize scales and chords on the fretboard of any string instrument.
 
-First, run the development server:
+## Sobre o projeto
+
+**Maps Musical** é uma aplicação web interativa para músicos que desejam estudar e visualizar escalas musicais em diferentes instrumentos de corda.
+
+### Funcionalidades
+
+- Visualização de escalas no braço do instrumento em tempo real
+- Suporte a 10 escalas: Maior, Menor Natural, Blues, Pentatônicas, Dórica, Mixolídia, Lídia, Frígia e Eólia
+- 7 instrumentos: Guitarra, Baixo, Violino, Ukulele, Banjo, Mandolin e Cavaquinho
+- Seleção de tom (C até B) com destaque da nota raiz
+- Editor livre para marcar notas manualmente no braço
+- Afinação personalizável por corda
+- Suporte a múltiplos diagramas simultâneos
+- Download do diagrama como imagem
+- Interface em Português e Inglês
+- Design responsivo para desktop e mobile
+
+## Stack
+
+| Tecnologia | Uso |
+|---|---|
+| [Next.js](https://nextjs.org/) | Framework React (SSG/SSR) |
+| [TypeScript](https://www.typescriptlang.org/) | Tipagem estática |
+| [MUI](https://mui.com/) | Componentes de UI |
+| [Zustand](https://zustand-demo.pmnd.rs/) | Gerenciamento de estado |
+| [i18next](https://www.i18next.com/) | Internacionalização (PT-BR / EN) |
+| [html2canvas](https://html2canvas.hertzen.com/) | Export de diagrama como imagem |
+
+## Rodando localmente
+
+**Pré-requisitos:** Node.js >= 20.x
 
 ```bash
+# Instalar dependências
+npm install
+
+# Iniciar servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+npm run dev        # Servidor de desenvolvimento
+npm run build      # Build de produção
+npm run start      # Iniciar build de produção
+npm run lint       # Verificar erros de lint
+npm run lint:fix   # Corrigir lint e formatar com Prettier
+npm test           # Rodar testes (Jest)
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Estrutura do projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+src/
+├── pages/
+│   ├── index.tsx              # Home — lista de escalas e instrumentos
+│   ├── editor/                # Editor interativo do braço
+│   ├── scales/[id].tsx        # Detalhe da escala com seletor de tom e instrumento
+│   └── instruments/[id].tsx   # Detalhe do instrumento
+├── components/
+│   ├── guitar/                # Componente do braço interativo
+│   ├── config/                # Painel de controles do editor
+│   ├── home/                  # Página inicial
+│   └── common/                # Componentes reutilizáveis (Card, PageLayout...)
+├── store/
+│   └── store.ts               # Estado global com Zustand
+├── data/
+│   ├── scalesData.ts          # Definição das escalas
+│   ├── scaleUtils.ts          # Cálculo de notas por escala e tom
+│   └── instrumentsData.ts     # Definição dos instrumentos e afinações
+├── utils/
+│   └── scales.ts              # Mapeamento nota ↔ traste
+└── locales/
+    └── i18n.ts                # Configuração do i18next
+public/
+└── locales/
+    ├── en/common.json         # Traduções em inglês
+    └── pt-BR/common.json      # Traduções em português
+```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+O projeto está configurado para deploy na [Vercel](https://vercel.com).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Requisito:** definir Node.js Version como `20.x` ou superior em **Project Settings → General** no dashboard da Vercel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+# Build de produção local
+npm run build
+npm run start
+```
