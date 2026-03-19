@@ -60,6 +60,7 @@
     "type": "Tipo",
     "detailTitle": "Escala {scale}",
     "start": "Iniciar",
+    "startBlocks": "Ver por posições",
     "notFound": "Escala não encontrada",
     "types": {
       "diatonic": "Diatônica",

@@ -20,18 +20,20 @@ export default function ScaleDetailPage() {
     return <div>{t('scales.notFound')}</div>;
   }
 
+  const buildQuery = (instrument: typeof commonInstruments[0]) => ({
+    scaleType: scale.id,
+    tone: selectedTone,
+    strings: instrument.strings
+  });
+
   const handleStart = () => {
     const instrument = commonInstruments.find(i => i.id === selectedInstrument);
-    if (instrument) {
-      router.push({
-        pathname: '/editor',
-        query: {
-          scaleType: scale.id,
-          tone: selectedTone,
-          strings: instrument.strings
-        }
-      });
-    }
+    if (instrument) router.push({ pathname: '/editor', query: buildQuery(instrument) });
+  };
+
+  const handleStartBlocks = () => {
+    const instrument = commonInstruments.find(i => i.id === selectedInstrument);
+    if (instrument) router.push({ pathname: '/editor', query: { ...buildQuery(instrument), blocks: 5 } });
   };
 
   return (
@@ -118,16 +120,20 @@ export default function ScaleDetailPage() {
         </Grid>
       </Grid>
 
-      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'flex-end' }}>
+      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'flex-end', gap: 2, flexWrap: 'wrap' }}>
+        <Button
+          variant="outlined"
+          size="large"
+          onClick={handleStartBlocks}
+          sx={{ px: 4, height: '48px', fontSize: '1rem' }}
+        >
+          {t('scales.startBlocks')}
+        </Button>
         <Button
           variant="contained"
           size="large"
           onClick={handleStart}
-          sx={{
-            px: 4,
-            height: '48px',
-            fontSize: '1.1rem'
-          }}
+          sx={{ px: 4, height: '48px', fontSize: '1.1rem' }}
         >
           {t('scales.start')}
         </Button>

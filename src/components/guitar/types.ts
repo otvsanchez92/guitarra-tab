@@ -7,6 +7,7 @@ export type TGuitarProps = {
   editTuning: boolean;
   frets: number;
   notes: TActive[];
+  startFret?: number;
 };
 
 export interface IMarksProps extends TActive {
