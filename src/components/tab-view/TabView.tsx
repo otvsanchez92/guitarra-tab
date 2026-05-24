@@ -440,7 +440,7 @@ const TabView: React.FC<TabViewProps> = ({
                 <LuChevronUp size={16} />
               </IconButton>
             </Box>
-            <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1.5, mb: 1.5 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 1.5, mb: 1.5 }}>
               <TextField
                 label="Título"
                 size="small"

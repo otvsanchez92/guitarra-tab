@@ -181,7 +181,7 @@ const ScaleExportPanel: React.FC<ScaleExportPanelProps> = ({ visible, tuning, st
             <Typography variant="caption" sx={{ color: '#555', fontSize: 10, letterSpacing: 1, display: 'block', mb: 1.5 }}>
               DOCUMENTO
             </Typography>
-            <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1.5, mb: 1.5 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 1.5, mb: 1.5 }}>
               <TextField
                 label="Título"
                 size="small"

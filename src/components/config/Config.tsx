@@ -112,10 +112,10 @@ const Config: React.FC<ConfigProps> = ({
           </Tooltip>
         </Box>
 
-        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: '#333' }} />
+        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: '#333', display: { xs: 'none', sm: 'flex' } }} />
 
         {/* Seletores */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
           <FormControl size="small" sx={{ minWidth: 80 }}>
             <InputLabel sx={{ fontSize: 12 }}>{t('config.strings')}</InputLabel>
             <Select
@@ -169,7 +169,7 @@ const Config: React.FC<ConfigProps> = ({
           </FormControl>
         </Box>
 
-        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: '#333' }} />
+        <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: '#333', display: { xs: 'none', sm: 'flex' } }} />
 
         {/* Ações secundárias */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>

@@ -5,6 +5,19 @@ export const GuitarContent = styled.div`
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #3a3530 transparent;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #3a3530;
+    border-radius: 2px;
+  }
 `;
 
 export const Button = styled.button`
@@ -43,6 +56,12 @@ export const Button = styled.button`
     transform: translate(-50%, -50%) scale(1.08) !important;
     font-size: 11px;
   }
+
+  @media (max-width: 600px) {
+    width: 24px;
+    height: 24px;
+    font-size: 8px;
+  }
 `;
 
 export const Line = styled.div`
@@ -63,6 +82,7 @@ export const GuitarTable = styled.table`
 
 export const GuitarRow = styled.tr`
   height: 38px;
+  @media (max-width: 600px) { height: 32px; }
 `;
 
 export const GuitarColumn = styled.td`
@@ -74,6 +94,11 @@ export const GuitarColumn = styled.td`
   &:first-child {
     border-left: none;
   }
+
+  @media (max-width: 600px) {
+    width: 28px;
+    height: 32px;
+  }
 `;
 
 export const GuitarColumnText = styled.td`
@@ -83,6 +108,7 @@ export const GuitarColumnText = styled.td`
   font-size: 11px;
   color: #555;
   user-select: none;
+  @media (max-width: 600px) { width: 28px; height: 18px; font-size: 9px; }
 `;
 
 export const Tuning = styled.div`
@@ -94,11 +120,13 @@ export const Tuning = styled.div`
   font-size: 13px;
   font-weight: 600;
   color: #aaa;
+  @media (max-width: 600px) { width: 28px; height: 32px; font-size: 11px; }
 `;
 
 export const TuningHeader = styled.div`
   width: 36px;
   height: 22px;
+  @media (max-width: 600px) { width: 28px; height: 18px; }
 `;
 
 export const MarksContainer = styled.div`
