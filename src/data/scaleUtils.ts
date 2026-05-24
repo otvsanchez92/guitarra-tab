@@ -49,6 +49,8 @@ export const getScaleType = (scale: string[]): string => {
 
   const knownScales: { [key: string]: number[] } = {
     major: [2, 2, 1, 2, 2, 2, 1],
+    // natural_minor e eolian são idênticos (modo Eólico = menor natural);
+    // retorna 'natural_minor' como nome canônico
     natural_minor: [2, 1, 2, 2, 1, 2, 2],
     blues: [3, 2, 1, 1, 3, 2],
     chromatic: Array(12).fill(1),
@@ -57,8 +59,7 @@ export const getScaleType = (scale: string[]): string => {
     dorian: [2, 1, 2, 2, 2, 1, 2],
     mixolydian: [2, 2, 1, 2, 2, 1, 2],
     lydian: [2, 2, 2, 1, 2, 2, 1],
-    phrygian: [1, 2, 2, 2, 1, 2, 2],
-    eolian: [2, 1, 2, 2, 1, 2, 2]
+    phrygian: [1, 2, 2, 2, 1, 2, 2]
   };
 
   for (const [name, pattern] of Object.entries(knownScales)) {

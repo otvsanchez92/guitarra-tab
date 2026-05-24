@@ -11,14 +11,7 @@ import {
   SelectChangeEvent,
   Tooltip
 } from '@mui/material';
-import {
-  Undo,
-  DeleteOutline,
-  Edit,
-  Save,
-  FileDownload,
-  AddBox
-} from '@mui/icons-material';
+import { LuUndo2, LuTrash2, LuPencil, LuSave, LuDownload, LuLayoutDashboard } from 'react-icons/lu';
 import { useTranslation } from 'react-i18next';
 import { TConfigProps } from './types';
 import { ConfigContainer, Toolbar, ColorDot } from './style';
@@ -88,7 +81,7 @@ const Config: React.FC<ConfigProps> = ({
               size="small"
               sx={{ color: '#e74c3c', '&:hover': { bgcolor: 'rgba(231,76,60,0.12)' } }}
             >
-              <DeleteOutline />
+              <LuTrash2 size={18} />
             </IconButton>
           </Tooltip>
 
@@ -100,7 +93,7 @@ const Config: React.FC<ConfigProps> = ({
                 size="small"
                 sx={{ color: '#aaa', '&:hover': { bgcolor: 'rgba(255,255,255,0.08)' } }}
               >
-                <Undo />
+                <LuUndo2 size={18} />
               </IconButton>
             </span>
           </Tooltip>
@@ -114,7 +107,7 @@ const Config: React.FC<ConfigProps> = ({
                 '&:hover': { bgcolor: 'rgba(255,255,255,0.08)' }
               }}
             >
-              {editTuning ? <Save /> : <Edit />}
+              {editTuning ? <LuSave size={18} /> : <LuPencil size={18} />}
             </IconButton>
           </Tooltip>
         </Box>
@@ -186,7 +179,7 @@ const Config: React.FC<ConfigProps> = ({
               size="small"
               sx={{ color: '#9b59b6', '&:hover': { bgcolor: 'rgba(155,89,182,0.12)' } }}
             >
-              <AddBox />
+              <LuLayoutDashboard size={18} />
             </IconButton>
           </Tooltip>
 
@@ -196,7 +189,7 @@ const Config: React.FC<ConfigProps> = ({
               size="small"
               sx={{ color: '#2ecc71', '&:hover': { bgcolor: 'rgba(46,204,113,0.12)' } }}
             >
-              <FileDownload />
+              <LuDownload size={18} />
             </IconButton>
           </Tooltip>
         </Box>

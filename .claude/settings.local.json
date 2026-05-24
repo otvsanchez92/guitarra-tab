@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"C:\\\\Users\\\\osanc\\\\guitarra-tab\" && npm install jspdf)",
+      "Bash(node -e \"const gi = require\\('react-icons/gi'\\); const instruments = Object.keys\\(gi\\).filter\\(k => /guitar|violin|banjo|mandolin|ukulele|bass|lute|music/i.test\\(k\\)\\); console.log\\(instruments.join\\('\\\\n'\\)\\)\")",
+      "Bash(node -e \"const lu = require\\('react-icons/lu'\\); const icons = ['LuTrash2','LuUndo2','LuPencil','LuSave','LuDownload','LuCopy','LuMenu','LuFileText','LuChevronDown','LuChevronUp','LuPlus','LuGlobe','LuAlignJustify','LuFileDown','LuLayoutDashboard','LuRows3','LuListMusic','LuFileMusic','LuMusicIcon','LuPlusSquare','LuPanelBottomOpen'].filter\\(k => lu[k]\\); console.log\\(icons.join\\('\\\\n'\\)\\)\")",
+      "Bash(node -e \"const lu = require\\('react-icons/lu'\\); ['LuFileImage','LuImageDown','LuCamera','LuImage','LuSlidersHorizontal','LuFileOutput','LuShare2','LuPresentation'].filter\\(k => lu[k]\\).forEach\\(k => console.log\\(k\\)\\)\")"
+    ]
+  }
+}

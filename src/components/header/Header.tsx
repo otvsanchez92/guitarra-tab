@@ -19,7 +19,7 @@ import {
   MenuItem,
   Box,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { LuMenu } from 'react-icons/lu';
 import { Breadcrumb } from '../navigation-map';
 
 export const Header: React.FC = () => {
@@ -40,15 +40,19 @@ export const Header: React.FC = () => {
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           {/* Logo e Navegação Desktop */}
           <HeaderItems>
-            <Link href="/" title="Maps Musical">
+            <Link href="/" title="NeckChart" style={{ textDecoration: 'none' }}>
               <Logo variant="h6">
                 <Image
                   src="/images/logo.svg"
                   alt="logo"
-                  width={200}
+                  width={44}
                   height={50}
-                  title="Maps Musical"
+                  title="NeckChart"
                 />
+                <span style={{ fontFamily: 'Lilita One, sans-serif', fontSize: '1.5rem', letterSpacing: '0.02em' }}>
+                  <span style={{ color: '#FFD700' }}>Neck</span>
+                  <span style={{ color: '#9b59b6' }}>Chart</span>
+                </span>
               </Logo>
             </Link>
 
@@ -77,7 +81,7 @@ export const Header: React.FC = () => {
               sx={{ display: { xs: 'flex', md: 'none' } }}
               onClick={(event: React.MouseEvent<HTMLElement>) => setMobileMenuAnchor(event.currentTarget)}
             >
-              <MenuIcon sx={{ color: 'white' }} />
+              <LuMenu size={24} color="white" />
             </IconButton>
           </Box>
         </Toolbar>

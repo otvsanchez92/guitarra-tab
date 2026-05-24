@@ -1,14 +1,14 @@
 export const translations = {
   // Metadata
-  title: 'Criador de Diagramas de Escalas - Gerador de Diagramas Musicais',
+  title: 'NeckChart – Editor de Tab Online para Guitarra com Slide, Bend e Hammer-on',
   description:
-    'Crie diagramas personalizados de escalas para guitarra, baixo e outros instrumentos de cordas. Gerador online de tabs com afinação personalizável e número de cordas.',
+    'Crie tablaturas de guitarra online com slide, bend, hammer-on, pull-off e vibrato. Exporte em PDF. Diagrama de braço interativo com afinação e número de cordas personalizáveis.',
   keywords:
-    'diagramas de escalas, tabs, guitarra, baixo, instrumentos de cordas, teoria musical, escalas musicais, tablaturas, gerador de tabs, afinação personalizável',
-  author: 'Criador de Diagramas de Escalas',
-  ogTitle: 'Criador de Diagramas de Escalas - Gerador de Diagramas Musicais',
+    'editor de tab guitarra, criar tablatura online, tablatura guitarra grátis, diagrama de braço guitarra, bend guitarra, slide guitarra, hammer-on, pull-off, vibrato, exportar tab pdf, gerador de tabs, afinação guitarra, braço de guitarra online, escalas guitarra, teoria musical guitarra',
+  author: 'NeckChart',
+  ogTitle: 'NeckChart – Editor de Tab Online para Guitarra e Baixo',
   ogDescription:
-    'Crie diagramas personalizados de escalas para guitarra, baixo e outros instrumentos de cordas. Gerador online de tabs com afinação personalizável e número de cordas.',
+    'Crie tablaturas com slide, bend, hammer-on e vibrato. Exporte em PDF. Diagrama de braço interativo com afinação personalizável. Grátis.',
 
   // Home page
   home: {

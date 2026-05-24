@@ -8,7 +8,7 @@ import {
   Box,
   SelectChangeEvent,
 } from '@mui/material';
-import LanguageIcon from '@mui/icons-material/Language';
+import { LuGlobe } from 'react-icons/lu';
 
 const StyledSelect = styled(Select)(() => ({
   '& .MuiSelect-select': {
@@ -46,7 +46,7 @@ export const LanguageSwitcher: React.FC = () => {
       input={<InputBase />}
       renderValue={() => (
         <LanguageIconWrapper>
-          <LanguageIcon />
+          <LuGlobe size={22} />
         </LanguageIconWrapper>
       )}
     >

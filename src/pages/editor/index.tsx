@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, IconButton, Tooltip, Typography } from '@mui/material';
+import { LuRows3, LuFileImage } from 'react-icons/lu';
 import { Guitar } from '@/components/guitar';
 import { Config } from '@/components/config';
+import { TabView } from '@/components/tab-view';
+import type { TTechnique, TTabNote } from '@/components/tab-view';
+import { ScaleExportPanel } from '@/components/scale-export';
 import { useStore } from '@/store';
 import type { TStore } from '@/store/types';
 import html2canvas from 'html2canvas';
@@ -27,6 +31,20 @@ export default function Editor() {
 
   const [editTuning, setEditTuning] = useState(false);
   const [blocks, setBlocks] = useState(0);
+  const [showTab, setShowTab] = useState(false);
+  const [showScaleExport, setShowScaleExport] = useState(false);
+  const [tabSequence, setTabSequence] = useState<TTabNote[]>([]);
+  const [selectedTechnique, setSelectedTechnique] = useState<TTechnique>('none');
+
+  const handleNoteSelect = (x: number, y: number, instrumentIndex: number) => {
+    addNote({ x, y, color }, instrumentIndex);
+    if (showTab) {
+      setTabSequence(prev => [
+        ...prev,
+        { id: `${Date.now()}-${Math.random()}`, string: y, fret: x, technique: selectedTechnique },
+      ]);
+    }
+  };
 
   useEffect(() => {
     const scaleParam = router.query.scale;
@@ -143,7 +161,7 @@ export default function Editor() {
                           frets={end}
                           startFret={start}
                           tuning={instrumentData.tuning}
-                          onSelectNote={({ x, y }) => addNote({ x, y, color }, instrumentData.instrument)}
+                          onSelectNote={({ x, y }) => handleNoteSelect(x, y, instrumentData.instrument)}
                           strings={instrumentData.strings}
                           notes={instrumentData.notes}
                         />
@@ -162,7 +180,7 @@ export default function Editor() {
                       frets={instrumentData.frets}
                       startFret={0}
                       tuning={instrumentData.tuning}
-                      onSelectNote={({ x, y }) => addNote({ x, y, color }, instrumentData.instrument)}
+                      onSelectNote={({ x, y }) => handleNoteSelect(x, y, instrumentData.instrument)}
                       strings={instrumentData.strings}
                       notes={instrumentData.notes}
                     />
@@ -171,6 +189,69 @@ export default function Editor() {
               </Box>
             )}
           </Config>
+
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1, gap: 1 }}>
+            <Tooltip title={showScaleExport ? 'Ocultar exportação' : 'Exportar diagrama'}>
+              <IconButton
+                onClick={() => setShowScaleExport(v => !v)}
+                size="small"
+                sx={{
+                  color: showScaleExport ? '#2ecc71' : '#555',
+                  border: '1px solid',
+                  borderColor: showScaleExport ? '#2ecc71' : '#333',
+                  borderRadius: 1.5,
+                  px: 1.5,
+                  gap: 0.5,
+                  '&:hover': { bgcolor: 'rgba(46,204,113,0.08)', borderColor: '#2ecc71' }
+                }}
+              >
+                <LuFileImage size={16} />
+                <Typography variant="caption" sx={{ fontSize: 11, fontWeight: 600 }}>
+                  PDF
+                </Typography>
+              </IconButton>
+            </Tooltip>
+
+            <Tooltip title={showTab ? 'Ocultar tablatura' : 'Mostrar tablatura'}>
+              <IconButton
+                onClick={() => setShowTab(v => !v)}
+                size="small"
+                sx={{
+                  color: showTab ? '#00e676' : '#555',
+                  border: '1px solid',
+                  borderColor: showTab ? '#00e676' : '#333',
+                  borderRadius: 1.5,
+                  px: 1.5,
+                  gap: 0.5,
+                  '&:hover': { bgcolor: 'rgba(0,230,118,0.08)', borderColor: '#00e676' }
+                }}
+              >
+                <LuRows3 size={16} />
+                <Typography variant="caption" sx={{ fontSize: 11, fontWeight: 600 }}>
+                  TAB
+                </Typography>
+              </IconButton>
+            </Tooltip>
+          </Box>
+
+          <ScaleExportPanel
+            visible={showScaleExport}
+            tuning={instruments[0]?.tuning || ['E', 'B', 'G', 'D', 'A', 'E']}
+            strings={instruments[0]?.strings || 6}
+            frets={instruments[0]?.frets || 24}
+          />
+
+          <TabView
+            visible={showTab}
+            tabSequence={tabSequence}
+            selectedTechnique={selectedTechnique}
+            onTechniqueChange={setSelectedTechnique}
+            onClear={() => setTabSequence([])}
+            onUndo={() => setTabSequence(prev => prev.slice(0, -1))}
+            onRemoveNote={(index: number) => setTabSequence(prev => prev.filter((_, i) => i !== index))}
+            tuning={instruments[0]?.tuning || ['E', 'B', 'G', 'D', 'A', 'E']}
+            strings={instruments[0]?.strings || 6}
+          />
         </Container>
       </main>
     </>

@@ -72,7 +72,7 @@ export const GuitarColumn = styled.td`
   position: relative;
 
   &:first-child {
-    border-left: 8px solid #c8a96e;
+    border-left: none;
   }
 `;
 

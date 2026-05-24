@@ -1,4 +1,4 @@
-import { FaGuitar, FaDrum, FaMusic, FaUmbrella, FaBan } from 'react-icons/fa6';
+import { GiGuitar, GiGuitarBassHead, GiViolin, GiBanjo, GiMusicalNotes, GiGuitarHead } from 'react-icons/gi';
 import { IconType } from 'react-icons';
 
 export interface InstrumentData {
@@ -15,7 +15,7 @@ export interface InstrumentData {
 export const commonInstruments: InstrumentData[] = [
   {
     name: 'instruments.guitar',
-    icon: FaGuitar,
+    icon: GiGuitar,
     strings: 6,
     tuning: ['E', 'A', 'D', 'G', 'B', 'E'],
     description: 'instruments.descriptions.electric-guitar',
@@ -25,7 +25,7 @@ export const commonInstruments: InstrumentData[] = [
   },
   {
     name: 'instruments.bass',
-    icon: FaGuitar,
+    icon: GiGuitarBassHead,
     strings: 4,
     tuning: ['E', 'A', 'D', 'G'],
     description: 'instruments.descriptions.bass',
@@ -35,7 +35,7 @@ export const commonInstruments: InstrumentData[] = [
   },
   {
     name: 'instruments.violin',
-    icon: FaMusic,
+    icon: GiViolin,
     strings: 4,
     tuning: ['G', 'D', 'A', 'E'],
     description: 'instruments.descriptions.violin',
@@ -45,7 +45,7 @@ export const commonInstruments: InstrumentData[] = [
   },
   {
     name: 'instruments.ukulele',
-    icon: FaGuitar,
+    icon: GiGuitarHead,
     strings: 4,
     tuning: ['G', 'C', 'E', 'A'],
     description: 'instruments.descriptions.ukulele',
@@ -55,7 +55,7 @@ export const commonInstruments: InstrumentData[] = [
   },
   {
     name: 'instruments.banjo',
-    icon: FaGuitar,
+    icon: GiBanjo,
     strings: 5,
     tuning: ['G', 'D', 'G', 'B', 'D'],
     description: 'instruments.descriptions.banjo',
@@ -65,7 +65,7 @@ export const commonInstruments: InstrumentData[] = [
   },
   {
     name: 'instruments.mandolin',
-    icon: FaGuitar,
+    icon: GiMusicalNotes,
     strings: 8,
     tuning: ['G', 'D', 'A', 'E'],
     description: 'instruments.descriptions.mandolin',
@@ -75,7 +75,7 @@ export const commonInstruments: InstrumentData[] = [
   },
   {
     name: 'instruments.cavaquinho',
-    icon: FaGuitar,
+    icon: GiGuitar,
     strings: 4,
     tuning: ['D', 'G', 'B', 'D'],
     description: 'instruments.descriptions.cavaquinho',

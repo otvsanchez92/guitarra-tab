@@ -1,25 +1,25 @@
 {
-  "title": "Musical Diagrams",
-  "description": "Musical Diagrams",
-  "keywords": "Musical Diagrams",
-  "author": "Musical Diagrams",
-  "ogTitle": "Musical Diagrams",
-  "ogDescription": "Musical Diagrams",
-  "ogKeywords": "Musical Diagrams",
-  "ogAuthor": "Musical Diagrams",
+  "title": "NeckChart – Guitar Tab Editor, Fretboard Diagram & Scale Visualizer",
+  "description": "Build guitar tabs with slides, bends and hammer-ons. Visualize scales on guitar, bass, ukulele and more fretboards. Free online tab editor, fretboard diagram and PDF export.",
+  "keywords": "guitar tab editor, fretboard diagram, guitar scale visualizer, online tab creator, guitar tablature generator, fretboard notes, guitar scales chart, bass fretboard, ukulele fretboard, music theory guitar, scale patterns guitar, pentatonic scale guitar, guitar tab maker, bend slide hammer-on pull-off, export guitar tab pdf, neck diagram, string instrument chart",
+  "author": "NeckChart",
+  "ogTitle": "NeckChart – Online Guitar Tab Editor with Slides, Bends & Fretboard Diagram",
+  "ogDescription": "Build guitar tabs with slides, bends, hammer-ons and vibrato. Visualize scales on guitar, bass, ukulele and more. Free fretboard diagram tool with PDF export.",
+  "ogKeywords": "guitar tab editor, fretboard diagram, guitar scales, online tab creator, guitar tablature, bend slide hammer-on",
+  "ogAuthor": "NeckChart",
   "header": {
-    "title": "Musical Diagrams",
+    "title": "NeckChart",
     "scales": "Common Scales",
     "instruments": "Instruments",
     "editor": "Editor"
   },
   "home": {
-    "title": "Musical Scale Maps",
-    "subtitle": "Visualize scales and chords on the fretboard of any string instrument",
+    "title": "NeckChart – Fretboard Diagram, Scales & Online Guitar Tab Editor",
+    "subtitle": "Build guitar tabs and visualize scales on guitar, bass, ukulele and any string instrument — free online tool",
     "commonScales": "Common Scales",
     "commonScalesSubtitle": "Choose a scale to visualize it on the fretboard",
     "instruments": "Instruments",
-    "instrumentsSubtitle": "Choose an instrument to explore its compatible scales",
+    "instrumentsSubtitle": "Choose an instrument and explore its scales on the fretboard",
     "startWithScale": "Explore scale",
     "startWithInstrument": "Explore instrument",
     "openEditor": "Open Editor"
@@ -62,6 +62,10 @@
     "start": "Start",
     "startBlocks": "View by positions",
     "notFound": "Scale not found",
+    "positions": "Positions on the fretboard",
+    "showPositions": "Show positions",
+    "hidePositions": "Hide positions",
+    "otherNotes": "Other notes",
     "types": {
       "diatonic": "Diatonic",
       "pentatonic": "Pentatonic",
@@ -69,44 +73,44 @@
       "hexatonic": "Hexatonic"
     },
     "major": {
-      "title": "Major",
-      "description": "Most common scale in Western music, foundation for classical and popular music"
+      "title": "Major Scale",
+      "description": "The most common scale in Western music. Foundation of classical, pop, rock and country. Visualize all major scale patterns and positions on guitar, bass, ukulele and more fretboards."
     },
     "natural_minor": {
-      "title": "Natural Minor",
-      "description": "Most common minor scale, used in classical music and jazz"
+      "title": "Natural Minor Scale",
+      "description": "The most used minor scale in music. Essential for rock, metal, classical and folk. See every position of the natural minor scale on guitar, bass, violin and any string instrument fretboard."
     },
     "blues": {
-      "title": "Blues",
-      "description": "Characteristic scale of blues, with a flat fifth"
+      "title": "Blues Scale",
+      "description": "The signature scale of blues and rock guitar. Six notes with the flat fifth blue note. Visualize all positions on the fretboard and build guitar tabs with bends and slides."
     },
     "major_pentatonic": {
-      "title": "Major Pentatonic",
-      "description": "Five-note scale, widely used in rock and blues"
+      "title": "Major Pentatonic Scale",
+      "description": "Five-note scale widely used in country, pop and rock guitar solos. One of the most beginner-friendly scales. Explore all fretboard positions on guitar, bass and ukulele."
     },
     "minor_pentatonic": {
-      "title": "Minor Pentatonic",
-      "description": "Most common pentatonic scale, used in rock, blues, and jazz"
+      "title": "Minor Pentatonic Scale",
+      "description": "The go-to scale for rock, blues and jazz guitar solos. Five notes that work over almost any chord progression. View the complete fretboard diagram and build tabs."
     },
     "dorian": {
-      "title": "Dorian",
-      "description": "Modal scale, used in modern music and jazz"
+      "title": "Dorian Mode",
+      "description": "Minor modal scale with a raised sixth. Used in jazz, funk and modern rock. Visualize the Dorian mode on guitar and bass fretboard — all positions and patterns."
     },
     "mixolydian": {
-      "title": "Mixolydian",
-      "description": "Modal scale, used in blues and rock"
+      "title": "Mixolydian Mode",
+      "description": "Major scale with a flat seventh. Widely used in blues, rock and Celtic music. Essential for dominant chord improvisation. See all Mixolydian patterns on the fretboard."
     },
     "lydian": {
-      "title": "Lydian",
-      "description": "Modal scale with augmented fourths"
+      "title": "Lydian Mode",
+      "description": "Major scale with an augmented fourth. Gives a dreamy, ethereal sound used in film scores and progressive rock. Explore all Lydian mode positions on the guitar fretboard."
     },
     "phrygian": {
-      "title": "Phrygian",
-      "description": "Modal scale with a minor second"
+      "title": "Phrygian Mode",
+      "description": "Minor scale with a flat second giving a Spanish or flamenco feel. Popular in metal, flamenco and Middle Eastern music. Visualize Phrygian mode on guitar and bass."
     },
     "eolian": {
-      "title": "Aeolian",
-      "description": "Modal scale equivalent to the natural minor"
+      "title": "Aeolian Mode",
+      "description": "The Aeolian mode is identical to the natural minor scale. Fundamental in rock, pop and classical music. See all positions of the Aeolian mode on any string instrument fretboard."
     }
   },
   "breadcrumb": {
@@ -133,13 +137,13 @@
     "mandolin": "Mandolin",
     "cavaquinho": "Cavaquinho",
     "descriptions": {
-      "electric-guitar": "The most popular string instrument in the world",
-      "bass": "The rhythmic foundation of any band",
-      "violin": "Classic bowed string instrument",
-      "ukulele": "Hawaiian string instrument with a cheerful sound",
-      "banjo": "String instrument with a characteristic bright resonance",
-      "mandolin": "Eight-string instrument with a distinctive bright tone",
-      "cavaquinho": "Traditional Brazilian string instrument"
+      "electric-guitar": "Visualize scales and build tabs for electric guitar and acoustic guitar",
+      "bass": "Explore scale patterns and fretboard diagrams for electric and acoustic bass",
+      "violin": "Fretboard diagram and scales for violin — beginner to advanced",
+      "ukulele": "Scale diagrams and fretboard charts for soprano, concert and tenor ukulele",
+      "banjo": "Explore scale positions and fretboard diagrams for 5-string banjo",
+      "mandolin": "Scale diagrams and fretboard charts for 8-string mandolin",
+      "cavaquinho": "Fretboard diagram and scales for Brazilian cavaquinho"
     }
   },
   "editor": {

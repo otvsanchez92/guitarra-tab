@@ -1,100 +1,155 @@
-# Maps Musical
+# NeckChart
 
-Visualize escalas e acordes no braço de qualquer instrumento de corda.
+**NeckChart** is a free online tool for guitarists, bassists and string instrument players.
+Build guitar tabs, visualize scales and explore fretboard positions — all in one place.
 
-> Visualize scales and chords on the fretboard of any string instrument.
+> Ferramenta gratuita para guitarristas e instrumentistas de cordas.
+> Crie tablaturas, visualize escalas e explore o braço no browser, sem instalar nada.
 
-## Sobre o projeto
+---
 
-**Maps Musical** é uma aplicação web interativa para músicos que desejam estudar e visualizar escalas musicais em diferentes instrumentos de corda.
+## Features / Funcionalidades
 
-### Funcionalidades
+### Tab Editor / Editor de Tab
+- Build guitar tabs by clicking notes on the interactive fretboard
+- Techniques: Slide Up `/`, Slide Down `\`, Hammer-on `h`, Pull-off `p`, Bend `b`, Bend & Release `br`, Vibrato `~`, Tap `t`
+- Auto line-wrap when the tab reaches the container width
+- Click any note in the tab to remove it · Undo · Clear
+- Export tab as **PDF** with title, artist, tempo, capo and notes
+- Copy tab as plain text to clipboard
 
-- Visualização de escalas no braço do instrumento em tempo real
-- Suporte a 10 escalas: Maior, Menor Natural, Blues, Pentatônicas, Dórica, Mixolídia, Lídia, Frígia e Eólia
-- 7 instrumentos: Guitarra, Baixo, Violino, Ukulele, Banjo, Mandolin e Cavaquinho
-- Seleção de tom (C até B) com destaque da nota raiz
-- Editor livre para marcar notas manualmente no braço
-- Afinação personalizável por corda
-- Suporte a múltiplos diagramas simultâneos
-- Download do diagrama como imagem
-- Interface em Português e Inglês
-- Design responsivo para desktop e mobile
+### Fretboard Diagram / Diagrama de Braço
+- Interactive fretboard — click any fret to mark notes with custom colors
+- Scale visualizer — choose a scale and root note to highlight all positions on the neck
+- Position view — split the fretboard into sections to study scales by position
+- Custom tuning per string
+- Multiple simultaneous diagrams
+- Download diagram as image (PNG)
 
-## Stack
+### Scales / Escalas
+- 10 scales: Major, Natural Minor, Blues, Major Pentatonic, Minor Pentatonic, Dorian, Mixolydian, Lydian, Phrygian, Aeolian
+- All positions across the full fretboard (up to 24 frets)
 
-| Tecnologia | Uso |
+### Instruments / Instrumentos
+- 7 instruments with correct default tunings:
+  Guitar (6-string), Bass (4-string), Violin, Ukulele, Banjo, Mandolin, Cavaquinho
+- Supports 4 to 7 strings
+- Available in English and Brazilian Portuguese
+- Responsive design for desktop and mobile
+
+---
+
+## Tech Stack
+
+| Technology | Purpose |
 |---|---|
-| [Next.js](https://nextjs.org/) | Framework React (SSG/SSR) |
-| [TypeScript](https://www.typescriptlang.org/) | Tipagem estática |
-| [MUI](https://mui.com/) | Componentes de UI |
-| [Zustand](https://zustand-demo.pmnd.rs/) | Gerenciamento de estado |
-| [i18next](https://www.i18next.com/) | Internacionalização (PT-BR / EN) |
-| [html2canvas](https://html2canvas.hertzen.com/) | Export de diagrama como imagem |
+| [Next.js](https://nextjs.org/) | React framework (SSG/SSR) |
+| [TypeScript](https://www.typescriptlang.org/) | Static typing |
+| [MUI](https://mui.com/) | UI components |
+| [Zustand](https://zustand-demo.pmnd.rs/) | Global state management |
+| [i18next](https://www.i18next.com/) | Internationalization (EN / PT-BR) |
+| [html2canvas](https://html2canvas.hertzen.com/) | Fretboard diagram export as PNG |
+| [jsPDF](https://github.com/parallax/jsPDF) | Guitar tab export as PDF |
 
-## Rodando localmente
+---
 
-**Pré-requisitos:** Node.js >= 20.x
+## Getting Started
+
+**Requires:** Node.js >= 20.x
 
 ```bash
-# Instalar dependências
+# Install dependencies
 npm install
 
-# Iniciar servidor de desenvolvimento
+# Start development server
 npm run dev
 ```
 
-Acesse [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
 ```bash
-npm run dev        # Servidor de desenvolvimento
-npm run build      # Build de produção
-npm run start      # Iniciar build de produção
-npm run lint       # Verificar erros de lint
-npm run lint:fix   # Corrigir lint e formatar com Prettier
-npm test           # Rodar testes (Jest)
+npm run dev        # Development server
+npm run build      # Production build
+npm run start      # Start production build
+npm run lint       # Check lint errors
+npm run lint:fix   # Fix lint and format with Prettier
+npm test           # Run tests (Jest)
 ```
 
-## Estrutura do projeto
+---
+
+## Project Structure
 
 ```
 src/
 ├── pages/
-│   ├── index.tsx              # Home — lista de escalas e instrumentos
-│   ├── editor/                # Editor interativo do braço
-│   ├── scales/[id].tsx        # Detalhe da escala com seletor de tom e instrumento
-│   └── instruments/[id].tsx   # Detalhe do instrumento
+│   ├── index.tsx                  # Home — scales and instruments list
+│   ├── editor/                    # Interactive fretboard + tab editor
+│   ├── scales/[id].tsx            # Scale detail with tone and instrument selector
+│   └── instruments/[id].tsx       # Instrument detail
 ├── components/
-│   ├── guitar/                # Componente do braço interativo
-│   ├── config/                # Painel de controles do editor
-│   ├── home/                  # Página inicial
-│   └── common/                # Componentes reutilizáveis (Card, PageLayout...)
+│   ├── guitar/                    # Interactive fretboard component
+│   ├── tab-view/                  # Tab editor with PDF export
+│   ├── config/                    # Editor controls panel
+│   ├── home/                      # Home page
+│   └── common/                    # Shared components (Card, PageLayout...)
 ├── store/
-│   └── store.ts               # Estado global com Zustand
+│   └── store.ts                   # Global state with Zustand
 ├── data/
-│   ├── scalesData.ts          # Definição das escalas
-│   ├── scaleUtils.ts          # Cálculo de notas por escala e tom
-│   └── instrumentsData.ts     # Definição dos instrumentos e afinações
+│   ├── scalesData.ts              # Scale definitions
+│   ├── scaleUtils.ts              # Note calculation by scale and root
+│   └── instrumentsData.ts         # Instrument definitions and tunings
 ├── utils/
-│   └── scales.ts              # Mapeamento nota ↔ traste
+│   └── scales.ts                  # Note ↔ fret position mapping
 └── locales/
-    └── i18n.ts                # Configuração do i18next
+    └── i18n.ts                    # i18next configuration
 public/
 └── locales/
-    ├── en/common.json         # Traduções em inglês
-    └── pt-BR/common.json      # Traduções em português
+    ├── en/common.json             # English translations + SEO metadata
+    └── pt-BR/common.json          # Portuguese translations + SEO metadata
 ```
+
+---
+
+## Supported Scales
+
+| Scale | Type | Use Cases |
+|-------|------|-----------|
+| Major | Diatonic | Pop, rock, country, classical |
+| Natural Minor | Diatonic | Rock, metal, folk, classical |
+| Blues | Hexatonic | Blues, rock, improvisation |
+| Major Pentatonic | Pentatonic | Country, pop, rock solos |
+| Minor Pentatonic | Pentatonic | Rock, blues, jazz solos |
+| Dorian | Modal | Jazz, funk, modern rock |
+| Mixolydian | Modal | Blues, rock, Celtic |
+| Lydian | Modal | Film scores, progressive rock |
+| Phrygian | Modal | Metal, flamenco, Middle Eastern |
+| Aeolian | Modal | Rock, pop, classical |
+
+## Supported Instruments
+
+| Instrument | Strings | Default Tuning |
+|------------|---------|----------------|
+| Guitar | 6 | E A D G B E |
+| Bass | 4 | E A D G |
+| Violin | 4 | G D A E |
+| Ukulele | 4 | G C E A |
+| Banjo | 5 | G D G B D |
+| Mandolin | 8 | G D A E |
+| Cavaquinho | 4 | D G B D |
+
+---
 
 ## Deploy
 
-O projeto está configurado para deploy na [Vercel](https://vercel.com).
+The project is configured for deployment on [Vercel](https://vercel.com).
 
-**Requisito:** definir Node.js Version como `20.x` ou superior em **Project Settings → General** no dashboard da Vercel.
+**Requirement:** set Node.js version to `20.x` or higher in **Project Settings → General** on the Vercel dashboard.
 
-```bash
-# Build de produção local
-npm run build
-npm run start
-```
+---
+
+## License
+
+MIT

@@ -31,10 +31,10 @@ export default function Index() {
         <meta name="theme-color" content="#0D0D0D" />
 
         {/* Other meta tags */}
-        <meta name="application-name" content="Maps Musical" />
+        <meta name="application-name" content="NeckChart" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Maps Musical" />
+        <meta name="apple-mobile-web-app-title" content="NeckChart" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#0D0D0D" />
       </Head>

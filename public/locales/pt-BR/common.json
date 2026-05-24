@@ -1,25 +1,25 @@
 {
-  "title": "Maps Musical",
-  "description": "Maps Musical",
-  "keywords": "Maps Musical",
-  "author": "Maps Musical",
-  "ogTitle": "Maps Musical",
-  "ogDescription": "Maps Musical",
-  "ogKeywords": "Maps Musical",
-  "ogAuthor": "Maps Musical",
+  "title": "NeckChart – Editor de Tab e Diagrama de Braço para Guitarra e Baixo",
+  "description": "Crie tablaturas com slide, bend e hammer-on. Visualize escalas no braço de guitarra, baixo, ukulele e mais. Editor de tab e diagrama de braço online e gratuito.",
+  "keywords": "diagrama de braço guitarra, tablatura guitarra online, editor de tab guitarra, criar tablatura online, escalas guitarra braço, pentatônica guitarra, diagrama de braço baixo, visualizador de escalas, braço de guitarra online, teoria musical guitarra, escalas no braço, tablatura online grátis, bend guitarra, slide guitarra, hammer-on, pull-off, ukulele diagrama, baixo elétrico escalas, violino escalas, cavaquinho diagrama",
+  "author": "NeckChart",
+  "ogTitle": "NeckChart – Editor de Tab Online com Slide, Bend e Diagrama de Braço",
+  "ogDescription": "Crie tablaturas completas e visualize escalas no braço de guitarra, baixo, ukulele e mais. Slide, bend, hammer-on, vibrato e exportação em PDF. Grátis.",
+  "ogKeywords": "tablatura guitarra online, editor de tab, diagrama de braço, escalas guitarra, criar tab guitarra, bend slide hammer-on",
+  "ogAuthor": "NeckChart",
   "header": {
-    "title": "Maps Musical",
+    "title": "NeckChart",
     "scales": "Escalas Comuns",
     "instruments": "Instrumentos",
     "editor": "Editor"
   },
   "home": {
-    "title": "Maps Musical",
-    "subtitle": "Visualize escalas e acordes no braço de qualquer instrumento de corda",
+    "title": "NeckChart – Diagrama de Braço, Escalas e Editor de Tab Online",
+    "subtitle": "Visualize escalas e crie tablaturas para guitarra, baixo, ukulele e outros instrumentos de cordas",
     "commonScales": "Escalas Comuns",
     "commonScalesSubtitle": "Escolha uma escala para visualizá-la no braço do instrumento",
     "instruments": "Instrumentos",
-    "instrumentsSubtitle": "Escolha um instrumento para explorar suas escalas compatíveis",
+    "instrumentsSubtitle": "Escolha um instrumento e explore suas escalas no braço",
     "startWithScale": "Explorar escala",
     "startWithInstrument": "Explorar instrumento",
     "openEditor": "Abrir Editor"
@@ -62,6 +62,10 @@
     "start": "Iniciar",
     "startBlocks": "Ver por posições",
     "notFound": "Escala não encontrada",
+    "positions": "Posições no braço",
+    "showPositions": "Ver posições",
+    "hidePositions": "Ocultar posições",
+    "otherNotes": "Outras notas",
     "types": {
       "diatonic": "Diatônica",
       "pentatonic": "Pentatônica",
@@ -69,44 +73,44 @@
       "hexatonic": "Hexatônica"
     },
       "major": {
-        "title": "Maior",
-        "description": "Escala mais comum em música ocidental, base para música clássica e popular"
+        "title": "Escala Maior",
+        "description": "A escala mais comum da música ocidental. Base do rock, pop, sertanejo e clássico. Visualize os padrões da escala maior no braço da guitarra, baixo, ukulele e mais. Aprenda todas as posições."
       },
       "natural_minor": {
-        "title": "Menor Natural",
-        "description": "Escala menor mais comum, usada em música clássica e jazz"
+        "title": "Escala Menor Natural",
+        "description": "A escala menor mais usada na música. Essencial para rock, metal, clássico e folk. Veja todas as posições da escala menor no braço de guitarra, baixo, violino e outros instrumentos de cordas."
       },
       "blues": {
-        "title": "Blues",
-        "description": "Escala característica do blues, com a quinta menor"
+        "title": "Escala de Blues",
+        "description": "A escala do blues e do rock. Seis notas com a quinta diminuta (blue note). Visualize as posições no braço para improviso de guitarra e baixo. Ideal para aprender solos de blues."
       },
       "major_pentatonic": {
         "title": "Pentatônica Maior",
-        "description": "Escala de cinco notas, muito usada em rock e blues"
+        "description": "Escala pentatônica de cinco notas muito usada em country, pop e solos de rock. Uma das escalas mais fáceis para aprender guitarra. Explore todas as posições no braço."
       },
       "minor_pentatonic": {
         "title": "Pentatônica Menor",
-        "description": "Escala pentatônica mais comum, usada em rock, blues e jazz"
+        "description": "A escala preferida para solos de rock, blues e jazz na guitarra. Cinco notas que funcionam em quase qualquer progressão de acordes. Veja o diagrama completo no braço."
       },
       "dorian": {
-        "title": "Dórica",
-        "description": "Escala modal, usada em música moderna e jazz"
+        "title": "Modo Dórico",
+        "description": "Escala modal menor com a sexta aumentada. Muito usada em jazz, funk, blues e rock moderno. Visualize o modo dórico no braço da guitarra e do baixo elétrico."
       },
       "mixolydian": {
-        "title": "Mixolídia",
-        "description": "Escala modal, usada em blues e rock"
+        "title": "Modo Mixolídio",
+        "description": "Escala maior com a sétima menor. Amplamente usada em blues, rock e música celta. Essencial para improvisar sobre acordes dominantes. Veja as posições no braço da guitarra."
       },
       "lydian": {
-        "title": "Lídia",
-        "description": "Escala modal com quartas aumentadas"
+        "title": "Modo Lídio",
+        "description": "Escala maior com a quarta aumentada. Cria um som etéreo e onírico. Muito usada em trilhas sonoras e rock progressivo. Explore o modo lídio no braço da guitarra."
       },
       "phrygian": {
-        "title": "Frígia",
-        "description": "Escala modal com segunda menor"
+        "title": "Modo Frígio",
+        "description": "Escala menor com a segunda menor. Dá um sabor espanhol e flamenco. Popular no metal, flamenco e música árabe. Visualize o modo frígio no braço da guitarra e baixo."
       },
       "eolian": {
-        "title": "Eólia",
-        "description": "Escala modal equivalente à menor natural"
+        "title": "Modo Eólio",
+        "description": "O modo Eólio é idêntico à escala menor natural. Fundamental em rock, pop e música clássica. Veja todas as posições do modo eólio no braço da guitarra e baixo."
       }
     },
     "breadcrumb": {
@@ -133,13 +137,13 @@
       "mandolin": "Mandolin",
       "cavaquinho": "Cavaquinho",
       "descriptions": {
-        "electric-guitar": "O instrumento de cordas mais popular do mundo",
-        "bass": "A base rítmica de qualquer banda",
-        "violin": "Clássico instrumento de cordas friccionadas",
-        "ukulele": "Instrumento havaiano com som alegre e vibrante",
-        "banjo": "Instrumento de cordas com ressonância brilhante característica",
-        "mandolin": "Instrumento de oito cordas com timbre brilhante e distinto",
-        "cavaquinho": "Instrumento de corda tradicional brasileiro"
+        "electric-guitar": "Visualize escalas e crie tabs para guitarra elétrica e violão",
+        "bass": "Explore escalas e padrões de dedilhado para baixo elétrico e acústico",
+        "violin": "Diagrama de braço e escalas para violino — do iniciante ao avançado",
+        "ukulele": "Escalas e diagramas de braço para ukulele soprano, concerto e tenor",
+        "banjo": "Explore escalas e posições no braço do banjo de 5 cordas",
+        "mandolin": "Diagramas e escalas para mandolin de 8 cordas",
+        "cavaquinho": "Diagrama de braço e escalas para cavaquinho brasileiro"
       }
     },
     "editor": {
