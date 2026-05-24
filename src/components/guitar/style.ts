@@ -58,8 +58,10 @@ export const Button = styled.button`
   }
 
   @media (max-width: 600px) {
-    width: 24px;
-    height: 24px;
+    width: calc((100vw - 80px) / 12 - 4px);
+    height: calc((100vw - 80px) / 12 - 4px);
+    max-width: 32px;
+    max-height: 32px;
     font-size: 8px;
   }
 `;
@@ -78,11 +80,11 @@ export const Line = styled.div`
 export const GuitarTable = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
+  flex-shrink: 0;
 `;
 
 export const GuitarRow = styled.tr`
   height: 38px;
-  @media (max-width: 600px) { height: 32px; }
 `;
 
 export const GuitarColumn = styled.td`
@@ -96,8 +98,8 @@ export const GuitarColumn = styled.td`
   }
 
   @media (max-width: 600px) {
-    width: 28px;
-    height: 32px;
+    width: calc((100vw - 80px) / 12);
+    height: 38px;
   }
 `;
 
@@ -108,7 +110,12 @@ export const GuitarColumnText = styled.td`
   font-size: 11px;
   color: #555;
   user-select: none;
-  @media (max-width: 600px) { width: 28px; height: 18px; font-size: 9px; }
+
+  @media (max-width: 600px) {
+    width: calc((100vw - 80px) / 12);
+    height: 18px;
+    font-size: 9px;
+  }
 `;
 
 export const Tuning = styled.div`
@@ -120,13 +127,11 @@ export const Tuning = styled.div`
   font-size: 13px;
   font-weight: 600;
   color: #aaa;
-  @media (max-width: 600px) { width: 28px; height: 32px; font-size: 11px; }
 `;
 
 export const TuningHeader = styled.div`
   width: 36px;
   height: 22px;
-  @media (max-width: 600px) { width: 28px; height: 18px; }
 `;
 
 export const MarksContainer = styled.div`

@@ -86,7 +86,7 @@ const Guitar = ({
   );
 
   const renderTuning = () => (
-    <div>
+    <div style={{ flexShrink: 0 }}>
       <TuningHeader />
       {tuning
         .filter((_: string, i: number) => i < strings)
