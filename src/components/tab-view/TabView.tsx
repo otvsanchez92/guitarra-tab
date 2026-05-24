@@ -10,7 +10,7 @@ import {
   TextField,
   Divider,
 } from '@mui/material';
-import { LuTrash2, LuCopy, LuUndo2, LuFileDown, LuChevronDown, LuChevronUp, LuFileText } from 'react-icons/lu';
+import { LuTrash2, LuCopy, LuUndo2, LuFileDown, LuChevronUp, LuFileText } from 'react-icons/lu';
 import type { TTechnique, TTabNote } from './types';
 
 const TECHNIQUES: { value: TTechnique; symbol: string; label: string; description: string }[] = [
@@ -52,6 +52,13 @@ interface TabViewProps {
 }
 
 const ROW_H = '1.9em';
+
+const monoSx = {
+  fontFamily: '"Courier New", Courier, monospace',
+  fontSize: 14,
+  lineHeight: ROW_H,
+  whiteSpace: 'pre' as const,
+};
 
 const getCharWidth = (): number => {
   if (typeof window === 'undefined') return 8.4;
@@ -102,12 +109,12 @@ const TabView: React.FC<TabViewProps> = ({
   const [docNotes, setDocNotes] = useState('');
 
   const count = Math.min(strings, tuning.length);
-  const labels = tuning.slice(0, count).map((note, i) =>
-    i === 0 && note.toUpperCase() === 'E' ? 'e' : note
+  const labels = useMemo(
+    () => tuning.slice(0, count).map((note, i) => (i === 0 && note.toUpperCase() === 'E' ? 'e' : note)),
+    [tuning, count]
   );
 
-  // Build steps and widths (pure, no side-effects needed in render)
-  const buildSteps = () => {
+  const steps = useMemo(() => {
     const prevFret: (number | null)[] = Array(count).fill(null);
     return tabSequence.map(n => {
       const contents: (string | null)[] = Array(count).fill(null);
@@ -119,11 +126,11 @@ const TabView: React.FC<TabViewProps> = ({
       }
       return contents;
     });
-  };
+  }, [tabSequence, count]);
 
-  const steps = buildSteps();
-  const widths = steps.map(contents =>
-    2 + Math.max(...contents.map(c => (c ? c.length : 0)), 1)
+  const widths = useMemo(
+    () => steps.map(contents => 2 + Math.max(...contents.map(c => (c ? c.length : 0)), 1)),
+    [steps]
   );
 
   // ── Plain text for clipboard ──────────────────────────────────────
@@ -279,13 +286,6 @@ const TabView: React.FC<TabViewProps> = ({
   };
 
   // ── Interactive tab rendering ─────────────────────────────────────
-  const monoSx = {
-    fontFamily: '"Courier New", Courier, monospace',
-    fontSize: 14,
-    lineHeight: ROW_H,
-    whiteSpace: 'pre' as const,
-  };
-
   const renderEmpty = () =>
     labels.map((label, i) => (
       <Box key={i} sx={{ ...monoSx, color: '#00e676' }}>
@@ -294,18 +294,17 @@ const TabView: React.FC<TabViewProps> = ({
     ));
 
   // Split steps into lines that fit the container width
-  const LABEL_PX = 5 * charWidth;  // "e  | "
-  const CLOSE_PX = 3 * charWidth;  // "--|"
-  const maxLinePx = Math.max(containerWidth - LABEL_PX - CLOSE_PX, charWidth);
-
-  const chunks: number[][] = [];
-  {
+  const chunks = useMemo(() => {
+    const LABEL_PX = 5 * charWidth;
+    const CLOSE_PX = 3 * charWidth;
+    const maxLinePx = Math.max(containerWidth - LABEL_PX - CLOSE_PX, charWidth);
+    const result: number[][] = [];
     let cur: number[] = [];
     let curPx = 0;
     widths.forEach((w, i) => {
       const wPx = w * charWidth;
       if (curPx + wPx > maxLinePx && cur.length > 0) {
-        chunks.push(cur);
+        result.push(cur);
         cur = [i];
         curPx = wPx;
       } else {
@@ -313,8 +312,9 @@ const TabView: React.FC<TabViewProps> = ({
         curPx += wPx;
       }
     });
-    if (cur.length > 0) chunks.push(cur);
-  }
+    if (cur.length > 0) result.push(cur);
+    return result;
+  }, [widths, charWidth, containerWidth]);
 
   const renderTab = () => (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>

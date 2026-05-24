@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { TInstrument, TStore } from './types';
-import { getPositionFromNote, getNotesSequence, getNoteFromPosition } from '../utils/scales';
+import { getNoteFromPosition } from '../utils/scales';
 
 const enharmonicToSharp: Record<string, string> = {
   Db: 'C#', Eb: 'D#', Fb: 'E', Gb: 'F#', Ab: 'G#', Bb: 'A#', Cb: 'B',
@@ -85,9 +85,11 @@ const useStore = create<TStore>((set, get) => ({
     };
 
     set((state: TStore) => {
-      const newState = [...state.instruments];
-      newState[instrument].strings = strings;
-      newState[instrument].tuning = defaultTunings[strings] || get().instruments[instrument].tuning;
+      const newState = state.instruments.map((inst, i) =>
+        i === instrument
+          ? { ...inst, strings, tuning: defaultTunings[strings] || inst.tuning }
+          : inst
+      );
       return { instruments: newState };
     });
   },
@@ -100,18 +102,21 @@ const useStore = create<TStore>((set, get) => ({
 
   changeFrets: (frets, instrument = 0) => {
     set((state: TStore) => {
-      const newState = [...state.instruments];
-      newState[instrument].frets = frets;
-      return { ...state, instruments: newState };
+      const newState = state.instruments.map((inst, i) =>
+        i === instrument ? { ...inst, frets } : inst
+      );
+      return { instruments: newState };
     });
   },
 
   changeTuning: (value, position, instrument = 0) => {
-    const currentTuning = [...get().instruments[instrument].tuning];
-    currentTuning[position] = value;
     set((state: TStore) => {
-      const newState = [...state.instruments];
-      newState[instrument].tuning = currentTuning;
+      const newState = state.instruments.map((inst, i) => {
+        if (i !== instrument) return inst;
+        const tuning = [...inst.tuning];
+        tuning[position] = value;
+        return { ...inst, tuning };
+      });
       return { instruments: newState };
     });
   },
@@ -124,34 +129,42 @@ const useStore = create<TStore>((set, get) => ({
 
   clearNote: () => {
     set((state: TStore) => {
-      const newState = [...state.instruments];
-
-      const instrument = state.lastInstrument;
-      newState[instrument].notes = newState[instrument].notes.slice(0, -1);
-      newState[instrument].actives = newState[instrument].actives.slice(0, -1);
-      newState[instrument].scale = newState[instrument].scale.slice(0, -1);
+      const idx = state.lastInstrument;
+      const newState = state.instruments.map((inst, i) =>
+        i === idx
+          ? {
+              ...inst,
+              notes: inst.notes.slice(0, -1),
+              actives: inst.actives.slice(0, -1),
+              scale: inst.scale.slice(0, -1),
+            }
+          : inst
+      );
       return { instruments: newState };
     });
   },
 
   setActiveButton: ({ x, y }) => {
     set((state: TStore) => {
-      const newState = [...state.instruments];
-      const existingIndex = newState[0].actives.findIndex(a => a.x === x && a.y === y);
-      if (existingIndex >= 0) {
-        newState[0].actives = newState[0].actives.filter((_, i) => i !== existingIndex);
-      } else {
-        const currentColor = get().instruments[0].color;
-        newState[0].actives.push({ x, y, color: currentColor });
-      }
+      const newState = state.instruments.map((inst, i) => {
+        if (i !== 0) return inst;
+        const existingIndex = inst.actives.findIndex(a => a.x === x && a.y === y);
+        return {
+          ...inst,
+          actives: existingIndex >= 0
+            ? inst.actives.filter((_, j) => j !== existingIndex)
+            : [...inst.actives, { x, y, color: inst.color }],
+        };
+      });
       return { instruments: newState };
     });
   },
 
   addScale: note => {
     set((state: TStore) => {
-      const newState = [...state.instruments];
-      newState[0].scale.push(note);
+      const newState = state.instruments.map((inst, i) =>
+        i === 0 ? { ...inst, scale: [...inst.scale, note] } : inst
+      );
       return { instruments: newState };
     });
   },
